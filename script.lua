@@ -1330,7 +1330,7 @@ function EndTheDay(_)
     end
 
     -- Put discard and fatigue stacks back into deck
-    for color, playerBoard in pairs(playerBoards) do
+    for _, playerBoard in pairs(playerBoards) do
         local snaps = playerBoard.getSnapPoints()
 
         local hits = Physics.cast({
