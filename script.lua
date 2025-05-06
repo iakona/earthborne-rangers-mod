@@ -314,7 +314,7 @@ function removeFromGame(_, _, obj)
     trash.putObject(obj)
 end
 function PickAspect(params)
-    pickAspect(params.color, _, params.aspect)
+    pickAspect(params.color, nil, params.aspect)
 end
 function pickAspect(color, _, obj)
     if not playerBoards[color] then
@@ -439,7 +439,7 @@ function UnlockReward(params)
                 break
             else
                 local _, count = rewardText:gsub("\n", "")
-                if count < 10 or (index == 1 and count == 10) then
+                if count < 10 or (i == 1 and count == 10) then
                     campaignTracker.UI.setAttribute("rewards"..i, "text", rewardText.."\n"..params.reward)
                     break
                 end
@@ -915,7 +915,7 @@ function StartTheDay(_)
         broadcastToAll("Starting Day "..currentDay.." with "..currentWeather, Color.White)
     end
 
-    for color, playerBoard in pairs(playerBoards) do
+    for color, _ in pairs(playerBoards) do
         local aspect = getAspect(color)
         -- Assume if aspect exists then someone is playing the ranger to account for multihanded play
         if aspect then
@@ -937,7 +937,7 @@ function StartTheDay(_)
                     end
                 end
                 local options = 0
-                for _, guid in pairs(setup) do
+                for _, _ in pairs(setup) do
                     options = options + 1
                 end
 
@@ -1207,7 +1207,7 @@ function ClearPlayArea(_)
                 end
             elseif pathCard.type == "Card" then
                 if not pathCard.is_face_down or (pathDiscard and pathCard.guid == pathDiscard.guid) then
-                    local attachments = pathCard.getAttachments()
+                    attachments = pathCard.getAttachments()
                     local persistent = pathCard.hasTag("Persistent")
                     if #attachments > 0 then
                         for _, attachment in pairs(attachments) do
@@ -1271,7 +1271,7 @@ function ClearPlayArea(_)
 
     for color, rangerToken in pairs(rangerTokens) do
         local playerBoard = playerBoards[color]
-        local snaps = playerBoard.getSnapPoints()
+        snaps = playerBoard.getSnapPoints()
 
         rangerToken.setPositionSmooth(playerBoard.positionToWorld(snaps[tokenIndex].position) + Vector(0, 0.5, 0), false, true)
         rangerToken.setRotationSmooth(Vector(0, 180, 0), false, true)
@@ -1331,7 +1331,6 @@ function EndTheDay(_)
 
     -- Put discard and fatigue stacks back into deck
     for color, playerBoard in pairs(playerBoards) do
-        local playerBoard = playerBoards[color]
         local snaps = playerBoard.getSnapPoints()
 
         local hits = Physics.cast({
