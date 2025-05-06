@@ -1975,9 +1975,8 @@ function onLoad(_)
         font_size      = 100,
     })
 
-    local prologue = Global.getVar("prologue")
     local campaign = Global.getVar("campaign")
-    if not prologue and not campaign then
+    if campaign == 0 then
         self.createButton({
             click_function = "prologue",
             function_owner = self,
@@ -2004,7 +2003,20 @@ function onLoad(_)
             hover_color    = Color.fromHex("2b715f"),
             press_color    = Color.fromHex("1d6551"),
         })
-    elseif not campaign then
+        self.createButton({
+            click_function = "import",
+            function_owner = self,
+            label          = "Import",
+            position       = Vector(0, 0.1, 0.45),
+            width          = 350,
+            height         = 50,
+            font_size      = 50,
+            font_color     = Color.White,
+            color          = Color.fromHex("397f6d"),
+            hover_color    = Color.fromHex("2b715f"),
+            press_color    = Color.fromHex("1d6551"),
+        })
+    elseif campaign == 1 then
         if getObjectFromGUID("c72426") then
             self.createButton({
                 click_function = "null",
@@ -2273,27 +2285,27 @@ function markDay(index, weather, alt_click)
         newWeather = weathers[weather]
     end
 
-    local offset = 29
+    local offset = 30
     local label
     local newDay
     if alt_click then
         label = ""
-        newDay = index + 1
+        newDay = index
     else
         label = "X"
-        newDay = index + 2
+        newDay = index + 1
     end
 
-    self.editButton({index = index + offset, label = label})
+    self.editButton({index = index + offset - 1, label = label})
     Global.setVar("currentWeather", newWeather)
     Global.setVar("currentDay", newDay)
 end
 
 function setDay()
     local currentDay = Global.getVar("currentDay")
-    local offset = 29
+    local offset = 30
 
-    for index = 2, currentDay do
+    for index = 1, currentDay - 1 do
         self.editButton({index = index + offset - 1, label = "X"})
     end
 end
@@ -2736,7 +2748,7 @@ function setProgress()
 end
 
 function prologue(_, _, _)
-    Global.setVar("prologue", true)
+    Global.setVar("campaign", 1)
     Global.call("StartTheDay")
 
     -- Traveling to location after starting the day
@@ -2744,11 +2756,12 @@ function prologue(_, _, _)
     valleyMap.call("Travel", {location = "Ancestor's Grove", connection = "Woods"})
 
     local buttons = self.getButtons()
-    self.editButton({index = buttons[#buttons - 1].index, click_function = "grabCalypsa", label = "Grab Calypsa"})
-    self.editButton({index = buttons[#buttons].index, click_function = "endPrologue", tooltip = "End Prologue and Start Campaign"})
+    self.removeButton(buttons[#buttons].index)
+    self.editButton({index = buttons[#buttons - 2].index, click_function = "grabCalypsa", label = "Grab Calypsa"})
+    self.editButton({index = buttons[#buttons - 1].index, click_function = "endPrologue", tooltip = "End Prologue and Start Campaign"})
 end
 function campaign(_, _, _)
-    Global.setVar("campaign", true)
+    Global.setVar("campaign", 2)
     Global.call("StartTheDay")
 
     -- Traveling to location after starting the day
@@ -2758,6 +2771,115 @@ function campaign(_, _, _)
     local buttons = self.getButtons()
     self.removeButton(buttons[#buttons].index)
     self.removeButton(buttons[#buttons - 1].index)
+    self.removeButton(buttons[#buttons - 2].index)
+end
+function import(_, _, _)
+    local config
+    for _,data in pairs(Notes.getNotebookTabs()) do
+        if data.title == "Campaign Export" then
+            if data.body == "" then
+                broadcastToAll("Campaign Export is empty", Color.Red)
+                return
+            end
+            config = JSON.decode(data.body)
+            break
+        end
+    end
+
+    local hardWeather = Global.getVar("hardWeather")
+    local showRewards = Global.getVar("showRewards")
+    local recallBoxes = Global.getTable("recallBoxes")
+
+    Global.setVar("currentLocation", config.currentLocation)
+    Global.setVar("currentWeather", config.currentWeather)
+    Global.setVar("currentDay", config.currentDay)
+    if hardWeather ~= config.hardWeather then
+        Global.getVar("weatherBox").call("toggleWeather")
+    end
+    if showRewards ~= config.showRewards then
+        recallBoxes[5].call("toggleRewards")
+    end
+    Global.setVar("campaign", config.campaign)
+    Global.setTable("unlockedRewards", config.unlockedRewards)
+    Global.setTable("missionProgress", config.missionProgress)
+    Global.setTable("completedMissions", config.completedMissions)
+
+    for _, player in pairs(config.players) do
+        recallBoxes[6].call("ImportDeck", player)
+    end
+
+    local pathBox = Global.getVar("pathBox")
+    local trash = Global.getVar("trash")
+    for _, name in pairs(config.trash) do
+        local card = pathBox.call("GrabPath", {path = name, position = pathBox.getPosition() + Vector(0, 0, -7)})
+        trash.putObject(card)
+    end
+
+    getObjectFromGUID("9d87f9").setValue(config.tracker.rangers)
+    getObjectFromGUID("ca8d6d").setValue(config.tracker.events1)
+    getObjectFromGUID("f44bc1").setValue(config.tracker.events2)
+
+    local missionBox = Global.getVar("missionBox")
+    for i, mission in pairs(config.tracker.missions) do
+        getObjectFromGUID(missions[i].name).setValue(mission.name)
+        getObjectFromGUID(missions[i].day).setValue(mission.day)
+        if not config.completedMissions[i] then
+            missionBox.call("GrabMission", {mission = mission.name})
+        end
+    end
+
+    setDay()
+    setProgress()
+    for i, complete in pairs(config.completedMissions) do
+        if complete then
+            local name = getObjectFromGUID(missions[i].name)
+            local data = name.getData()
+            data.Text.Text = "───────────────"
+            spawnObjectData({data = data, position = name.getPosition() + Vector(0.35, 0, 0)})
+        end
+    end
+    for _, mission in pairs(config.completedMissions) do
+        Global.call("CompleteMission", {missionName = mission, import = true})
+    end
+    getObjectFromGUID("9815de").setValue(config.currentLocation)
+    getObjectFromGUID("0b7329").setValue(config.tracker.connection)
+    Global.getVar("valleyMap").call("setLocation")
+
+    local unlockedRewards = {}
+    for name, _ in pairs(config.unlockedRewards) do
+        table.insert(unlockedRewards, name)
+    end
+    if #unlockedRewards > 0 then
+        local rewardIndex = 1
+        local rewardGUIDs = {"b5ebd3", "b0f97f", "c4ffae"}
+        for index, rewardGUID in pairs(rewardGUIDs) do
+            local rewards = getObjectFromGUID(rewardGUID)
+            local text = rewards.getValue()
+            if text == " " then
+                rewards.setValue(unlockedRewards[rewardIndex])
+                if rewardIndex < #unlockedRewards then
+                    rewardIndex = rewardIndex + 1
+                else
+                    break
+                end
+            else
+                local _, count = text:gsub("\n", "")
+                if count < 10 or (index == 1 and count == 10) then
+                    rewards.setValue(text.."\n"..unlockedRewards[rewardIndex])
+                    if rewardIndex < #unlockedRewards then
+                        rewardIndex = rewardIndex + 1
+                    else
+                        break
+                    end
+                end
+            end
+        end
+    end
+
+    local buttons = self.getButtons()
+    self.removeButton(buttons[#buttons].index)
+    self.removeButton(buttons[#buttons - 1].index)
+    self.removeButton(buttons[#buttons - 2].index)
 end
 function grabCalypsa(_, color, _)
     local playerBoards = Global.getTable("playerBoards")
@@ -2779,7 +2901,7 @@ function grabCalypsa(_, color, _)
 
     -- Hide calypsa button since there's only one copy, and that way we can delete both buttons when starting campaign
     local buttons = self.getButtons()
-    self.editButton({index = buttons[#buttons - 1].index, click_function = "null", label = "", height = 0, width = 0})
+    self.editButton({index = buttons[#buttons - 2].index, click_function = "null", label = "", height = 0, width = 0})
 end
 function endPrologue(_, _, _)
     Global.setVar("prologue", false)

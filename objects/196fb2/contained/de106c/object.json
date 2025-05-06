@@ -5,11 +5,11 @@
     "posY": 2.3263,
     "posZ": 2.7934,
     "rotX": 0.0,
-    "rotY": 180.0149,
+    "rotY": 90.0,
     "rotZ": 0.0,
-    "scaleX": 0.9,
+    "scaleX": 1.25,
     "scaleY": 1.0,
-    "scaleZ": 0.9
+    "scaleZ": 1.25
   },
   "Nickname": "The Furrow",
   "Description": "",
@@ -42,11 +42,11 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CardID": 1715,
-  "SidewaysCard": false,
+  "SidewaysCard": true,
   "CustomDeck": {
     "17": {
-      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799198771/ADAB3BBAD06948D1F0C828C7D5611CDD7455BF6C/",
-      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799198621/E754488E4F6C291E6E7CCD144A5FD8F78043882F/",
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14175792088290654/3FD6DE338094BC0CEA564DE5882AE85C08C51DF7/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/14175792088290426/33F395DCF3B8D9E483169A25DDFC47E5A6875CC8/",
       "NumWidth": 8,
       "NumHeight": 5,
       "BackIsHidden": false,

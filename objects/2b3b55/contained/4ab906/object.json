@@ -25,7 +25,8 @@
     "b": 0.7132
   },
   "Tags": [
-    "Mission"
+    "Mission",
+    "Persistent"
   ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,

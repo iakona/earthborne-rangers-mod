@@ -11,6 +11,7 @@ locationBox = "196fb2"
 missionBox = "2b3b55"
 weatherBox = "4b9483"
 maladiesBox = "eceffc"
+trash = "5dca9a"
 
 campaignTracker = "f0d81f"
 valleyMap = "8b7726"
@@ -39,6 +40,12 @@ rangerTokens = {
     ["Purple"] = "2971e7",
     ["Teal"] = "1aeab3",
 }
+sideboards = {
+    ["Red"] = "c3ff02",
+    ["Yellow"] = "e5c862",
+    ["Purple"] = "41a3c9",
+    ["Teal"] = "280658",
+}
 
 energyOffsets = {
     ["awareness"] = Vector(-0.6, 0.5, 0.75),
@@ -60,6 +67,7 @@ pathIndex = 3
 pathDiscardIndex = 4
 locationIndex = 5
 weatherIndex = 6
+capturedPreyIndex = 7
 
 -- Save State Data
 currentLocation = ""
@@ -67,10 +75,10 @@ currentWeather = "A Perfect Day"
 currentDay = 1
 hardWeather = false
 showRewards = false
-prologue = false
-campaign = false
+campaign = 0
 unlockedRewards = {}
 missionProgress = {}
+completedMissions = {}
 
 function onSave()
     local data = {
@@ -79,10 +87,10 @@ function onSave()
         currentDay = currentDay,
         hardWeather = hardWeather,
         showRewards = showRewards,
-        prologue = prologue,
         campaign = campaign,
         unlockedRewards = unlockedRewards,
         missionProgress = missionProgress,
+        completedMissions = completedMissions,
     }
     return JSON.encode(data)
 end
@@ -96,6 +104,7 @@ function onLoad(data)
     missionBox = getObjectFromGUID(missionBox)
     weatherBox = getObjectFromGUID(weatherBox)
     maladiesBox = getObjectFromGUID(maladiesBox)
+    trash = getObjectFromGUID(trash)
     campaignTracker = getObjectFromGUID(campaignTracker)
     valleyMap = getObjectFromGUID(valleyMap)
     for key, guid in pairs(energyBags) do
@@ -111,6 +120,9 @@ function onLoad(data)
     for key, guid in pairs(rangerTokens) do
         rangerTokens[key] = getObjectFromGUID(guid)
     end
+    for key, guid in pairs(sideboards) do
+        sideboards[key] = getObjectFromGUID(guid)
+    end
 
     addAllContextMenuItems()
     -- We need a timer checking this because we can't dynamically detect when new attachments are made
@@ -123,18 +135,33 @@ function onLoad(data)
         currentDay = jsonData.currentDay
         hardWeather = jsonData.hardWeather
         showRewards = jsonData.showRewards
-        prologue = jsonData.prologue
         campaign = jsonData.campaign
         unlockedRewards = jsonData.unlockedRewards
         missionProgress = jsonData.missionProgress
+        completedMissions = jsonData.completedMissions
     end
 
     if Player["White"].seated and not Player["Red"].seated then
         Player["White"].changeColor("Red")
     end
+
+    if getObjectFromGUID("cada94") then
+        getObjectFromGUID("c46ac6").setValue("CAPTURED PREY")
+    else
+        getObjectFromGUID("c46ac6").setValue(" ")
+    end
 end
 function onObjectSpawn(obj)
     addContextMenuItems(obj)
+
+    if obj.guid == "cada94" then
+        getObjectFromGUID("c46ac6").setValue("CAPTURED PREY")
+    end
+end
+function onObjectDestroy(obj)
+    if obj.guid == "cada94" then
+        getObjectFromGUID("c46ac6").setValue(" ")
+    end
 end
 
 function addAllContextMenuItems()
@@ -147,6 +174,10 @@ function addContextMenuItems(obj)
     if obj.type == "Card" then
         if obj.hasTag("Mission") then
             obj.addContextMenuItem("Record Mission", recordMission, false)
+            obj.addContextMenuItem("Complete Mission", returnCard, false)
+        end
+        if obj.hasTag("Path") or obj.guid == "ebcf7e" or obj.guid == "f67a50" then
+            obj.addContextMenuItem("Return to Collection", returnCard, false)
         end
         -- Description means it was picked by a player
         if obj.getDescription() == "" then
@@ -161,44 +192,71 @@ function addContextMenuItems(obj)
                 end
             end
         else
-            if #obj.getAttachments() > 0 then
-                obj.addContextMenuItem("Remove Attachment", removeAttachment, false)
-            end
             if obj.hasTag("Ranger") then
-                obj.addContextMenuItem("Remove Card", removeCard, false)
+                if obj.getTable("cost") then
+                    obj.addContextMenuItem("Pay Cost", payCost, false)
+                end
+                if obj.getVar("tokens") then
+                    obj.addContextMenuItem("Setup Tokens", setupTokens, false)
+                end
+                if obj.hasTag("Malady") then
+                    obj.addContextMenuItem("Return to Collection", returnCard, false)
+                end
             end
+        end
+        if #obj.getAttachments() > 0 then
+            obj.addContextMenuItem("Remove Attachments", removeAttachment, false)
         end
     elseif obj.type == "Deck" then
         if obj.hasTag("Prebuilt") then
             obj.addContextMenuItem("Pick Deck", pickDeck, false)
         end
     end
+    if obj.guid == campaignTracker.guid then
+        campaignTracker.addContextMenuItem("Export Campaign", exportCampaign, false)
+    end
 end
 
-function RecordMission(params)
-    recordMission(nil, nil, params.mission)
+function getMissionName(mission)
+    if mission.is_face_down then
+        local back = mission.getVar("back")
+        if back then
+            return back
+        else
+            return mission.getVar("front")
+        end
+    else
+        return mission.getVar("front")
+    end
 end
-function recordMission(_, _, obj)
-    local missions = campaignTracker.getTable("missions")
-    for _, data in pairs(missions) do
+function RecordMission(params)
+    for _, data in pairs(campaignTracker.getTable("missions")) do
         local name = getObjectFromGUID(data.name)
         if name.getValue() == " " then
-            local missionName
-            if obj.is_face_down then
-                local back = obj.getVar("back")
-                if back then
-                    missionName = back
-                else
-                    missionName = obj.getVar("front")
-                end
-            else
-                missionName = obj.getVar("front")
+            local missionName = getMissionName(params.mission)
+            if params.subject then
+                missionName = missionName.." ("..params.subject.getName()..")"
             end
             name.setValue(missionName)
             getObjectFromGUID(data.day).setValue(tostring(currentDay))
             break
         end
     end
+end
+function recordMission(_, _, obj)
+    RecordMission({mission = obj})
+end
+function removeFromGame(_, _, obj)
+    for _, attachment in pairs(obj.removeAttachments()) do
+        if attachment.hasTag("Ranger") then
+            discardRangerCard(attachment)
+        elseif attachment.hasTag("Path") then
+            local snaps = sharedBoard.getSnapPoints()
+            attachment.setPositionSmooth(sharedBoard.positionToWorld(snaps[pathDiscardIndex].position) + Vector(0, 0.5, 0))
+        end
+    end
+
+    trash.putObject(obj)
 end
 function PickAspect(params)
     pickAspect(params.color, _, params.aspect)
@@ -249,15 +307,41 @@ function PickRanger(params)
         return
     end
 
+    local aspect = getAspect(params.color)
+    if aspect then
+        local requirement = params.ranger.getTable("requirement")
+        if requirement then
+            for statName, _ in pairs(energyOffsets) do
+                local requiredStat = requirement[statName]
+                if requiredStat then
+                    local stat = aspect.getVar(statName)
+                    if stat < requiredStat then
+                        Player[params.color].broadcast("Ranger Card requires "..statName.." to be "..requiredStat.." but you only have "..stat.."!", Color.Red)
+                        return
+                    end
+                end
+            end
+        end
+    end
+
     local playerBoard = playerBoards[params.color]
     local snaps = playerBoard.getSnapPoints()
 
     for _ = 1, params.quantity do
         local newRanger = params.ranger.clone()
-        newRanger.setPosition(playerBoard.positionToWorld(snaps[deckIndex].position) + params.offset)
+        local position
+        if not params.sideboard then
+            position = playerBoard.positionToWorld(snaps[deckIndex].position) + params.offset
+        else
+            position = newRanger.getPosition()
+        end
+        newRanger.setPosition(position)
         newRanger.setRotation(Vector(0, 180, 180))
         newRanger.setLock(false)
         newRanger.setDescription(params.color)
+        if params.sideboard then
+            sideboards[params.color].putObject(newRanger)
+        end
     end
 end
 function pickRanger(color, _, obj)
@@ -302,8 +386,97 @@ end
 function removeAttachment(_, _, obj)
     obj.removeAttachments()
 end
-function removeCard(_, _, obj)
-    obj.destruct()
+function payCost(color, _, obj)
+    local aspect = getAspect(color)
+    if aspect then
+        local cost = obj.getTable("cost")
+        for statName, offset in pairs(energyOffsets) do
+            local requiredCount = cost[statName]
+            if requiredCount then
+                local hits = Physics.cast({
+                    origin = aspect.getPosition() + Vector(offset.x, 0, offset.z),
+                    direction = Vector(0, 1, 0),
+                    type = 1,
+                    max_distance = 1,
+                })
+
+                local energy = nil
+                for _, hit in pairs(hits) do
+                    if hit.hit_object.hasTag("Energy") then
+                        energy = hit.hit_object
+                        break
+                    end
+                end
+
+                if energy then
+                    local count = energy.getQuantity()
+                    if count == -1 then
+                        count = 1
+                    end
+                    if count < requiredCount then
+                        Player[color].broadcast("Ranger Card requires "..requiredCount.." "..statName.." energy to play, but you only have "..count.."!", Color.Red)
+                        return
+                    end
+
+                    for _ = 1, requiredCount do
+                        energy.takeObject().destruct()
+                    end
+                    Player[color].broadcast("Paid "..requiredCount.." "..statName.." energy to play "..obj.getName(), Color.White)
+                end
+            end
+        end
+    end
+end
+function setupTokens(_, _, obj)
+    for i = 1, obj.getVar("tokens") do
+        allPurposeBag.takeObject({position = obj.getPosition() + Vector(0, 0.5 * i, 0.35), rotation = Vector(0, 180, 0)})
+    end
+end
+function returnCard(_, _, obj)
+    for _, attachment in pairs(obj.removeAttachments()) do
+        if attachment.hasTag("Ranger") then
+            discardRangerCard(attachment)
+        elseif attachment.hasTag("Path") then
+            local snaps = sharedBoard.getSnapPoints()
+            attachment.setPositionSmooth(sharedBoard.positionToWorld(snaps[pathDiscardIndex].position) + Vector(0, 0.5, 0))
+        end
+    end
+
+    if obj.hasTag("Malady") then
+        obj.destruct()
+    elseif obj.hasTag("Path") then
+        local set = obj.getDescription().." Set"
+        for _, objData in pairs(pathBox.getObjects()) do
+            if set == objData.name then
+                local deck = pathBox.takeObject({guid = objData.guid})
+                deck.putObject(obj)
+                pathBox.putObject(deck)
+                return
+            elseif set == objData.description.." Set" then
+                local card = pathBox.takeObject({guid = objData.guid})
+                local deck = group({card, obj})[1]
+                deck.setName(set.." Set")
+                Wait.frames(function() pathBox.putObject(deck) end, 3)
+                return
+            end
+        end
+        pathBox.putObject(obj)
+    elseif obj.hasTag("Mission") then
+        local missionName = getMissionName(obj)
+        for i, mission in pairs(campaignTracker.getTable("missions")) do
+            local name = getObjectFromGUID(mission.name)
+            if not completedMissions[i] and name.getValue():find(missionName) then
+                local data = name.getData()
+                data.Text.Text = "───────────────"
+                spawnObjectData({data = data, position = name.getPosition() + Vector(0.35, 0, 0)})
+                completedMissions[i] = true
+                break
+            end
+        end
+        missionBox.putObject(obj)
+    else -- helping hand missions
+        missionBox.putObject(obj)
+    end
 end
 function pickDeck(color, _, obj)
     if not playerBoards[color] then
@@ -313,21 +486,7 @@ function pickDeck(color, _, obj)
     obj.removeTag("Prebuilt")
     obj.clearContextMenu()
 
-    local role = getRole(color)
-    if role then
-        role.destruct()
-        Player[color].broadcast("You already have a role, replacing the old one")
-    end
-    local aspect = getAspect(color)
-    if aspect then
-        aspect.destruct()
-        Player[color].broadcast("You already have an aspect, replacing the old one")
-    end
-    local deck = getRangerDeck(color)
-    if deck then
-        deck.destruct()
-        Player[color].broadcast("You already have a ranger deck, replacing the old one")
-    end
+    ClearPlayerDeck({color = color})
 
     local playerBoard = playerBoards[color]
     local snaps = playerBoard.getSnapPoints()
@@ -341,16 +500,30 @@ function pickDeck(color, _, obj)
     aspect.setLock(true)
     aspect.setDescription(color)
 
-    for _, data in pairs(obj.getObjects()) do
+    for i, data in pairs(obj.getObjects()) do
         local card
         if obj.remainder then
             card = obj.remainder
         else
             card = obj.takeObject({guid = data.guid})
         end
-        card.setPosition(playerBoard.positionToWorld(snaps[deckIndex].position) + Vector(0, 0.5, 0))
+        card.setPosition(playerBoard.positionToWorld(snaps[deckIndex].position) + Vector(0, 0.5 + 0.2 * i, 0))
         card.setRotation(Vector(0, 180, 180))
         card.setDescription(color)
+    end
+end
+function ClearPlayerDeck(params)
+    local role = getRole(params.color)
+    if role then
+        role.destruct()
+    end
+    local aspect = getAspect(params.color)
+    if aspect then
+        aspect.destruct()
+    end
+    local deck = getRangerDeck(params.color)
+    if deck then
+        deck.destruct()
     end
 end
 
@@ -568,7 +741,7 @@ function SufferInjury(player)
     harmBag.takeObject({position = playerBoard.positionToWorld(snaps[roleIndex].position) + Vector(0, 0.5, 0), rotation = Vector(0, 180, 0)})
 
     if currentInjury >= 3 then
-        broadcastToAll(player.color.." now has "..currentInjury.. " injuries, you must now end the day after this turn", Color.Red)
+        broadcastToAll(player.color.." has "..currentInjury.. " injuries, you must now end the day after this turn", Color.Red)
         if currentInjury == 3 then
             for _, obj in pairs(maladiesBox.getObjects()) do
                 if obj.name == "Lingering Injury" then
@@ -665,7 +838,7 @@ function DrawChallenge(_)
 end
 
 function StartTheDay(_)
-    if not prologue then
+    if campaign > 1 then
         broadcastToAll("Starting Day "..currentDay.." with "..currentWeather, Color.White)
     end
 
@@ -684,8 +857,34 @@ function StartTheDay(_)
             if not deck then
                 broadcastToAll("Ranger Deck is empty for "..color, Color.Red)
             else
-                deck.shuffle()
-                deck.deal(6, color)
+                local setup = {}
+                for _, card in pairs(deck.getObjects()) do
+                    if hasTag(card, "Setup") and not setup[card.name] then
+                        setup[card.name] = card.guid
+                    end
+                end
+                local options = 0
+                for _, guid in pairs(setup) do
+                    options = options + 1
+                end
+
+                if options > 1 then
+                    Player[color].broadcast("Deck has multiple options for cards with Setup keyword, you'll need to pick one to put into play.", Color.Red)
+                    for _, guid in pairs(setup) do
+                        local card = deck.takeObject({guid = guid})
+                        Wait.frames(function() deck.putObject(card) end, 3)
+                    end
+                    Wait.frames(function() deck.Container.search(color, options) end, 3)
+                    deck.setLuaScript("function onSearchEnd(color) self.shuffle() self.deal(6, color) self.setLuaScript() self.reload() end")
+                else
+                    if options == 1 then
+                        local name, guid = next(setup)
+                        deck.takeObject({guid = guid, position = deck.getPosition() + Vector(0, 0, 3.9), rotation = Vector(0, 180, 0)})
+                        Player[color].broadcast("Putting "..name.." into play via Setup keyword", Color.White)
+                    end
+                    deck.shuffle()
+                    deck.deal(6, color)
+                end
             end
         end
     end
@@ -805,17 +1004,43 @@ function discardRangerCard(obj)
     local playerBoard = playerBoards[color]
     local snaps = playerBoard.getSnapPoints()
 
+    obj.use_hands = false
     obj.setPositionSmooth(playerBoard.positionToWorld(snaps[deckIndex].position) + Vector(0, 0.5, 0), false, true)
     obj.setRotationSmooth(Vector(0, 180, 180), false, true)
+    Wait.frames(function() obj.use_hands = true end, 3)
+end
+
+function returnPathCards(pathSets)
+    local pathBoxSets = {}
+    for _, obj in pairs(pathBox.getObjects()) do
+        if obj.description == "" then
+            pathBoxSets[obj.name] = obj.guid
+        else
+            pathBoxSets[obj.description] = obj.guid
+        end
+    end
+
+    for set, cards in pairs(pathSets) do
+        local deck
+        if pathBoxSets[set.." Set"] then
+            deck = pathBox.takeObject({guid = pathBoxSets[set.." Set"]})
+            for _, card in pairs(cards) do
+                deck.putObject(card)
+            end
+        elseif pathBoxSets[set] then
+            local card = pathBox.takeObject({guid = pathBoxSets[set]})
+            table.insert(cards, card)
+            deck = group(cards)[1]
+            deck.setName(set.." Set")
+        else
+            deck = group(cards)[1]
+            deck.setName(set.." Set")
+        end
+        pathBox.putObject(deck)
+    end
 end
 
 function ClearPlayArea(_)
-    if getObjectFromGUID("ebcf7e") or getObjectFromGUID("f67a50") then
-        -- TODO: properly handle the helping hand adding persistent
-        broadcastToAll("Detecting Helping Hand Mission, you'll need to manually clean up play area", Color.Red)
-        return
-    end
-
     for _, locationCard in pairs(getObjectsWithTag("Location")) do
         locationCard.setLock(false)
         locationCard.setRotation(Vector(0, 180, 0))
@@ -858,7 +1083,6 @@ function ClearPlayArea(_)
         type = 1,
         max_distance = 1,
     })
-
     local pathDiscard = nil
     for _, hit in pairs(hits) do
         if hit.hit_object.hasTag("Path") then
@@ -867,79 +1091,81 @@ function ClearPlayArea(_)
         end
     end
 
+    -- Only exclude this area if the Lure mission exists
+    local capturedPrey = nil
+    if getObjectFromGUID("cada94") then
+        hits = Physics.cast({
+            origin = sharedBoard.positionToWorld(snaps[capturedPreyIndex].position) + Vector(0, -0.01, 0),
+            direction = Vector(0, 1, 0),
+            type = 1,
+            max_distance = 1,
+        })
+        for _, hit in pairs(hits) do
+            if hit.hit_object.hasTag("Path") then
+                capturedPrey = hit.hit_object
+                break
+            end
+        end
+    end
+
     local pathSets = {}
     for _, pathCard in pairs(getObjectsWithTag("Path")) do
-        if pathCard.type == "Deck" then
-            local count = 1
-            for _, data in pairs(pathCard.getObjects()) do
-                local description = data.description
-                if not pathSets[description] then
-                    pathSets[description] = {}
-                end
-                if pathCard.remainder then
-                    table.insert(pathSets[description], pathCard.remainder)
-                else
-                    table.insert(pathSets[description], pathCard.takeObject({guid = data.guid, position = pathCard.getPosition() + Vector(count, 0, 0)}))
-                end
-                count = count + 1
-            end
-        elseif pathCard.type == "Card" then
-            if not pathCard.is_face_down or (pathDiscard and pathCard.guid == pathDiscard.guid) then
-                local attachments = pathCard.getAttachments()
-                local persistent = pathCard.hasTag("Persistent")
-                if #attachments > 0 then
-                    for _, attachment in pairs(attachments) do
-                        if hasTag(attachment, "Persistent") then
-                            persistent = true
-                            break
-                        end
+        if not capturedPrey or pathCard.guid ~= capturedPrey.guid then
+            if pathCard.type == "Deck" then
+                local count = 1
+                for _, data in pairs(pathCard.getObjects()) do
+                    local description = data.description
+                    if not pathSets[description] then
+                        pathSets[description] = {}
                     end
+                    if pathCard.remainder then
+                        table.insert(pathSets[description], pathCard.remainder)
+                    else
+                        table.insert(pathSets[description], pathCard.takeObject({guid = data.guid, position = pathCard.getPosition() + Vector(count, 0, 0)}))
+                    end
+                    count = count + 1
                 end
-
-                if not persistent then
+            elseif pathCard.type == "Card" then
+                if not pathCard.is_face_down or (pathDiscard and pathCard.guid == pathDiscard.guid) then
+                    local attachments = pathCard.getAttachments()
+                    local persistent = pathCard.hasTag("Persistent")
                     if #attachments > 0 then
-                        for _, attachment in pairs(pathCard.removeAttachments()) do
-                            if attachment.hasTag("Ranger") then
-                                discardRangerCard(attachment)
-                            elseif attachment.hasTag("Path") then
-                                local description = attachment.getDescription()
-                                if not pathSets[description] then
-                                    pathSets[description] = {}
-                                end
-                                table.insert(pathSets[description], pathCard)
+                        for _, attachment in pairs(attachments) do
+                            if hasTag(attachment, "Persistent") then
+                                persistent = true
+                                break
                             end
                         end
                     end
 
-                    local description = pathCard.getDescription()
-                    if not pathSets[description] then
-                        pathSets[description] = {}
+                    if not persistent then
+                        if #attachments > 0 then
+                            for _, attachment in pairs(pathCard.removeAttachments()) do
+                                if attachment.hasTag("Ranger") then
+                                    discardRangerCard(attachment)
+                                elseif attachment.hasTag("Path") then
+                                    local description = attachment.getDescription()
+                                    if not pathSets[description] then
+                                        pathSets[description] = {}
+                                    end
+                                    table.insert(pathSets[description], pathCard)
+                                end
+                            end
+                        end
+
+                        local description = pathCard.getDescription()
+                        if not pathSets[description] then
+                            pathSets[description] = {}
+                        end
+                        table.insert(pathSets[description], pathCard)
                     end
-                    table.insert(pathSets[description], pathCard)
                 end
             end
         end
     end
 
     Wait.frames(function()
-        local pathBoxSets = {}
-        for _, obj in pairs(pathBox.getObjects()) do
-            pathBoxSets[obj.name] = obj.guid
-        end
-
-        for set, cards in pairs(pathSets) do
-            local deck
-            if pathBoxSets[set.." Set"] then
-                deck = pathBox.takeObject({guid = pathBoxSets[set.." Set"]})
-                for _, card in pairs(cards) do
-                    deck.putObject(card)
-                end
-            else
-                deck = group(cards)[1]
-                deck.setName(set.." Set")
-            end
-            pathBox.putObject(deck)
-        end
+        returnPathCards(pathSets)
 
         Wait.frames(function()
             for _, obj in pairs(getObjectsWithTag("Counter")) do
@@ -1100,23 +1326,124 @@ function EndTheDay(_)
     end
 
     Wait.frames(function()
-        local pathBoxSets = {}
-        for _, obj in pairs(pathBox.getObjects()) do
-            pathBoxSets[obj.name] = obj.guid
+        returnPathCards(pathSets)
+    end, 4)
+end
+
+function exportCampaign(_, _, _)
+    if campaign < 2 then
+        broadcastToAll("You need to start campaign first before exporting it!", Color.Red)
+        return
+    end
+
+    EndTheDay()
+    Wait.time(function()
+        local data = {players = {}, trash = {}, tracker = {missions = {}}}
+
+        -- Exporting script state values
+        data.currentLocation = currentLocation
+        data.currentWeather = currentWeather
+        data.currentDay = currentDay
+        data.hardWeather = hardWeather
+        data.showRewards = showRewards
+        data.campaign = campaign
+        data.unlockedRewards = unlockedRewards
+        data.missionProgress = missionProgress
+        data.completedMissions = completedMissions
+
+        for color,_ in pairs(playerBoards) do
+            local player = {}
+            local found = false
+
+            local aspect = getAspect(color)
+            if aspect then
+                found = true
+                player.awa = aspect.getVar("awareness")
+                player.fit = aspect.getVar("fitness")
+                player.foc = aspect.getVar("focus")
+                player.spi = aspect.getVar("spirit")
+            end
+
+            local role = getRole(color)
+            if role then
+                found = true
+                player.role = role.getVar("id")
+            end
+
+            local deck = getRangerDeck(color)
+            if deck then
+                found = true
+                player.slots = {}
+                for _, card in pairs(deck.getObjects()) do
+                    local _, finish = card.lua_script:find("id = \"")
+                    local id = card.lua_script:sub(finish + 1, finish + 5)
+                    if player.slots[id] then
+                        player.slots[id] = player.slots[id] + 1
+                    else
+                        player.slots[id] = 1
+                    end
+                end
+            end
+
+            local objs = sideboards[color].getObjects()
+            if #objs > 0 then
+                found = true
+                player.sideboard = {}
+                for _, card in pairs(objs) do
+                    local _, finish = card.lua_script:find("id = \"")
+                    if finish then
+                        local id = card.lua_script:sub(finish + 1, finish + 5)
+                        if player.sideboard[id] then
+                            player.sideboard[id] = player.sideboard[id] + 1
+                        else
+                            player.sideboard[id] = 1
+                        end
+                    end
+                end
+            end
+
+            if found then
+                player.color = color
+                table.insert(data.players, player)
+            end
         end
 
-        for set, cards in pairs(pathSets) do
-            local deck
-            if pathBoxSets[set.." Set"] then
-                deck = pathBox.takeObject({guid = pathBoxSets[set.." Set"]})
-                for _, card in pairs(cards) do
-                    deck.putObject(card)
-                end
-            else
-                deck = group(cards)[1]
-                deck.setName(set.." Set")
-            end
-            pathBox.putObject(deck)
+        for _, obj in pairs(trash.getObjects()) do
+            table.insert(data.trash, obj.name)
         end
-    end, 4)
+
+        data.tracker.rangers = getObjectFromGUID("9d87f9").getValue()
+        if data.tracker.rangers == "Type Here" then
+            data.tracker.rangers = ""
+        end
+        data.tracker.events1 = getObjectFromGUID("ca8d6d").getValue()
+        if data.tracker.events1 == "Type Here" then
+            data.tracker.events1 = ""
+        end
+        data.tracker.events2 = getObjectFromGUID("f44bc1").getValue()
+        if data.tracker.events2 == "Type Here" then
+            data.tracker.events2 = ""
+        end
+        data.tracker.connection = getObjectFromGUID("0b7329").getValue()
+        if data.tracker.connection == "Type Here" then
+            data.tracker.connection = ""
+        end
+        for _, mission in pairs(campaignTracker.getTable("missions")) do
+            local name = getObjectFromGUID(mission.name)
+            if name.getValue() ~= " " then
+                table.insert(data.tracker.missions, {name = name.getValue(), day = getObjectFromGUID(mission.day).getValue()})
+            end
+        end
+
+        for _,tab in pairs(Notes.getNotebookTabs()) do
+            if tab.title == "Campaign Export" then
+                Notes.editNotebookTab({
+                    index = tab.index,
+                    body = JSON.encode_pretty(data),
+                })
+                broadcastToAll("Notebook Tab \"Campaign Export\" has been updated", Color.White)
+                break
+            end
+        end
+    end, 1)
 end

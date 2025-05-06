@@ -186,7 +186,7 @@ function addDeckImportInput()
         font_size      = 1000,
         color          = Color.Black,
         font_color     = Color.White,
-        tooltip        = "Enter Ranger DB deck id to import",
+        tooltip        = "Enter RangersDB deck id to import",
         alignment      = 3,
         validation     = 2,
     })
@@ -214,139 +214,187 @@ function importDeck(_, color, input, selected)
     WebRequest.custom(url, "POST", true, body, {}, function(response)
         local json = JSON.decode(response.text)
         if json.errors then
-            Player[color].broadcast("Recieved error from Ranger DB website, please try again later", Color.Red)
+            Player[color].broadcast("Recieved error from RangersDB website, please try again later", Color.Red)
         elseif not json.data or not json.data.deck then
-            Player[color].broadcast("No Ranger DB deck found for "..input, Color.Red)
+            Player[color].broadcast("No RangersDB deck found for "..input, Color.Red)
         else
             local deck = json.data.deck
             Player[color].broadcast("Importing "..deck.name.." by "..deck.user.handle, Color.White)
-            local recallBoxes = Global.getTable("recallBoxes")
+            ImportDeck({color = color, awa = deck.awa, fit = deck.fit, foc = deck.foc, spi = deck.spi, role = deck.meta.role, slots = deck.slots})
+        end
 
-            local aspectBox = recallBoxes[1]
-            local aspects = aspectBox.getObjects()
-            local found = false
-            if #aspects == 0 then
-                aspects = getObjectsWithTag("Aspect")
-                for _, aspect in pairs(aspects) do
-                    -- Description means it was picked by a player
-                    if aspect.getDescription() == "" then
-                        if aspect.getVar("awareness") == deck.awa and aspect.getVar("fitness") == deck.fit and aspect.getVar("focus") == deck.foc and aspect.getVar("spirit") == deck.spi then
-                            Global.call("PickAspect", {color = color, aspect = aspect})
-                            found = true
-                            break
-                        end
-                    end
-                end
-            else
-                local aspectScript = "awareness = "..deck.awa.."\r\nfitness = "..deck.fit.."\r\nfocus = "..deck.foc.."\r\nspirit = "..deck.spi.."\r\n"
-                for _, data in pairs(aspects) do
-                    if data.lua_script == aspectScript then
-                        local aspect = aspectBox.takeObject({guid = data.guid})
-                        Global.call("PickAspect", {color = color, aspect = aspect})
-                        Wait.frames(function() aspectBox.putObject(aspect) end, 3)
+        self.clearInputs()
+        addDeckImportInput()
+    end)
+end
+function ImportDeck(params)
+    Global.call("ClearPlayerDeck", {color = params.color})
+
+    -- Waiting 1 frame to make sure previous player deck is cleared out
+    Wait.frames(function()
+        local recallBoxes = Global.getTable("recallBoxes")
+
+        local aspectBox = recallBoxes[1]
+        local aspects = aspectBox.getObjects()
+        local found = false
+        if #aspects == 0 then
+            aspects = getObjectsWithTag("Aspect")
+            for _, aspect in pairs(aspects) do
+                -- Description means it was picked by a player
+                if aspect.getDescription() == "" then
+                    if aspect.getVar("awareness") == params.awa and aspect.getVar("fitness") == params.fit and aspect.getVar("focus") == params.foc and aspect.getVar("spirit") == params.spi then
+                        Global.call("PickAspect", {color = params.color, aspect = aspect})
                         found = true
                         break
                     end
                 end
             end
-            if not found then
-                Player[color].broadcast("Unable to find aspect with AWA "..deck.awa.." FIT "..deck.fit.." FOC "..deck.foc.." SPI "..deck.spi, Color.Red)
-            end
-
-            local roleBox = recallBoxes[4]
-            local roles = roleBox.getObjects()
-            found = false
-            if #roles == 0 then
-                roles = getObjectsWithTag("Role")
-                for _, role in pairs(roles) do
-                    -- Description means it was picked by a player
-                    if role.getDescription() == "" then
-                        if role.getVar("id") == deck.meta.role then
-                            Global.call("PickRole", {color = color, role = role})
-                            found = true
-                            break
-                        end
-                    end
+        else
+            local aspectScript = "awareness = "..params.awa.."\r\nfitness = "..params.fit.."\r\nfocus = "..params.foc.."\r\nspirit = "..params.spi.."\r\n"
+            for _, data in pairs(aspects) do
+                if data.lua_script == aspectScript then
+                    local aspect = aspectBox.takeObject({guid = data.guid})
+                    Global.call("PickAspect", {color = params.color, aspect = aspect})
+                    Wait.frames(function() aspectBox.putObject(aspect) end, 3)
+                    found = true
+                    break
                 end
-            else
-                local roleScript = "id = \""..deck.meta.role.."\"\r\n"
-                for _, data in pairs(roles) do
-                    if data.lua_script == roleScript then
-                        local role = roleBox.takeObject({guid = data.guid})
-                        Global.call("PickRole", {color = color, role = role})
-                        Wait.frames(function() roleBox.putObject(role) end, 3)
+            end
+        end
+        if not found then
+            Player[params.color].broadcast("Unable to find aspect with AWA "..params.awa.." FIT "..params.fit.." FOC "..params.foc.." SPI "..params.spi, Color.Red)
+        end
+
+        local roleBox = recallBoxes[4]
+        local roles = roleBox.getObjects()
+        found = false
+        if #roles == 0 then
+            roles = getObjectsWithTag("Role")
+            for _, role in pairs(roles) do
+                -- Description means it was picked by a player
+                if role.getDescription() == "" then
+                    if role.getVar("id") == params.role then
+                        Global.call("PickRole", {color = params.color, role = role})
                         found = true
                         break
                     end
                 end
             end
-            if not found then
-                Player[color].broadcast("Unable to find role with id "..deck.meta.role, Color.Red)
-            end
-
-            local personalityBox = recallBoxes[2]
-            local backgroundBox = recallBoxes[3]
-            local specialtyBox = recallBoxes[4]
-            local rewardBox = recallBoxes[5]
-            local maladyBox = Global.getVar("maladiesBox")
-            local function getBox(id)
-                local num = tonumber(id)
-                if num >= 1093 and num <= 1108 then
-                    return personalityBox
-                elseif num >= 1001 and num <= 1036 then
-                    return backgroundBox
-                elseif num >= 1037 and num <= 1092 then
-                    return specialtyBox
-                elseif num >= 1201 and num <= 1231 then
-                    return rewardBox
-                elseif num == 1240 then
-                    return maladyBox
-                else
-                    Player[color].broadcast("Unable to find ranger card id "..id.." is out of range of any known mapping", Color.Red)
-                    return nil
+        else
+            local roleScript = "id = \""..params.role.."\"\r\n"
+            for _, data in pairs(roles) do
+                if data.lua_script == roleScript then
+                    local role = roleBox.takeObject({guid = data.guid})
+                    Global.call("PickRole", {color = params.color, role = role})
+                    Wait.frames(function() roleBox.putObject(role) end, 3)
+                    found = true
+                    break
                 end
             end
+        end
+        if not found then
+            Player[params.color].broadcast("Unable to find role with id "..params.role, Color.Red)
+        end
 
-            local count = 1
-            for id, quantity in pairs(deck.slots) do
-                local box = getBox(id)
-                if box then
-                    local rangers = box.getObjects()
-                    found = false
-                    if #rangers == 0 then
-                        rangers = getObjectsWithTag("Ranger")
-                        for _, ranger in pairs(rangers) do
-                            -- Description means it was picked by a player
-                            if ranger.getDescription() == "" then
-                                if ranger.getVar("id") == id then
-                                    Global.call("PickRanger", {color = color, ranger = ranger, quantity = quantity, offset = Vector(0, 0.1 * count, 0)})
-                                    count = count + 1
-                                    found = true
-                                    break
-                                end
-                            end
-                        end
-                    else
-                        local rangerScript = "id = \""..id.."\"\r\n"
-                        for _, data in pairs(rangers) do
-                            if data.lua_script == rangerScript then
-                                local ranger = box.takeObject({guid = data.guid})
-                                Global.call("PickRanger", {color = color, ranger = ranger, quantity = quantity, offset = Vector(0, 0.1 * count, 0)})
-                                Wait.frames(function() box.putObject(ranger) end, 3)
+        local personalityBox = recallBoxes[2]
+        local backgroundBox = recallBoxes[3]
+        local specialtyBox = recallBoxes[4]
+        local rewardBox = recallBoxes[5]
+        local maladyBox = Global.getVar("maladiesBox")
+        local function getBox(id)
+            local num = tonumber(id)
+            if num >= 1093 and num <= 1108 then
+                return personalityBox
+            elseif num >= 1001 and num <= 1036 then
+                return backgroundBox
+            elseif num >= 1037 and num <= 1092 then
+                return specialtyBox
+            elseif num >= 1201 and num <= 1231 then
+                return rewardBox
+            elseif num == 1240 then
+                return maladyBox
+            else
+                Player[params.color].broadcast("Unable to find ranger card id "..id.." is out of range of any known mapping", Color.Red)
+                return nil
+            end
+        end
+
+        local count = 1
+        for id, quantity in pairs(params.slots) do
+            local box = getBox(id)
+            if box then
+                local rangers = box.getObjects()
+                found = false
+                if #rangers == 0 then
+                    rangers = getObjectsWithTag("Ranger")
+                    for _, ranger in pairs(rangers) do
+                        -- Description means it was picked by a player
+                        if ranger.getDescription() == "" then
+                            if ranger.getVar("id") == id then
+                                Global.call("PickRanger", {color = params.color, ranger = ranger, quantity = quantity, offset = Vector(0, 0.1 * count, 0)})
                                 count = count + 1
                                 found = true
                                 break
                             end
                         end
                     end
-                    if not found then
-                        Player[color].broadcast("Unable to find ranger card with id "..id, Color.Red)
+                else
+                    local rangerScript = "id = \""..id.."\"\r\n"
+                    for _, data in pairs(rangers) do
+                        if data.lua_script:find(rangerScript) then
+                            local ranger = box.takeObject({guid = data.guid})
+                            Global.call("PickRanger", {color = params.color, ranger = ranger, quantity = quantity, offset = Vector(0, 0.1 * count, 0)})
+                            Wait.frames(function() box.putObject(ranger) end, 3)
+                            count = count + 1
+                            found = true
+                            break
+                        end
                     end
+                end
+                if not found then
+                    Player[params.color].broadcast("Unable to find ranger card with id "..id, Color.Red)
                 end
             end
         end
 
-        self.clearInputs()
-        addDeckImportInput()
-    end)
+        -- We need to wait for the ranger cards to go back into the box before we try grabbing them
+        if params.sideboard then
+            Wait.frames(function()
+                for id, quantity in pairs(params.sideboard) do
+                    local box = getBox(id)
+                    if box then
+                        local rangers = box.getObjects()
+                        found = false
+                        if #rangers == 0 then
+                            rangers = getObjectsWithTag("Ranger")
+                            for _, ranger in pairs(rangers) do
+                                -- Description means it was picked by a player
+                                if ranger.getDescription() == "" then
+                                    if ranger.getVar("id") == id then
+                                        Global.call("PickRanger", {color = params.color, ranger = ranger, quantity = quantity, sideboard = true})
+                                        found = true
+                                        break
+                                    end
+                                end
+                            end
+                        else
+                            local rangerScript = "id = \""..id.."\"\r\n"
+                            for _, data in pairs(rangers) do
+                                if data.lua_script:find(rangerScript) then
+                                    local ranger = box.takeObject({guid = data.guid})
+                                    Global.call("PickRanger", {color = params.color, ranger = ranger, quantity = quantity, sideboard = true})
+                                    Wait.frames(function() box.putObject(ranger) end, 3)
+                                    found = true
+                                    break
+                                end
+                            end
+                        end
+                        if not found then
+                            Player[params.color].broadcast("Unable to find ranger card with id "..id, Color.Red)
+                        end
+                    end
+                end
+            end, 3)
+        end
+    end, 1)
 end

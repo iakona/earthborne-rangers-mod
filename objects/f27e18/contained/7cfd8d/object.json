@@ -3,7 +3,7 @@
   "Transform": {
     "posX": 18.8214,
     "posY": 0.9736,
-    "posZ": 5.9837,
+    "posZ": 6.45,
     "rotX": 0.0,
     "rotY": 180.0095,
     "rotZ": 0.0,
@@ -27,6 +27,7 @@
   "Tags": [
     "Gear",
     "Ranger",
+    "Setup",
     "spec_memory_object"
   ],
   "LayoutGroupSortIndex": 0,

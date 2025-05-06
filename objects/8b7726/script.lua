@@ -9,8 +9,17 @@ pivotalLocations = {
     ["Tumbledown"] = true,
     ["White Sky"] = true,
 }
+buttonPositions = {}
 
 function onLoad(_)
+    self.createButton({
+        click_function = "null",
+        width          = 0,
+        height         = 0,
+        font_size      = 80,
+        font_color     = Color.White,
+    })
+
     -- Pivotal Locations
     self.createButton({
         click_function = "Branch",
@@ -310,6 +319,21 @@ function onLoad(_)
         height         = 30,
         tooltip        = "Watcher's Rock",
     })
+
+    for _, button in pairs(self.getButtons()) do
+        if button["click_function"] ~= "null" then
+            local position = button["position"]
+            buttonPositions[button["tooltip"]] = Vector(position.x, position.y, position.z)
+        end
+    end
+    setLocation()
+end
+
+function setLocation()
+    local currentLocation = Global.getVar("currentLocation")
+    if currentLocation ~= "" then
+        self.editButton({index = 0, position = buttonPositions[currentLocation] + Vector(0, 0.1, 0.017), label = "◇"})
+    end
 end
 
 function Branch(_, _, alt_click)
@@ -671,7 +695,8 @@ function Travel(params)
     setupLocation(params.location, params.connection, params.skipLocationCard)
 end
 function travel(newLocation, connections, alt_click)
-    if not Global.getVar("prologue") and not Global.getVar("campaign") then
+    local campaign = Global.getVar("campaign")
+    if campaign == 0 then
         broadcastToAll("Please start campaign (or prologue) first before traveling", Color.Red)
         return
     end
@@ -681,7 +706,7 @@ function travel(newLocation, connections, alt_click)
         return
     end
 
-    if Global.getVar("prologue") then
+    if campaign == 1 then
         if newLocation ~= "Boulder Field" then
             broadcastToAll("For the Prologue you can only travel to Boulder Field", Color.Red)
             return
@@ -715,6 +740,7 @@ end
 function setupLocation(location, connection, skipLocationCard)
     broadcastToAll("Don't forget to handle the Arrival Setup on Location Card", Color.White)
     Global.setVar("currentLocation", location)
+    setLocation()
 
     getObjectFromGUID("9815de").setValue(location)
     getObjectFromGUID("0b7329").setValue(connection)
@@ -728,7 +754,7 @@ function setupLocation(location, connection, skipLocationCard)
         for _, obj in pairs(locationBox.getObjects()) do
             if obj.name == location then
                 found = true
-                locationBox.takeObject({guid = obj.guid, position = sharedBoard.positionToWorld(snaps[Global.getVar("locationIndex")].position) + Vector(0, 0.01, 0)}).setLock(true)
+                locationBox.takeObject({guid = obj.guid, position = sharedBoard.positionToWorld(snaps[Global.getVar("locationIndex")].position) + Vector(0, 0.01, 0), rotation = Vector(0, 90, 0)}).setLock(true)
                 break
             end
         end
@@ -858,7 +884,7 @@ function setupLocation(location, connection, skipLocationCard)
 
     local useGeneralSet = watcherInTheBrush or secretInvasion or invasion or howlingWinds or electricFog
     local isPivotal = pivotalLocations[location]
-    if Global.getVar("prologue") then
+    if Global.getVar("campaign") == 1 then
         isPivotal = true
     end
 

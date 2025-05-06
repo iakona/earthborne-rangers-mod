@@ -2,19 +2,23 @@ function onLoad(_)
     addPathInput()
 end
 
-function grabPath(_, _, input, selected)
-    if input == "" or selected then
-        return
-    end
-
-    local found = false
-    local lowerInput = input:lower()
+function GrabPath(params)
+    local foundCard = nil
+    local lowerInput = params.path:lower()
     local data = self.getData()
     for _, deck in pairs(self.getData().ContainedObjects) do
+        if deck.Nickname:lower() == lowerInput then
+            foundCard = self.takeObject({guid = deck.GUID, position = params.position})
+
+            found = true
+            self.clearInputs()
+            addPathInput()
+            break
+        end
         for _, card in pairs(deck.ContainedObjects) do
             if card.Nickname:lower() == lowerInput then
                 local obj = self.takeObject({guid = deck.GUID})
-                obj.takeObject({guid = card.GUID, position = self.getPosition() + Vector(0, 0, -7)})
+                foundCard = obj.takeObject({guid = card.GUID, position = params.position})
                 self.putObject(obj)
 
                 found = true
@@ -25,9 +29,19 @@ function grabPath(_, _, input, selected)
         end
     end
 
-    if not found then
+    return foundCard
+end
+function grabPath(_, _, input, selected)
+    if input == "" or selected then
+        return
+    end
+
+    local card = GrabPath({path = input, position = self.getPosition() + Vector(0, 0, -7)})
+    if not card then
         broadcastToAll("Unable to find path card "..input, Color.Red)
     end
+
+    return card
 end
 
 function addPathInput()

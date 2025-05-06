@@ -1,7 +1,7 @@
 {
-  "SaveName": "0.1.0-alpha.1",
-  "EpochTime": 1736462206,
-  "Date": "1/9/2025 4:36:46 PM",
+  "SaveName": "0.1.0-alpha.2",
+  "EpochTime": 1739984600,
+  "Date": "2/19/2025 11:03:20 AM",
   "VersionNumber": "v13.3",
   "GameMode": "Earthborne Rangers [By iakona]",
   "GameType": "Game",
@@ -29,7 +29,7 @@
   "Sky": "Sky_Forest",
   "TabStates": {
     "0": {
-      "title": "Rules",
+      "title": "Campaign Export",
       "body": "",
       "color": "Grey",
       "visibleColor": {
@@ -352,6 +352,10 @@
       {
         "displayed": "Shuffle",
         "normalized": "shuffle"
+      },
+      {
+        "displayed": "Setup",
+        "normalized": "setup"
       }
     ]
   },
@@ -367,68 +371,6 @@
   },
   "DecalPallet": [],
   "VectorLines": [
-    {
-      "points3": [
-        {
-          "x": -17.3925,
-          "y": 0.9711,
-          "z": -1.094
-        },
-        {
-          "x": -17.3925,
-          "y": 0.9711,
-          "z": -1.094
-        },
-        {
-          "x": -17.3925,
-          "y": 0.9711,
-          "z": -1.094
-        },
-        {
-          "x": -17.3925,
-          "y": 0.9711,
-          "z": -1.094
-        }
-      ],
-      "color": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
-      },
-      "thickness": 0.1,
-      "loop": true
-    },
-    {
-      "points3": [
-        {
-          "x": 5.6194,
-          "y": 0.9711,
-          "z": 17.4453
-        },
-        {
-          "x": 5.6194,
-          "y": 0.9711,
-          "z": 17.4453
-        },
-        {
-          "x": 5.6194,
-          "y": 0.9711,
-          "z": 17.4453
-        },
-        {
-          "x": 5.6194,
-          "y": 0.9711,
-          "z": 17.4453
-        }
-      ],
-      "color": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
-      },
-      "thickness": 0.1,
-      "loop": true
-    },
     {
       "points3": [
         {

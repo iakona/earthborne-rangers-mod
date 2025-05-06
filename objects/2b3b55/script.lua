@@ -2,12 +2,35 @@ function onLoad(_)
     addMissionInput()
 end
 
-function grabMission(_, _, input, selected)
-    if input == "" or selected then
-        return
+function GrabMission(params)
+    local missionName = "\""..params.mission:lower().."\""
+    local subject = nil
+    local start, _ = missionName:find(" %(")
+    if start then
+        local subjectName = missionName:sub(start + 2, -3)
+        missionName = missionName:sub(0, start - 1).."\""
+
+        if missionName == "\"journey\"" then
+            local locationBox = Global.getVar("locationBox")
+            for _, obj in pairs(locationBox.getObjects()) do
+                if obj.name:lower() == subjectName then
+                    subject = locationBox.takeObject({guid = obj.guid, position = self.getPosition() + Vector(3.2, 0, -7)})
+                    break
+                end
+            end
+        else
+            local pathBox = Global.getVar("pathBox")
+            subject = pathBox.call("GrabPath", {path = subjectName, position = self.getPosition() + Vector(2.5, 0, -7)})
+        end
+
+        if subject then
+            subject.setRotation(Vector(0, 180, 180))
+        else
+            broadcastToAll("Unable to find Subject "..subjectName, Color.Red)
+            return
+        end
     end
 
-    local missionName = "\""..input:lower().."\""
     local found = false
     for _, obj in pairs(self.getObjects()) do
         local lowerLuaScript = obj.lua_script:lower()
@@ -20,7 +43,12 @@ function grabMission(_, _, input, selected)
             end
             self.takeObject({guid = obj.guid, position = self.getPosition() + Vector(0, 0, -7), rotation = rotation, callback_function = function(mission)
                 if mission.hasTag("Mission") then
-                    Global.call("RecordMission", {mission = mission})
+                    if params.record then
+                        Global.call("RecordMission", {mission = mission, subject = subject})
+                    end
+                    if subject then
+                        mission.addAttachment(subject)
+                    end
                 end
             end})
             found = true
@@ -34,6 +62,13 @@ function grabMission(_, _, input, selected)
     if not found then
         broadcastToAll("Unable to find mission "..input, Color.Red)
     end
+end
+function grabMission(_, _, input, selected)
+    if input == "" or selected then
+        return
+    end
+
+    GrabMission({mission = input, record = true})
 end
 
 function addMissionInput()

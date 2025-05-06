@@ -3,7 +3,7 @@
   "Transform": {
     "posX": 26.0,
     "posY": 0.9736,
-    "posZ": 12.7,
+    "posZ": 12.85,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
@@ -29,6 +29,7 @@
     "Ranger",
     "rewa_memory_object",
     "Reward",
+    "Setup",
     "Vehicle"
   ],
   "LayoutGroupSortIndex": 0,
