@@ -1,0 +1,21 @@
+<Defaults>
+    <Button colors="#397f6d|#2b715f|#1d6551|#1d655180" fontSize="11" textColor="White"/>
+</Defaults>
+
+<Panel allowDragging="true" returnToOriginalPositionWhenReleased="false" width="215" height="50" rectAlignment="LowerRight" offsetXY="-60 5">
+    <HorizontalLayout spacing="5">
+        <Button onClick="DrawRanger">Draw Ranger Card</Button>
+        <Button onClick="SufferFatigue">Suffer Fatigue</Button>
+        <Button onClick="SufferInjury">Suffer Injury</Button>
+        <Button onClick="DrawChallenge" >Draw Challenge Card</Button>
+    </HorizontalLayout>
+</Panel>
+
+<Panel allowDragging="true" returnToOriginalPositionWhenReleased="false" width="203" height="50" rectAlignment="UpperRight" offsetXY="-380 0">
+    <HorizontalLayout spacing="1">
+        <Button onClick="StartTheDay" text="Start&#xA;the&#xA;Day"/>
+        <Button onClick="Refresh">Refresh</Button>
+        <Button onClick="ClearPlayArea" text="Clear&#xA;Play&#xA;Area"/>
+        <Button onClick="EndTheDay" text="End&#xA;the&#xA;Day"/>
+    </HorizontalLayout>
+</Panel>

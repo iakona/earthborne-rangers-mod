@@ -1,0 +1,464 @@
+{
+  "SaveName": "0.1.0-alpha.1",
+  "EpochTime": 1736462206,
+  "Date": "1/9/2025 4:36:46 PM",
+  "VersionNumber": "v13.3",
+  "GameMode": "Earthborne Rangers [By iakona]",
+  "GameType": "Game",
+  "GameComplexity": "Medium Complexity",
+  "PlayingTime": [
+    90,
+    180
+  ],
+  "PlayerCounts": [
+    1,
+    4
+  ],
+  "Tags": [
+    "Card Games",
+    "Cooperative Games",
+    "Thematic Games",
+    "Cards",
+    "Components",
+    "English"
+  ],
+  "Gravity": 0.5,
+  "PlayArea": 0.2,
+  "Table": "Table_Custom",
+  "TableURL": "https://steamusercontent-a.akamaihd.net/ugc/1844782528700562752/D865CA7232FA1114C8209C82C87E6901FED688E8/",
+  "Sky": "Sky_Forest",
+  "TabStates": {
+    "0": {
+      "title": "Rules",
+      "body": "",
+      "color": "Grey",
+      "visibleColor": {
+        "r": 0.5,
+        "g": 0.5,
+        "b": 0.5
+      },
+      "id": 0
+    },
+    "3": {
+      "title": "Red",
+      "body": "",
+      "color": "Red",
+      "visibleColor": {
+        "r": 0.856,
+        "g": 0.1,
+        "b": 0.094
+      },
+      "id": 3
+    },
+    "5": {
+      "title": "Yellow",
+      "body": "",
+      "color": "Yellow",
+      "visibleColor": {
+        "r": 0.905,
+        "g": 0.898,
+        "b": 0.172
+      },
+      "id": 5
+    },
+    "8": {
+      "title": "Teal",
+      "body": "",
+      "color": "Teal",
+      "visibleColor": {
+        "r": 0.129,
+        "g": 0.694,
+        "b": 0.607
+      },
+      "id": 8
+    },
+    "9": {
+      "title": "Purple",
+      "body": "",
+      "color": "Purple",
+      "visibleColor": {
+        "r": 0.627,
+        "g": 0.125,
+        "b": 0.941
+      },
+      "id": 9
+    }
+  },
+  "MusicPlayer": {
+    "RepeatSong": false,
+    "PlaylistEntry": 20,
+    "CurrentAudioTitle": "Awakening",
+    "CurrentAudioURL": "https://steamusercontent-a.akamaihd.net/ugc/792010997184359809/DA27CF611C537C0C6A94893C0330B24358296475/",
+    "AudioLibrary": [
+      {
+        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184359809/DA27CF611C537C0C6A94893C0330B24358296475/",
+        "Item2": "Awakening"
+      },
+      {
+        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184371128/145B47EC47D331B4AE1CB59FDE75E0116E10280D/",
+        "Item2": "Calm"
+      },
+      {
+        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184371906/F8E4FC7CBD21DD2430F906F77055819AD0474996/",
+        "Item2": "Day Travel"
+      },
+      {
+        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184374182/B0FF76DCB3D979C6A3A630F45A9FD58E7390D6C6/",
+        "Item2": "Death"
+      },
+      {
+        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184376716/0407BB616E681D199DDEC384058B3CBF3DD3FEAD/",
+        "Item2": "Epilude"
+      },
+      {
+        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184379961/314F9E57AF4CF475B86BAF58AD5A006DB16CE86D/",
+        "Item2": "Goblin Combat"
+      },
+      {
+        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184385296/1A83AFF3AF0959546E8444D9A3F4174BC35E5336/",
+        "Item2": "Human Combat 1"
+      },
+      {
+        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184387091/0554504FC54BACCAA83CAB542EB33FC41C87346B/",
+        "Item2": "Human Combat 2"
+      },
+      {
+        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184389261/F753ACB43BA28C799B808388D6A6E4A71BDB78CB/",
+        "Item2": "Intrigue"
+      },
+      {
+        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184392871/C1ACD1C3E628B836F6DEFF643B618418A339EECC/",
+        "Item2": "Map"
+      },
+      {
+        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184394727/6212F5FF59B6D980AA95CCF1B06BE32F8DFF3366/",
+        "Item2": "Mistique"
+      },
+      {
+        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184397131/B462582B327D41981E3A3893AED045C9DFA37D68/",
+        "Item2": "Night Travel"
+      },
+      {
+        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184398544/F8246EDA891BDFDE3CE9183A139D514F78A582CF/",
+        "Item2": "Orc Combat 1"
+      },
+      {
+        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184400189/F25ADB6B0FA920C0D9F6A67546DAD85C70C9504E/",
+        "Item2": "Orc Combat 2"
+      },
+      {
+        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184402108/415A2E2F690E8241A23FBBAFB8D9BAB0D469F8F4/",
+        "Item2": "Prelude"
+      },
+      {
+        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184404898/8956C1A3A9A41B0F54B4DE400EC76F7723332310/",
+        "Item2": "Reflective"
+      },
+      {
+        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184406070/21B923240147A1785E49CAE3AFA27C045405694C/",
+        "Item2": "Setting Up"
+      },
+      {
+        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184407878/A2458FAB2EE78A3AA4B26271485982FA02665FDA/",
+        "Item2": "Tension"
+      },
+      {
+        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184409426/32FB9FCA1D2DD24CF88150A31E16108CEB21559D/",
+        "Item2": "Undead Combat"
+      }
+    ]
+  },
+  "Grid": {
+    "Type": 0,
+    "Lines": false,
+    "Color": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0
+    },
+    "Opacity": 0.75,
+    "ThickLines": false,
+    "Snapping": false,
+    "Offset": false,
+    "BothSnapping": false,
+    "xSize": 2.0,
+    "ySize": 2.0,
+    "PosOffset": {
+      "x": 0.0,
+      "y": 1.0,
+      "z": 0.0
+    }
+  },
+  "Lighting": {
+    "LightIntensity": 0.668,
+    "LightColor": {
+      "r": 1.0,
+      "g": 0.9804,
+      "b": 0.8902
+    },
+    "AmbientIntensity": 0.692,
+    "AmbientType": 1,
+    "AmbientSkyColor": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5
+    },
+    "AmbientEquatorColor": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5
+    },
+    "AmbientGroundColor": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5
+    },
+    "ReflectionIntensity": 1.0,
+    "LutIndex": 0,
+    "LutContribution": 1.0,
+    "LutURL": ""
+  },
+  "Hands": {
+    "Enable": true,
+    "DisableUnused": true,
+    "Hiding": 0
+  },
+  "ComponentTags": {
+    "labels": [
+      {
+        "displayed": "spec_memory_object",
+        "normalized": "spec_memory_object"
+      },
+      {
+        "displayed": "back_memory_object",
+        "normalized": "back_memory_object"
+      },
+      {
+        "displayed": "perso_memory_object",
+        "normalized": "perso_memory_object"
+      },
+      {
+        "displayed": "rewa_memory_object",
+        "normalized": "rewa_memory_object"
+      },
+      {
+        "displayed": "misc_memory_object",
+        "normalized": "misc_memory_object"
+      },
+      {
+        "displayed": "back_memory_zone",
+        "normalized": "back_memory_zone"
+      },
+      {
+        "displayed": "misc_memory_zone",
+        "normalized": "misc_memory_zone"
+      },
+      {
+        "displayed": "perso_memory_zone",
+        "normalized": "perso_memory_zone"
+      },
+      {
+        "displayed": "rewa_memory_zone",
+        "normalized": "rewa_memory_zone"
+      },
+      {
+        "displayed": "spec_memory_zone",
+        "normalized": "spec_memory_zone"
+      },
+      {
+        "displayed": "rvet_memory_object",
+        "normalized": "rvet_memory_object"
+      },
+      {
+        "displayed": "rvet_memory_zone",
+        "normalized": "rvet_memory_zone"
+      },
+      {
+        "displayed": "Path",
+        "normalized": "path"
+      },
+      {
+        "displayed": "Mission",
+        "normalized": "mission"
+      },
+      {
+        "displayed": "Weather",
+        "normalized": "weather"
+      },
+      {
+        "displayed": "Ranger",
+        "normalized": "ranger"
+      },
+      {
+        "displayed": "Aspect",
+        "normalized": "aspect"
+      },
+      {
+        "displayed": "Role",
+        "normalized": "role"
+      },
+      {
+        "displayed": "Location",
+        "normalized": "location"
+      },
+      {
+        "displayed": "Challenge",
+        "normalized": "challenge"
+      },
+      {
+        "displayed": "Energy",
+        "normalized": "energy"
+      },
+      {
+        "displayed": "Persistent",
+        "normalized": "persistent"
+      },
+      {
+        "displayed": "Gear",
+        "normalized": "gear"
+      },
+      {
+        "displayed": "Reward",
+        "normalized": "reward"
+      },
+      {
+        "displayed": "Attachment",
+        "normalized": "attachment"
+      },
+      {
+        "displayed": "Counter",
+        "normalized": "counter"
+      },
+      {
+        "displayed": "Ranger Token",
+        "normalized": "ranger_token"
+      },
+      {
+        "displayed": "Vehicle",
+        "normalized": "vehicle"
+      },
+      {
+        "displayed": "Malady",
+        "normalized": "malady"
+      },
+      {
+        "displayed": "Label",
+        "normalized": "label"
+      },
+      {
+        "displayed": "Prebuilt",
+        "normalized": "prebuilt"
+      },
+      {
+        "displayed": "Shuffle",
+        "normalized": "shuffle"
+      }
+    ]
+  },
+  "Turns": {
+    "Enable": false,
+    "Type": 0,
+    "TurnOrder": [],
+    "Reverse": false,
+    "SkipEmpty": false,
+    "DisableInteractions": false,
+    "PassTurns": true,
+    "TurnColor": ""
+  },
+  "DecalPallet": [],
+  "VectorLines": [
+    {
+      "points3": [
+        {
+          "x": -17.3925,
+          "y": 0.9711,
+          "z": -1.094
+        },
+        {
+          "x": -17.3925,
+          "y": 0.9711,
+          "z": -1.094
+        },
+        {
+          "x": -17.3925,
+          "y": 0.9711,
+          "z": -1.094
+        },
+        {
+          "x": -17.3925,
+          "y": 0.9711,
+          "z": -1.094
+        }
+      ],
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "thickness": 0.1,
+      "loop": true
+    },
+    {
+      "points3": [
+        {
+          "x": 5.6194,
+          "y": 0.9711,
+          "z": 17.4453
+        },
+        {
+          "x": 5.6194,
+          "y": 0.9711,
+          "z": 17.4453
+        },
+        {
+          "x": 5.6194,
+          "y": 0.9711,
+          "z": 17.4453
+        },
+        {
+          "x": 5.6194,
+          "y": 0.9711,
+          "z": 17.4453
+        }
+      ],
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "thickness": 0.1,
+      "loop": true
+    },
+    {
+      "points3": [
+        {
+          "x": 6.7353,
+          "y": 0.9711,
+          "z": 17.8959
+        },
+        {
+          "x": 43.376,
+          "y": 0.9711,
+          "z": 17.8959
+        },
+        {
+          "x": 43.376,
+          "y": 0.9711,
+          "z": 3.9516
+        },
+        {
+          "x": 6.7353,
+          "y": 0.9711,
+          "z": 3.9516
+        }
+      ],
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "thickness": 0.1,
+      "loop": true
+    }
+  ]
+}

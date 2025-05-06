@@ -1,0 +1,43 @@
+{
+  "Name": "Infinite_Bag",
+  "Transform": {
+    "posX": 17.0,
+    "posY": 0.943,
+    "posZ": -5.54,
+    "rotX": 0.0,
+    "rotY": 359.9788,
+    "rotZ": 0.0,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Progress Counters",
+  "Description": "Use in place of Progress Tokens",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.5147,
+    "g": 0.9948,
+    "b": 0.9734
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1
+}

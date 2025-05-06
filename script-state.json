@@ -1,0 +1,11 @@
+{
+  "campaign": false,
+  "currentDay": 1,
+  "currentLocation": "",
+  "currentWeather": "A Perfect Day",
+  "hardWeather": false,
+  "missionProgress": [],
+  "prologue": false,
+  "showRewards": false,
+  "unlockedRewards": []
+}

@@ -1,0 +1,82 @@
+{
+  "Name": "DeckCustom",
+  "Transform": {
+    "posX": -4.3492,
+    "posY": 1.1965,
+    "posZ": -0.78,
+    "rotX": 0.0,
+    "rotY": 180.0001,
+    "rotZ": 180.0,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Challenge Deck",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
+  },
+  "Tags": [
+    "Challenge"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "SidewaysCard": false,
+  "DeckIDs": [
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123
+  ],
+  "CustomDeck": {
+    "1": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/1825653570817820212/62D64FA768717587CF04EB314674A38412BB2D2A/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/1901108055604991369/6D4C9AB6C51E5EEFDEED5E6197107063AB8DD8D1/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

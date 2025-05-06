@@ -1,0 +1,145 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 0.2076,
+    "posY": 0.96,
+    "posZ": -5.046,
+    "rotX": 0.0,
+    "rotY": 179.9996,
+    "rotZ": 0.0,
+    "scaleX": 6.7105,
+    "scaleY": 1.0,
+    "scaleZ": 6.7105
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/1994562656062231242/1315C9B6367DA8F135A38B489C86E58C48D92C6A/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.1,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 0.6791,
+        "y": 0.1,
+        "z": -0.6357
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0005,
+        "z": 180.0
+      },
+      "Tags": [
+        "Challenge"
+      ]
+    },
+    {
+      "Position": {
+        "x": 0.3068,
+        "y": 0.1,
+        "z": -0.6357
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0004,
+        "z": 0.0
+      },
+      "Tags": [
+        "Challenge"
+      ]
+    },
+    {
+      "Position": {
+        "x": -0.2853,
+        "y": 0.1,
+        "z": -0.6357
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0004,
+        "z": 0.0
+      },
+      "Tags": [
+        "Path"
+      ]
+    },
+    {
+      "Position": {
+        "x": -0.6561,
+        "y": 0.1,
+        "z": -0.6357
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0004,
+        "z": 0.0
+      },
+      "Tags": [
+        "Path"
+      ]
+    },
+    {
+      "Position": {
+        "x": -0.0004,
+        "y": 0.1,
+        "z": 0.001
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0153,
+        "z": 0.0
+      },
+      "Tags": [
+        "Location"
+      ]
+    },
+    {
+      "Position": {
+        "x": 0.8562,
+        "y": 0.1,
+        "z": -0.0371
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0005,
+        "z": 0.0
+      },
+      "Tags": [
+        "Weather"
+      ]
+    }
+  ]
+}

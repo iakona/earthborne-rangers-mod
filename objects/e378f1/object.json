@@ -1,0 +1,145 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 32.6253,
+    "posY": 0.96,
+    "posZ": -19.3277,
+    "rotX": 0.0,
+    "rotY": 180.0001,
+    "rotZ": 0.0,
+    "scaleX": 6.2229,
+    "scaleY": 1.0,
+    "scaleZ": 6.2229
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/1994562656062230851/86C7887C7576897A156B2C1E5FE3F3EF8E890926/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.1,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 1.3082,
+        "y": 0.1,
+        "z": 0.5901
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.001,
+        "z": 0.0
+      },
+      "Tags": [
+        "Aspect"
+      ]
+    },
+    {
+      "Position": {
+        "x": 0.8886,
+        "y": 0.1,
+        "z": 0.5901
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.001,
+        "z": 0.0
+      },
+      "Tags": [
+        "Role"
+      ]
+    },
+    {
+      "Position": {
+        "x": -0.3143,
+        "y": 0.1,
+        "z": 0.5901
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.001,
+        "z": 0.0
+      },
+      "Tags": [
+        "Ranger"
+      ]
+    },
+    {
+      "Position": {
+        "x": -0.734,
+        "y": 0.1,
+        "z": 0.5901
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.001,
+        "z": 0.0
+      },
+      "Tags": [
+        "Ranger"
+      ]
+    },
+    {
+      "Position": {
+        "x": -1.2158,
+        "y": 0.1,
+        "z": 0.6602
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 269.999,
+        "z": 0.0
+      },
+      "Tags": [
+        "Ranger"
+      ]
+    },
+    {
+      "Position": {
+        "x": -1.2101,
+        "y": 0.1,
+        "z": 0.3491
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Tags": [
+        "Ranger Token"
+      ]
+    }
+  ]
+}

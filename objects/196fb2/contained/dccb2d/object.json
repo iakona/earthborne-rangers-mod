@@ -1,0 +1,57 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 44.1702,
+    "posY": 2.3263,
+    "posZ": -7.2798,
+    "rotX": 0.0,
+    "rotY": 180.0149,
+    "rotZ": 0.0,
+    "scaleX": 0.9,
+    "scaleY": 1.0,
+    "scaleZ": 0.9
+  },
+  "Nickname": "Michael's Bog",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
+  },
+  "Tags": [
+    "Location"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CardID": 1728,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "17": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799198771/ADAB3BBAD06948D1F0C828C7D5611CDD7455BF6C/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799198621/E754488E4F6C291E6E7CCD144A5FD8F78043882F/",
+      "NumWidth": 8,
+      "NumHeight": 5,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    }
+  }
+}
