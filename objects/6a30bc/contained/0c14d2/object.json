@@ -1,0 +1,124 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 18.5177,
+    "posY": 0.9736,
+    "posZ": 6.4685,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 0.0,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Hy Pimpot's Secret Recipe",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132,
+    "g": 0.7132,
+    "b": 0.7132
+  },
+  "Tags": [
+    "Ranger",
+    "rewa_memory_object",
+    "Reward"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": true,
+  "CardID": 1513,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "15": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14181150886157627/0D55CFFCC54BB1209F693A0C74566BF9226ED52C/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/1825653570817822821/B97D125EB1517A2F29991B01C1A4D090EEFA58D4/",
+      "NumWidth": 4,
+      "NumHeight": 4,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  },
+  "States": {
+    "1": {
+      "GUID": "11b4cb",
+      "Name": "Card",
+      "Transform": {
+        "posX": 18.5177,
+        "posY": 0.9736,
+        "posZ": 6.4685,
+        "rotX": 0.0,
+        "rotY": 180.0,
+        "rotZ": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "Hy Pimpot's Secret Recipe",
+      "Description": "",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.7132,
+        "g": 0.7132,
+        "b": 0.7132
+      },
+      "Tags": [
+        "Ranger",
+        "rewa_memory_object",
+        "Reward"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": true,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": true,
+      "CardID": 5525,
+      "SidewaysCard": false,
+      "CustomDeck": {
+        "55": {
+          "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799158526/4FF1532E921ABBCC88A290CF64830AFC308E832D/",
+          "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/1825653570817822821/B97D125EB1517A2F29991B01C1A4D090EEFA58D4/",
+          "NumWidth": 7,
+          "NumHeight": 5,
+          "BackIsHidden": false,
+          "UniqueBack": false,
+          "Type": 0
+        }
+      },
+      "LuaScript": "id = \"01226\"\r\ncost = {spirit = 1}\r\n",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    }
+  }
+}

@@ -25,7 +25,8 @@
     "b": 0.7132
   },
   "Tags": [
-    "Path"
+    "Path",
+    "Prey"
   ],
   "LayoutGroupSortIndex": 0,
   "Value": 0,
@@ -41,13 +42,13 @@
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": false,
-  "CardID": 1417,
+  "CardID": 2533,
   "SidewaysCard": false,
   "CustomDeck": {
-    "14": {
-      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799069107/6224D5616F8250C34631EDE0759ECD1C8F47BCE2/",
+    "25": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14181150885861462/228530CCDDB6FC03603D03AB8CA0BB0D9A932321/",
       "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799074052/780A3D85AC2356930B95B87A12824F954C477092/",
-      "NumWidth": 9,
+      "NumWidth": 10,
       "NumHeight": 7,
       "BackIsHidden": false,
       "UniqueBack": false,

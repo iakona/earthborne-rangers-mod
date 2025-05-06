@@ -75,6 +75,17 @@ local function create_recall_button() createButton("Recall", "recall_objects") e
 local function create_object_callback(tag, lock)
     ---@param object TTSObject
     return function (object)
+        if object.getStates() ~= nil then
+            if Global.getVar("useUncommonWisdom") then
+                if object.getStateId() == 1 then
+                    object = object.setState(2)
+                end
+            else
+                if object.getStateId() == 2 then
+                    object = object.setState(1)
+                end
+            end
+        end
         object:setLock(lock)
         if object:hasTag(tag) then object:shuffle() end
     end

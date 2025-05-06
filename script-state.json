@@ -7,5 +7,6 @@
   "hardWeather": false,
   "missionProgress": [],
   "showRewards": false,
-  "unlockedRewards": []
+  "unlockedRewards": [],
+  "useUncommonWisdom": true
 }

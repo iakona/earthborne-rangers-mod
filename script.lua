@@ -13,8 +13,8 @@ weatherBox = "4b9483"
 maladiesBox = "eceffc"
 trash = "5dca9a"
 
-campaignTracker = "f0d81f"
-valleyMap = "8b7726"
+campaignTracker = nil
+campaignMap = nil
 
 energyBags = {
     ["awareness"] = "93de64",
@@ -69,12 +69,15 @@ locationIndex = 5
 weatherIndex = 6
 capturedPreyIndex = 7
 
+preyTimer = nil
+
 -- Save State Data
 currentLocation = ""
 currentWeather = "A Perfect Day"
 currentDay = 1
 hardWeather = false
 showRewards = false
+useUncommonWisdom = false
 campaign = 0
 unlockedRewards = {}
 missionProgress = {}
@@ -87,6 +90,7 @@ function onSave()
         currentDay = currentDay,
         hardWeather = hardWeather,
         showRewards = showRewards,
+        useUncommonWisdom = useUncommonWisdom,
         campaign = campaign,
         unlockedRewards = unlockedRewards,
         missionProgress = missionProgress,
@@ -105,8 +109,6 @@ function onLoad(data)
     weatherBox = getObjectFromGUID(weatherBox)
     maladiesBox = getObjectFromGUID(maladiesBox)
     trash = getObjectFromGUID(trash)
-    campaignTracker = getObjectFromGUID(campaignTracker)
-    valleyMap = getObjectFromGUID(valleyMap)
     for key, guid in pairs(energyBags) do
         energyBags[key] = getObjectFromGUID(guid)
     end
@@ -135,10 +137,18 @@ function onLoad(data)
         currentDay = jsonData.currentDay
         hardWeather = jsonData.hardWeather
         showRewards = jsonData.showRewards
+        useUncommonWisdom = jsonData.useUncommonWisdom
         campaign = jsonData.campaign
         unlockedRewards = jsonData.unlockedRewards
         missionProgress = jsonData.missionProgress
         completedMissions = jsonData.completedMissions
+    end
+
+    if campaign ~= 0 then
+        campaignTracker = getObjectsWithTag("Tracker")[0]
+        campaignMap = getObjectsWithTag("Map")[0]
+        UI.setAttribute("playerButtons", "visibility", "")
+        UI.setAttribute("partyButtons", "visibility", "")
     end
 
     if Player["White"].seated and not Player["Red"].seated then
@@ -146,7 +156,7 @@ function onLoad(data)
     end
 
     if getObjectFromGUID("cada94") then
-        getObjectFromGUID("c46ac6").setValue("CAPTURED PREY")
+        preyTimer = Wait.time(countPreyPresence, 2, -1)
     else
         getObjectFromGUID("c46ac6").setValue(" ")
     end
@@ -155,12 +165,56 @@ function onObjectSpawn(obj)
     addContextMenuItems(obj)
 
     if obj.guid == "cada94" then
-        getObjectFromGUID("c46ac6").setValue("CAPTURED PREY")
+        preyTimer = Wait.time(countPreyPresence, 2, -1)
+        printToAll("Captured Prey should go to left of Challenge Deck area")
     end
 end
 function onObjectDestroy(obj)
     if obj.guid == "cada94" then
         getObjectFromGUID("c46ac6").setValue(" ")
+        Wait.stop(preyTimer)
+    end
+end
+
+function countPreyPresence()
+    local snaps = sharedBoard.getSnapPoints()
+    local hits = Physics.cast({
+        origin = sharedBoard.positionToWorld(snaps[capturedPreyIndex].position) + Vector(0, -0.01, 0),
+        direction = Vector(0, 1, 0),
+        type = 1,
+        max_distance = 1,
+    })
+    local capturedPrey = nil
+    for _, hit in pairs(hits) do
+        if hit.hit_object.hasTag("Path") then
+            capturedPrey = hit.hit_object
+            break
+        end
+    end
+
+    if capturedPrey then
+        local presence = 0
+        if capturedPrey.type == "Card" then
+            if capturedPrey.hasTag("Prey") then
+                local cardPresence = capturedPrey.getVar("presence")
+                if cardPresence then
+                    presence = presence + cardPresence
+                end
+            end
+        elseif capturedPrey.type == "Deck" then
+            for _, card in pairs(capturedPrey.getObjects()) do
+                if hasTag(card, "Prey") then
+                    local _, finish = card.lua_script:find("presence = ")
+                    if finish then
+                        local cardPresence = tonumber(card.lua_script:sub(finish + 1, finish + 2))
+                        presence = presence + cardPresence
+                    end
+                end
+            end
+        end
+        getObjectFromGUID("c46ac6").setValue("CAPTURED PREY ("..presence..")")
+    else
+        getObjectFromGUID("c46ac6").setValue("CAPTURED PREY (0)")
     end
 end
 
@@ -207,12 +261,11 @@ function addContextMenuItems(obj)
         if #obj.getAttachments() > 0 then
             obj.addContextMenuItem("Remove Attachments", removeAttachment, false)
         end
-    elseif obj.type == "Deck" then
         if obj.hasTag("Prebuilt") then
             obj.addContextMenuItem("Pick Deck", pickDeck, false)
         end
     end
-    if obj.guid == campaignTracker.guid then
+    if campaignTracker and obj.guid == campaignTracker.guid then
         campaignTracker.addContextMenuItem("Export Campaign", exportCampaign, false)
     end
 end
@@ -230,16 +283,18 @@ function getMissionName(mission)
     end
 end
 function RecordMission(params)
-    for _, data in pairs(campaignTracker.getTable("missions")) do
-        local name = getObjectFromGUID(data.name)
-        if name.getValue() == " " then
-            local missionName = getMissionName(params.mission)
-            if params.subject then
-                missionName = missionName.." ("..params.subject.getName()..")"
+    if campaignTracker then
+        for i = 1, 33 do
+            local name = campaignTracker.UI.getAttribute("mission"..i, "text")
+            if name == " " then
+                local missionName = getMissionName(params.mission)
+                if params.subject then
+                    missionName = missionName.." ("..params.subject.getName()..")"
+                end
+                campaignTracker.UI.setAttribute("mission"..i, "text", missionName)
+                campaignTracker.UI.setAttribute("mission"..i.."Day", "text", tostring(currentDay))
+                break
             end
-            name.setValue(missionName)
-            getObjectFromGUID(data.day).setValue(tostring(currentDay))
-            break
         end
     end
 end
@@ -281,26 +336,33 @@ function pickAspect(color, _, obj)
     newAspect.setLock(true)
 end
 function PickRole(params)
-    pickRole(params.color, _, params.role)
-end
-function pickRole(color, _, obj)
-    if not playerBoards[color] then
+    if not playerBoards[params.color] then
         return
     end
 
-    local role = getRole(color)
+    local role = getRole(params.color)
     if role then
         role.destruct()
-        Player[color].broadcast("You already have a role, replacing the old one")
+        Player[params.color].broadcast("You already have a role, replacing the old one")
     end
 
-    local playerBoard = playerBoards[color]
+    local playerBoard = playerBoards[params.color]
     local snaps = playerBoard.getSnapPoints()
 
-    local newRole = obj.clone()
+    local newRole = params.role.clone()
+    if newRole.getStates() ~= nil and params.useUncommonWisdom ~= nil then
+        if params.useUncommonWisdom and newRole.getStateId() == 1 then
+            newRole = newRole.setState(2)
+        elseif not params.useUncommonWisdom and newRole.getStateId() == 2 then
+            newRole = newRole.setState(1)
+        end
+    end
     newRole.setPosition(playerBoard.positionToWorld(snaps[roleIndex].position) + Vector(0, 0.01, 0))
     newRole.setLock(false)
-    newRole.setDescription(color)
+    newRole.setDescription(params.color)
+end
+function pickRole(color, _, obj)
+    PickRole({color = color, role = obj})
 end
 function PickRanger(params)
     if not playerBoards[params.color] then
@@ -329,6 +391,14 @@ function PickRanger(params)
 
     for _ = 1, params.quantity do
         local newRanger = params.ranger.clone()
+        if newRanger.getStates() ~= nil then
+            -- Any not passed in taboo sets are assumed to be disabled
+            if params.useUncommonWisdom and newRanger.getStateId() == 1 then
+                newRanger = newRanger.setState(2)
+            elseif not params.useUncommonWisdom and newRanger.getStateId() == 2 then
+                newRanger = newRanger.setState(1)
+            end
+        end
         local position
         if not params.sideboard then
             position = playerBoard.positionToWorld(snaps[deckIndex].position) + params.offset
@@ -362,17 +432,15 @@ function UnlockReward(params)
         Player[params.color].broadcast(params.reward.." is already Unlocked", Color.White)
     else
         unlockedRewards[params.reward] = true
-        local rewardGUIDs = {"b5ebd3", "b0f97f", "c4ffae"}
-        for index, rewardGUID in pairs(rewardGUIDs) do
-            local rewards = getObjectFromGUID(rewardGUID)
-            local text = rewards.getValue()
-            if text == " " then
-                rewards.setValue(params.reward)
+        for i = 1, 3 do
+            local rewardText = campaignTracker.UI.getAttribute("rewards"..i, "text")
+            if rewardText == "" then
+                campaignTracker.UI.setAttribute("rewards"..i, "text", params.reward)
                 break
             else
-                local _, count = text:gsub("\n", "")
+                local _, count = rewardText:gsub("\n", "")
                 if count < 10 or (index == 1 and count == 10) then
-                    rewards.setValue(text.."\n"..params.reward)
+                    campaignTracker.UI.setAttribute("rewards"..i, "text", rewardText.."\n"..params.reward)
                     break
                 end
             end
@@ -455,20 +523,23 @@ function returnCard(_, _, obj)
             elseif set == objData.description.." Set" then
                 local card = pathBox.takeObject({guid = objData.guid})
                 local deck = group({card, obj})[1]
-                deck.setName(set.." Set")
-                Wait.frames(function() pathBox.putObject(deck) end, 3)
+                deck.setName(set)
                 return
             end
         end
         pathBox.putObject(obj)
     elseif obj.hasTag("Mission") then
         local missionName = getMissionName(obj)
-        for i, mission in pairs(campaignTracker.getTable("missions")) do
-            local name = getObjectFromGUID(mission.name)
-            if not completedMissions[i] and name.getValue():find(missionName) then
-                local data = name.getData()
-                data.Text.Text = "───────────────"
-                spawnObjectData({data = data, position = name.getPosition() + Vector(0.35, 0, 0)})
+        for i = 1, 33 do
+            local name = campaignTracker.UI.getAttribute("mission"..i, "text")
+            if not completedMissions[i] and name:find(missionName) then
+                local data = getObjectFromGUID("c46ac6").getData()
+                data.Text.Text = "────────────"
+                data.Text.fontSize = 24
+                local xOffset, yOffset = campaignTracker.UI.getAttribute("mission"..i, "offsetXY"):match("([^ ]+) ([^ ]+)")
+                xOffset = tonumber(xOffset) / 7 * 0.14 / 2.04
+                yOffset = tonumber(yOffset) / 7 * 0.14 / 2.04
+                spawnObjectData({data = data, position = campaignTracker.getPosition() + Vector(xOffset, 0.1, yOffset + 0.15)})
                 completedMissions[i] = true
                 break
             end
@@ -483,34 +554,13 @@ function pickDeck(color, _, obj)
         return
     end
 
-    obj.removeTag("Prebuilt")
-    obj.clearContextMenu()
-
     ClearPlayerDeck({color = color})
 
-    local playerBoard = playerBoards[color]
-    local snaps = playerBoard.getSnapPoints()
+    local deck = obj.getTable("deck")
+    deck.color = color
+    recallBoxes[6].call("ImportDeck", deck)
 
-    role = obj.takeObject()
-    role.setPosition(playerBoard.positionToWorld(snaps[roleIndex].position) + Vector(0, 0.01, 0))
-    role.setDescription(color)
-
-    aspect = obj.takeObject()
-    aspect.setPosition(playerBoard.positionToWorld(snaps[aspectIndex].position) + Vector(0, 0.01, 0))
-    aspect.setLock(true)
-    aspect.setDescription(color)
-
-    for i, data in pairs(obj.getObjects()) do
-        local card
-        if obj.remainder then
-            card = obj.remainder
-        else
-            card = obj.takeObject({guid = data.guid})
-        end
-        card.setPosition(playerBoard.positionToWorld(snaps[deckIndex].position) + Vector(0, 0.5 + 0.2 * i, 0))
-        card.setRotation(Vector(0, 180, 180))
-        card.setDescription(color)
-    end
+    obj.destruct()
 end
 function ClearPlayerDeck(params)
     local role = getRole(params.color)
@@ -829,16 +879,39 @@ function DrawChallenge(_)
         end
     end
 
+    local card
     if challenges.type == "Deck" then
-        challenges.takeObject({position = sharedBoard.positionToWorld(snaps[challengeDiscardIndex].position) + Vector(0, 0.5, 0), rotation = Vector(0, 180, 0)})
+        card = challenges.takeObject({position = sharedBoard.positionToWorld(snaps[challengeDiscardIndex].position) + Vector(0, 0.5, 0), rotation = Vector(0, 180, 0)})
     elseif challenges.type == "Card" then
+        card = challenges
         challenges.setPositionSmooth(sharedBoard.positionToWorld(snaps[challengeDiscardIndex].position) + Vector(0, 0.5, 0))
         challenges.setRotationSmooth(Vector(0, 180, 0))
     end
+
+    -- Wait a frame so card coming from deck can have values
+    Wait.frames(function()
+        UI.setAttribute("challenge", "visibility", "")
+        UI.setAttribute("awareness", "text", card.getVar("awareness"))
+        UI.setAttribute("spirit", "text", card.getVar("spirit"))
+        UI.setAttribute("fitness", "text", card.getVar("fitness"))
+        UI.setAttribute("focus", "text", card.getVar("focus"))
+        local effect = card.getVar("effect")
+        UI.setAttribute("effect", "text", effect)
+        if effect == "Mountain" then
+            UI.setAttribute("effectCell", "color", "#294574")
+        elseif effect == "Crest" then
+            UI.setAttribute("effectCell", "color", "#902329")
+        elseif effect == "Sun" then
+            UI.setAttribute("effectCell", "color", "#dc802b")
+        end
+    end, 1)
 end
 
 function StartTheDay(_)
-    if campaign > 1 then
+    UI.setAttribute("playerButtons", "visibility", "")
+    UI.setAttribute("partyButtons", "visibility", "")
+
+    if campaign > 0 then
         broadcastToAll("Starting Day "..currentDay.." with "..currentWeather, Color.White)
     end
 
@@ -938,7 +1011,7 @@ function StartTheDay(_)
     end
 
     if #getObjectsWithTag("Location") > 0 then
-        valleyMap.call("Travel", {location = currentLocation, connection = getObjectFromGUID("0b7329").getValue(), skipLocationCard = true})
+        campaignMap.call("Travel", {location = currentLocation, connection = campaignTracker.UI.getAttribute("terrain", "text"), skipLocationCard = true})
     end
 end
 
@@ -1041,6 +1114,28 @@ function returnPathCards(pathSets)
 end
 
 function ClearPlayArea(_)
+    local snaps = sharedBoard.getSnapPoints()
+    local hits = Physics.cast({
+        origin = sharedBoard.positionToWorld(snaps[pathDiscardIndex].position) + Vector(0, -0.01, 0),
+        direction = Vector(0, 1, 0),
+        type = 1,
+        max_distance = 1,
+    })
+    local pathDiscard = nil
+    for _, hit in pairs(hits) do
+        if hit.hit_object.hasTag("Path") then
+            pathDiscard = hit.hit_object
+            break
+        end
+    end
+
+    for _, obstacle in pairs(getObjectsWithTag("Obstacle")) do
+        if obstacle.getRotation():equals(Vector(0, 180, 0)) and obstacle ~= pathDiscard then
+            broadcastToAll("Detecting uncleared and unexhausted Obstacle \""..obstacle.getName().."\"", Color.Red)
+            return
+        end
+    end
+
     for _, locationCard in pairs(getObjectsWithTag("Location")) do
         locationCard.setLock(false)
         locationCard.setRotation(Vector(0, 180, 0))
@@ -1074,21 +1169,6 @@ function ClearPlayArea(_)
 
     if attachments then
         broadcastToAll("Detecting unattached attachments, manual clean up required for them. In future make sure you use F6 tool and drag from attachment to the card it's attached to", Color.Red)
-    end
-
-    local snaps = sharedBoard.getSnapPoints()
-    local hits = Physics.cast({
-        origin = sharedBoard.positionToWorld(snaps[pathDiscardIndex].position) + Vector(0, -0.01, 0),
-        direction = Vector(0, 1, 0),
-        type = 1,
-        max_distance = 1,
-    })
-    local pathDiscard = nil
-    for _, hit in pairs(hits) do
-        if hit.hit_object.hasTag("Path") then
-            pathDiscard = hit.hit_object
-            break
-        end
     end
 
     -- Only exclude this area if the Lure mission exists
@@ -1331,7 +1411,7 @@ function EndTheDay(_)
 end
 
 function exportCampaign(_, _, _)
-    if campaign < 2 then
+    if campaign <= 0 then
         broadcastToAll("You need to start campaign first before exporting it!", Color.Red)
         return
     end
@@ -1346,6 +1426,7 @@ function exportCampaign(_, _, _)
         data.currentDay = currentDay
         data.hardWeather = hardWeather
         data.showRewards = showRewards
+        data.useUncommonWisdom = useUncommonWisdom
         data.campaign = campaign
         data.unlockedRewards = unlockedRewards
         data.missionProgress = missionProgress
@@ -1354,6 +1435,7 @@ function exportCampaign(_, _, _)
         for color,_ in pairs(playerBoards) do
             local player = {}
             local found = false
+            local useUncommonWisdom = false
 
             local aspect = getAspect(color)
             if aspect then
@@ -1368,15 +1450,21 @@ function exportCampaign(_, _, _)
             if role then
                 found = true
                 player.role = role.getVar("id")
+                if role.getStateId() == 2 then
+                    useUncommonWisdom = true
+                end
             end
 
             local deck = getRangerDeck(color)
             if deck then
                 found = true
                 player.slots = {}
-                for _, card in pairs(deck.getObjects()) do
-                    local _, finish = card.lua_script:find("id = \"")
-                    local id = card.lua_script:sub(finish + 1, finish + 5)
+                for _, card in pairs(deck.getData().ContainedObjects) do
+                    if card.States and card.States[1] then
+                        useUncommonWisdom = true
+                    end
+                    local _, finish = card.LuaScript:find("id = \"")
+                    local id = card.LuaScript:sub(finish + 1, finish + 5)
                     if player.slots[id] then
                         player.slots[id] = player.slots[id] + 1
                     else
@@ -1389,10 +1477,13 @@ function exportCampaign(_, _, _)
             if #objs > 0 then
                 found = true
                 player.sideboard = {}
-                for _, card in pairs(objs) do
-                    local _, finish = card.lua_script:find("id = \"")
+                for _, card in pairs(sideboards[color].getData().ContainedObjects) do
+                    if card.States and card.States[1] then
+                        useUncommonWisdom = true
+                    end
+                    local _, finish = card.LuaScript:find("id = \"")
                     if finish then
-                        local id = card.lua_script:sub(finish + 1, finish + 5)
+                        local id = card.LuaScript:sub(finish + 1, finish + 5)
                         if player.sideboard[id] then
                             player.sideboard[id] = player.sideboard[id] + 1
                         else
@@ -1404,6 +1495,7 @@ function exportCampaign(_, _, _)
 
             if found then
                 player.color = color
+                player.useUncommonWisdom = useUncommonWisdom
                 table.insert(data.players, player)
             end
         end
@@ -1412,36 +1504,32 @@ function exportCampaign(_, _, _)
             table.insert(data.trash, obj.name)
         end
 
-        data.tracker.rangers = getObjectFromGUID("9d87f9").getValue()
-        if data.tracker.rangers == "Type Here" then
-            data.tracker.rangers = ""
+        data.tracker.rangers = campaignTracker.UI.getAttribute("rangers", "text")
+        data.tracker.events1 = campaignTracker.UI.getAttribute("events1", "text")
+        data.tracker.events2 = campaignTracker.UI.getAttribute("events2", "text")
+        data.tracker.connection = campaignTracker.UI.getAttribute("terrain", "text")
+        for i = 1, 33 do
+            local name = campaignTracker.UI.getAttribute("mission"..i, "text")
+            if name ~= " " then
+                table.insert(data.tracker.missions, {name = name, day = campaignTracker.UI.getAttribute("mission"..i.."Day", "text")})
+            end
         end
-        data.tracker.events1 = getObjectFromGUID("ca8d6d").getValue()
-        if data.tracker.events1 == "Type Here" then
-            data.tracker.events1 = ""
-        end
-        data.tracker.events2 = getObjectFromGUID("f44bc1").getValue()
-        if data.tracker.events2 == "Type Here" then
-            data.tracker.events2 = ""
-        end
-        data.tracker.connection = getObjectFromGUID("0b7329").getValue()
-        if data.tracker.connection == "Type Here" then
-            data.tracker.connection = ""
-        end
-        for _, mission in pairs(campaignTracker.getTable("missions")) do
-            local name = getObjectFromGUID(mission.name)
-            if name.getValue() ~= " " then
-                table.insert(data.tracker.missions, {name = name.getValue(), day = getObjectFromGUID(mission.day).getValue()})
+        for i = 1, 30 do
+            for j = 1, 3 do
+                local name = campaignTracker.UI.getAttribute("day"..i.."-"..j, "text")
+                if name and name ~= " " then
+                    table.insert(data.tracker.days, {name = name, day = i.."-"..j})
+                end
             end
         end
 
         for _,tab in pairs(Notes.getNotebookTabs()) do
-            if tab.title == "Campaign Export" then
+            if tab.title == "Campaign" then
                 Notes.editNotebookTab({
                     index = tab.index,
                     body = JSON.encode_pretty(data),
                 })
-                broadcastToAll("Notebook Tab \"Campaign Export\" has been updated", Color.White)
+                broadcastToAll("Notebook Tab \"Campaign\" has been updated", Color.White)
                 break
             end
         end

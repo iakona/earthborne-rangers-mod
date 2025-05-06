@@ -44,10 +44,10 @@
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": true,
-  "CardID": 4600,
+  "CardID": 11600,
   "SidewaysCard": false,
   "CustomDeck": {
-    "46": {
+    "116": {
       "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799158526/4FF1532E921ABBCC88A290CF64830AFC308E832D/",
       "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/1825653570817822821/B97D125EB1517A2F29991B01C1A4D090EEFA58D4/",
       "NumWidth": 7,

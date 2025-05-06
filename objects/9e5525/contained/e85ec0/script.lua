@@ -1,0 +1,5 @@
+awareness = "0"
+fitness = "0"
+focus = "+1"
+spirit = "-1"
+effect = "Crest"

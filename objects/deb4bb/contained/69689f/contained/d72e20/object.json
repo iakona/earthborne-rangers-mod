@@ -25,6 +25,7 @@
     "b": 0.7132
   },
   "Tags": [
+    "Obstacle",
     "Path"
   ],
   "LayoutGroupSortIndex": 0,
@@ -41,14 +42,14 @@
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": false,
-  "CardID": 1436,
+  "CardID": 2609,
   "SidewaysCard": false,
   "CustomDeck": {
-    "14": {
-      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799069107/6224D5616F8250C34631EDE0759ECD1C8F47BCE2/",
+    "26": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14181150885864947/C3B7C340C37466562D212979326943B5FB9F3AF0/",
       "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799074052/780A3D85AC2356930B95B87A12824F954C477092/",
       "NumWidth": 9,
-      "NumHeight": 7,
+      "NumHeight": 5,
       "BackIsHidden": false,
       "UniqueBack": false,
       "Type": 0

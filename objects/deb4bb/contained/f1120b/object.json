@@ -43,25 +43,25 @@
   "Hands": false,
   "SidewaysCard": false,
   "DeckIDs": [
-    1446,
-    1445,
-    1444,
-    1443,
-    1443,
-    1442,
-    1441,
-    1441,
-    1440,
-    1440,
-    1440,
-    1440
+    2626,
+    2625,
+    2624,
+    2623,
+    2622,
+    2621,
+    2620,
+    2619,
+    2618,
+    2617,
+    2616,
+    2615
   ],
   "CustomDeck": {
-    "14": {
-      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799069107/6224D5616F8250C34631EDE0759ECD1C8F47BCE2/",
+    "26": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14181150885864947/C3B7C340C37466562D212979326943B5FB9F3AF0/",
       "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799074052/780A3D85AC2356930B95B87A12824F954C477092/",
       "NumWidth": 9,
-      "NumHeight": 7,
+      "NumHeight": 5,
       "BackIsHidden": false,
       "UniqueBack": false,
       "Type": 0

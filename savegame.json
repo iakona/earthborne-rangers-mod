@@ -1,7 +1,7 @@
 {
-  "SaveName": "0.1.0-alpha.2",
-  "EpochTime": 1739984600,
-  "Date": "2/19/2025 11:03:20 AM",
+  "SaveName": "0.1.0-alpha.3",
+  "EpochTime": 1746554202,
+  "Date": "5/6/2025 12:56:42 PM",
   "VersionNumber": "v13.3",
   "GameMode": "Earthborne Rangers [By iakona]",
   "GameType": "Game",
@@ -29,7 +29,7 @@
   "Sky": "Sky_Forest",
   "TabStates": {
     "0": {
-      "title": "Campaign Export",
+      "title": "Campaign",
       "body": "",
       "color": "Grey",
       "visibleColor": {
@@ -39,7 +39,7 @@
       },
       "id": 0
     },
-    "3": {
+    "1": {
       "title": "Red",
       "body": "",
       "color": "Red",
@@ -48,9 +48,9 @@
         "g": 0.1,
         "b": 0.094
       },
-      "id": 3
+      "id": 1
     },
-    "5": {
+    "2": {
       "title": "Yellow",
       "body": "",
       "color": "Yellow",
@@ -59,20 +59,9 @@
         "g": 0.898,
         "b": 0.172
       },
-      "id": 5
+      "id": 2
     },
-    "8": {
-      "title": "Teal",
-      "body": "",
-      "color": "Teal",
-      "visibleColor": {
-        "r": 0.129,
-        "g": 0.694,
-        "b": 0.607
-      },
-      "id": 8
-    },
-    "9": {
+    "3": {
       "title": "Purple",
       "body": "",
       "color": "Purple",
@@ -81,7 +70,18 @@
         "g": 0.125,
         "b": 0.941
       },
-      "id": 9
+      "id": 3
+    },
+    "4": {
+      "title": "Teal",
+      "body": "",
+      "color": "Teal",
+      "visibleColor": {
+        "r": 0.129,
+        "g": 0.694,
+        "b": 0.607
+      },
+      "id": 4
     }
   },
   "MusicPlayer": {
@@ -356,6 +356,22 @@
       {
         "displayed": "Setup",
         "normalized": "setup"
+      },
+      {
+        "displayed": "Prey",
+        "normalized": "prey"
+      },
+      {
+        "displayed": "Expansion",
+        "normalized": "expansion"
+      },
+      {
+        "displayed": "Map",
+        "normalized": "map"
+      },
+      {
+        "displayed": "Tracker",
+        "normalized": "tracker"
       }
     ]
   },

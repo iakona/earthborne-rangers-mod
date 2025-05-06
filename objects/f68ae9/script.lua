@@ -75,6 +75,17 @@ local function create_recall_button() createButton("Recall", "recall_objects") e
 local function create_object_callback(tag, lock)
     ---@param object TTSObject
     return function (object)
+        if object.getStates() ~= nil then
+            if Global.getVar("useUncommonWisdom") then
+                if object.getStateId() == 1 then
+                    object = object.setState(2)
+                end
+            else
+                if object.getStateId() == 2 then
+                    object = object.setState(1)
+                end
+            end
+        end
         object:setLock(lock)
         if object:hasTag(tag) then object:shuffle() end
     end
@@ -169,5 +180,32 @@ function onload(saved_data)
         create_recall_button()
     else
         create_place_button()
+    end
+
+    local enabled = Global.getVar("useUncommonWisdom")
+    self.UI.setAttribute("toggleUncommonWisdom", "isOn", enabled)
+end
+
+function toggleUncommonWisdom()
+    local enabled = Global.getVar("useUncommonWisdom")
+    enabled = not enabled
+    Global.setVar("useUncommonWisdom", enabled)
+    self.UI.setAttribute("toggleUncommonWisdom", "isOn", enabled)
+
+    local zone = getObjectFromGUID("794baf")
+    for _, obj in pairs(zone.getObjects()) do
+        if obj.getStates() ~= nil then
+            if enabled then
+                if obj.getStateId() == 1 then
+                    obj = obj.setState(2)
+                    obj.setLock(true)
+                end
+            else
+                if obj.getStateId() == 2 then
+                    obj = obj.setState(1)
+                    obj.setLock(true)
+                end
+            end
+        end
     end
 end

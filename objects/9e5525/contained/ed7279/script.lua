@@ -1,0 +1,5 @@
+awareness = "-1"
+fitness = "0"
+focus = "-1"
+spirit = "0"
+effect = "Mountain"
