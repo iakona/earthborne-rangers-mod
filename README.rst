@@ -14,3 +14,9 @@ You can also use::
     $ tts unpack <...path/to/savegame.json...>
 
 to unpack a savegame.
+
+or::
+
+    $ tts unpack --fileid 3477136430
+
+to unpack from workshop.
