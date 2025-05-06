@@ -144,7 +144,6 @@ function startCampaign(box, campaign)
     setupExpansion(box)
 
     Wait.frames(function()
-        local config
         for _, data in pairs(Notes.getNotebookTabs()) do
             if data.title == "Campaign" and data.body ~= "" then
                 -- import returns false when data is from different campaign

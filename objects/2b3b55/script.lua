@@ -60,7 +60,7 @@ function GrabMission(params)
     end
 
     if not found then
-        broadcastToAll("Unable to find mission "..input, Color.Red)
+        broadcastToAll("Unable to find mission "..params.mission, Color.Red)
     end
 end
 function grabMission(_, _, input, selected)

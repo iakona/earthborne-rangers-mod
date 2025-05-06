@@ -11,6 +11,7 @@ read_globals = {
     "UI",
     "Vector",
     "Wait",
+    "WebRequest",
     "addContextMenuItem",
     "addHotkey",
     "broadcastToAll",

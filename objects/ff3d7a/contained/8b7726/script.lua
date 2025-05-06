@@ -712,7 +712,7 @@ function travel(newLocation, connections, alt_click)
             return
         elseif newLocation == "Lone Tree Station" then
             broadcastToAll("Prologue completed, now starting Lure of the Valley campaign", Color.Orange)
-            local obj = getObjectFromGUID("be5fe7").call("endPrologue")
+            getObjectFromGUID("be5fe7").call("endPrologue")
             return
         end
     end
@@ -818,7 +818,6 @@ function setupLocation(location, connection, skipLocationCard)
     local polyp = false
     if invasion then
         local function getMissionStartDay(missionName)
-            local campaignTracker = Global.getVar("campaignTracker")
             for i = 1, 33 do
                 local name = campaignTracker.UI.getAttribute("mission"..i, "text")
                 if name == missionName then

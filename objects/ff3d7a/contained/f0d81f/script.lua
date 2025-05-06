@@ -150,27 +150,27 @@ function setRewards()
         table.insert(unlockedRewards, name)
     end
     if #unlockedRewards then
-        local rewardIndex = 1
-        local rewardText = self.UI.getAttribute("rewards"..rewardIndex, "text")
-        for index, name in pairs(unlockedRewards) do
+        local index = 1
+        local rewardText = self.UI.getAttribute("rewards"..index, "text")
+        for _, name in pairs(unlockedRewards) do
             ::rewardStart::
             if rewardText == "" then
                 rewardText = name
             else
                 local _, count = rewardText:gsub("\n", "")
-                if count < 10 or (rewardIndex == 1 and count == 10) then
+                if count < 10 or (index == 1 and count == 10) then
                     rewardText = rewardText.."\n"..name
                 else
-                    if rewardIndex == 3 then
+                    if index == 3 then
                         break
                     end
-                    self.UI.setAttribute("rewards"..rewardIndex, "text", rewardText)
-                    rewardIndex = rewardIndex + 1
-                    rewardText = self.UI.getAttribute("rewards"..rewardIndex, "text")
+                    self.UI.setAttribute("rewards"..index, "text", rewardText)
+                    index = index + 1
+                    rewardText = self.UI.getAttribute("rewards"..index, "text")
                     goto rewardStart
                 end
             end
         end
-        self.UI.setAttribute("rewards"..rewardIndex, "text", rewardText)
+        self.UI.setAttribute("rewards"..index, "text", rewardText)
     end
 end

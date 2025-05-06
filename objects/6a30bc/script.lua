@@ -11,7 +11,7 @@
 ---@field public position Vector
 ---@field public rotation Vector
 ---@field public lock boolean
-local MemoryListEntry={}
+--local MemoryListEntry={}
 
 ---@type table<string, MemoryListEntry>
 local memory_list = {}

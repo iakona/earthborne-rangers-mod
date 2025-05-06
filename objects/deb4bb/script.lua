@@ -5,12 +5,10 @@ end
 function GrabPath(params)
     local foundCard = nil
     local lowerInput = params.path:lower()
-    local data = self.getData()
     for _, deck in pairs(self.getData().ContainedObjects) do
         if deck.Nickname:lower() == lowerInput then
             foundCard = self.takeObject({guid = deck.GUID, position = params.position})
 
-            found = true
             self.clearInputs()
             addPathInput()
             break
@@ -21,7 +19,6 @@ function GrabPath(params)
                 foundCard = obj.takeObject({guid = card.GUID, position = params.position})
                 self.putObject(obj)
 
-                found = true
                 self.clearInputs()
                 addPathInput()
                 break
