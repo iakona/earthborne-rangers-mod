@@ -286,7 +286,7 @@ function RecordMission(params)
     if campaignTracker then
         for i = 1, 33 do
             local name = campaignTracker.UI.getAttribute("mission"..i, "text")
-            if name == " " then
+            if name == "" then
                 local missionName = getMissionName(params.mission)
                 if params.subject then
                     missionName = missionName.." ("..params.subject.getName()..")"
