@@ -250,7 +250,7 @@ function ImportDeck(params)
                 end
             end
         else
-            local aspectScript = "awareness = "..params.awa.."\r\nfitness = "..params.fit.."\r\nfocus = "..params.foc.."\r\nspirit = "..params.spi.."\r\n"
+            local aspectScript = "awareness = "..params.awa.."\nfitness = "..params.fit.."\nfocus = "..params.foc.."\nspirit = "..params.spi
             for _, data in pairs(aspects) do
                 if data.lua_script == aspectScript then
                     local aspect = aspectBox.takeObject({guid = data.guid})
@@ -281,7 +281,7 @@ function ImportDeck(params)
                 end
             end
         else
-            local roleScript = "id = \""..params.role.."\"\r\n"
+            local roleScript = "id = \""..params.role.."\""
             for _, data in pairs(roles) do
                 if data.lua_script == roleScript then
                     local role = roleBox.takeObject({guid = data.guid})
@@ -341,7 +341,7 @@ function ImportDeck(params)
                             end
                         end
                     else
-                        local rangerScript = "id = \""..id.."\"\r\n"
+                        local rangerScript = "id = \""..id.."\""
                         for _, data in pairs(rangers) do
                             if data.lua_script:find(rangerScript) then
                                 local ranger = box.takeObject({guid = data.guid})
@@ -383,7 +383,7 @@ function ImportDeck(params)
                                     end
                                 end
                             else
-                                local rangerScript = "id = \""..id.."\"\r\n"
+                                local rangerScript = "id = \""..id.."\""
                                 for _, data in pairs(rangers) do
                                     if data.lua_script:find(rangerScript) then
                                         local ranger = box.takeObject({guid = data.guid})
