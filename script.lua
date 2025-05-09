@@ -1031,6 +1031,11 @@ function Refresh(_)
                 end
             end
 
+            local role = getRole(color)
+            if role then
+                role.setRotationSmooth(Vector(0, 180, 0), false, true)
+            end
+
             local deck = getRangerDeck(color)
             if not deck then
                 broadcastToAll(color.." has run out of cards in Ranger Deck, the day ends immediately", Color.Red)
