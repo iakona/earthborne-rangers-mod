@@ -1,7 +1,7 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": 26.5032,
+    "posX": 26.5033,
     "posY": 0.9612,
     "posZ": -1.5,
     "rotX": 90.0,
@@ -39,7 +39,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "Text": {
-    "Text": "Use Attach Tool (F6)\nDrag from Attachment card to card it's attached too\n\nTo Remove, right click on card -> Remove Attachment",
+    "Text": "Use Attach Tool (F6)\nDrag from Attachment card to card it's attached to\n\nTo Remove, right click on card -> Remove Attachment",
     "colorstate": {
       "r": 1.0,
       "g": 1.0,
