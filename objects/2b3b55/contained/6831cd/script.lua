@@ -1,1 +1,1 @@
-front = "Biscuits Delivery"
+front = "Biscuit Delivery"
