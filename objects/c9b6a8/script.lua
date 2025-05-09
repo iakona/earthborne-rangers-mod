@@ -219,7 +219,11 @@ function importDeck(_, color, input, selected)
             Player[color].broadcast("No RangersDB deck found for "..input, Color.Red)
         else
             local deck = json.data.deck
-            Player[color].broadcast("Importing "..deck.name.." by "..deck.user.handle, Color.White)
+            local importString = "Importing "..deck.name
+            if deck.user.handle then
+                importString = importString.." by "..deck.user.handle
+            end
+            Player[color].broadcast(importString, Color.White)
             ImportDeck({color = color, useUncommonWisdom = deck.taboo_set_id == "set_01", awa = deck.awa, fit = deck.fit, foc = deck.foc, spi = deck.spi, role = deck.meta.role, slots = deck.slots})
         end
 
