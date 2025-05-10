@@ -160,6 +160,28 @@ function onLoad(data)
     else
         getObjectFromGUID("c46ac6").setValue(" ")
     end
+
+    clearHotkeys()
+    addHotkey("Draw Path Card", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        drawPath(playerColor)
+    end)
+    addHotkey("Draw Ranger Card", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        drawRanger(playerColor)
+    end)
+    addHotkey("Draw Challenge Card", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        DrawChallenge()
+    end)
+
+    addHotkey("Pay Ranger Card Cost", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        if hoveredObject.getTable("cost") then
+            payCost(playerColor, nil, hoveredObject)
+        end
+    end)
+    addHotkey("Setup Tokens", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        if hoveredObject.getVar("tokens") then
+            setupTokens(nil, nil, hoveredObject)
+        end
+    end)
 end
 function onObjectSpawn(obj)
     addContextMenuItems(obj)
@@ -736,14 +758,67 @@ function getInjuryCount(color)
     return currentInjury
 end
 
+function DrawPath(player)
+    drawPath(player.color)
+end
+function drawPath(color)
+    local snaps = sharedBoard.getSnapPoints()
+    local hits = Physics.cast({
+        origin = sharedBoard.positionToWorld(snaps[pathIndex].position) + Vector(0, -0.01, 0),
+        direction = Vector(0, 1, 0),
+        type = 1,
+        max_distance = 1,
+    })
+
+    local pathDeck = nil
+    for _, hit in pairs(hits) do
+        if hit.hit_object.hasTag("Path") then
+            pathDeck = hit.hit_object
+            break
+        end
+    end
+
+    if not pathDeck then
+        hits = Physics.cast({
+            origin = sharedBoard.positionToWorld(snaps[pathDiscardIndex].position) + Vector(0, -0.01, 0),
+            direction = Vector(0, 1, 0),
+            type = 1,
+            max_distance = 1,
+        })
+
+        local pathDiscard = nil
+        for _, hit in pairs(hits) do
+            if hit.hit_object.hasTag("Path") then
+                pathDiscard = hit.hit_object
+                break
+            end
+        end
+
+        if not pathDiscard then
+            broadcastToAll("Unable to find path deck nor discard", Color.Red)
+            return
+        end
+
+        pathDeck = pathDiscard
+        pathDeck.setPositionSmooth(sharedBoard.positionToWorld(snaps[pathIndex].position) + Vector(0, 0.5, 0), false, true)
+        pathDeck.setRotationSmooth(Vector(0, 180, 180), false, true)
+        pathDeck.shuffle()
+    end
+
+    pathDeck.deal(1, color)
+end
+
 function DrawRanger(player)
-    local deck = getRangerDeck(player.color)
+    drawRanger(player.color)
+end
+function drawRanger(color)
+    local deck = getRangerDeck(color)
     if not deck then
-        broadcastToAll(player.color.." has run out of cards in Ranger Deck, the day ends immediately", Color.Red)
+        broadcastToAll(color.." has run out of cards in Ranger Deck, the day ends immediately", Color.Red)
         return
     end
 
-    deck.deal(1, player.color)
+    deck.deal(1, color)
 end
 
 local fatigueTimers = {}
