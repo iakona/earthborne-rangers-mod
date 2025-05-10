@@ -4,8 +4,9 @@
     <TableLayout autoCalculateHeight="true"/>
 </Defaults>
 
-<Panel id="playerButtons" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="215" height="50" rectAlignment="LowerRight" offsetXY="-60 5">
+<Panel id="playerButtons" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="270" height="50" rectAlignment="LowerRight" offsetXY="-60 5">
     <HorizontalLayout spacing="5">
+        <Button onClick="DrawPath">Draw Path Card</Button>
         <Button onClick="DrawRanger">Draw Ranger Card</Button>
         <Button onClick="SufferFatigue">Suffer Fatigue</Button>
         <Button onClick="SufferInjury">Suffer Injury</Button>
