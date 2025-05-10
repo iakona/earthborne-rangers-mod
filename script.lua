@@ -1017,7 +1017,9 @@ end
 
 function Refresh(_)
     for _, obj in pairs(getObjectsWithTag("Energy")) do
-        obj.destruct()
+        if not obj.getLock() then
+            obj.destruct()
+        end
     end
 
     for color, playerBoard in pairs(playerBoards) do
