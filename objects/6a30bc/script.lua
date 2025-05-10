@@ -24,8 +24,8 @@ local POSTFIX = {
 
 ---@type table<string, any>
 local BUTTON = {
-    POSITION = Vector(0, 0, 5),
-    ROTATION = Vector(0, 0, 0),
+    POSITION = Vector(0, 0, -5),
+    ROTATION = Vector(0, 180, 0),
     HEIGHT = 1200,
     WIDTH = 2800,
     FONT_SIZE = 800,
@@ -211,28 +211,12 @@ function onload(saved_data)
         end
     end
 
-    addRewardUnlockInput()
+    self.UI.setAttribute("input", "tooltip", "Enter Reward to\nunlock for campaign")
+    self.UI.setAttribute("toggleRewards", "tooltip", "When disabled, locked\nrewards will be hidden")
 end
 
-function addRewardUnlockInput()
-    self.createInput({
-        input_function = "unlockReward",
-        function_owner = self,
-        label          = "Reward Name",
-        position       = {0, 0, -6},
-        rotation       = {0, 0, 0},
-        width          = 5000,
-        height         = 800,
-        font_size      = 1000,
-        color          = Color.Black,
-        font_color     = Color.White,
-        tooltip        = "Enter Reward to unlock for campaign",
-        alignment      = 3,
-    })
-end
-
-function unlockReward(_, color, input, selected)
-    if input == "" or selected then
+function unlockReward(player, input)
+    if input == "" then
         return
     end
 
@@ -244,12 +228,11 @@ function unlockReward(_, color, input, selected)
         for _, obj in pairs(rewards) do
             local lowerName = obj.getName():lower()
             if lowerName == lowerInput then
-                Global.call("UnlockReward", {color = color, reward = obj.getName()})
+                Global.call("UnlockReward", {color = player.color, reward = obj.getName()})
                 obj.setInvisibleTo()
                 found = true
 
-                self.clearInputs()
-                addRewardUnlockInput()
+                self.UI.setAttribute("input", "text", "")
                 break
             end
         end
@@ -257,11 +240,10 @@ function unlockReward(_, color, input, selected)
         for _, obj in pairs(rewards) do
             local lowerName = obj.name:lower()
             if lowerName == lowerInput then
-                Global.call("UnlockReward", {color = color, reward = obj.name})
+                Global.call("UnlockReward", {color = player.color, reward = obj.name})
                 found = true
 
-                self.clearInputs()
-                addRewardUnlockInput()
+                self.UI.setAttribute("input", "text", "")
                 break
             end
         end

@@ -1,5 +1,5 @@
 function onLoad(_)
-    addPathInput()
+    self.UI.setAttribute("input", "tooltip", "Enter Path Card to grab")
 end
 
 function GrabPath(params)
@@ -9,8 +9,7 @@ function GrabPath(params)
         if deck.Nickname:lower() == lowerInput then
             foundCard = self.takeObject({guid = deck.GUID, position = params.position})
 
-            self.clearInputs()
-            addPathInput()
+            self.UI.setAttribute("input", "text", "")
             break
         end
         for _, card in pairs(deck.ContainedObjects) do
@@ -19,8 +18,7 @@ function GrabPath(params)
                 foundCard = obj.takeObject({guid = card.GUID, position = params.position})
                 self.putObject(obj)
 
-                self.clearInputs()
-                addPathInput()
+                self.UI.setAttribute("input", "text", "")
                 break
             end
         end
@@ -28,8 +26,8 @@ function GrabPath(params)
 
     return foundCard
 end
-function grabPath(_, _, input, selected)
-    if input == "" or selected then
+function grabPath(_, input)
+    if input == "" then
         return
     end
 
@@ -39,21 +37,4 @@ function grabPath(_, _, input, selected)
     end
 
     return card
-end
-
-function addPathInput()
-    self.createInput({
-        input_function = "grabPath",
-        function_owner = self,
-        label          = "Path Name",
-        position       = {0, 0, -6},
-        rotation       = {0, 0, 0},
-        width          = 5000,
-        height         = 800,
-        font_size      = 1000,
-        color          = Color.Black,
-        font_color     = Color.White,
-        tooltip        = "Enter Path Card to grab",
-        alignment      = 3,
-    })
 end

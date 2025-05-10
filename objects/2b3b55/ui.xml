@@ -1,0 +1,3 @@
+<Panel position="0 600 0">
+    <InputField id="input" onEndEdit="grabMission" colors="#404040|#606060|#808080|#404040" width="1020" height="170" fontSize="140" textColor="White" placeholderText="Mission Name" tooltipFontSize="90" tooltipPosition="Above" tooltipOffset="50"/>
+</Panel>

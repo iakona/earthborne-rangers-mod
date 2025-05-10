@@ -1,5 +1,5 @@
-function onLoad(_)
-    addMissionInput()
+function onLoad()
+    self.UI.setAttribute("input", "tooltip", "Enter Mission to grab, will\nrecord on campaign\ntracker as well if necessary")
 end
 
 function GrabMission(params)
@@ -58,9 +58,7 @@ function GrabMission(params)
                 end
             end})
             found = true
-
-            self.clearInputs()
-            addMissionInput()
+            self.UI.setAttribute("input", "text", "")
             break
         end
     end
@@ -69,27 +67,10 @@ function GrabMission(params)
         broadcastToAll("Unable to find mission "..params.mission, Color.Red)
     end
 end
-function grabMission(_, _, input, selected)
-    if input == "" or selected then
+function grabMission(_, input)
+    if input == "" then
         return
     end
 
     GrabMission({mission = input, record = true})
-end
-
-function addMissionInput()
-    self.createInput({
-        input_function = "grabMission",
-        function_owner = self,
-        label          = "Mission Name",
-        position       = {0, 0, -6},
-        rotation       = {0, 0, 0},
-        width          = 5000,
-        height         = 800,
-        font_size      = 1000,
-        color          = Color.Black,
-        font_color     = Color.White,
-        tooltip        = "Enter Mission to grab, will record on campaign tracker as well if necessary",
-        alignment      = 3,
-    })
 end

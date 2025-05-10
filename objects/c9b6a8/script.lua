@@ -24,8 +24,8 @@ local POSTFIX = {
 
 ---@type table<string, any>
 local BUTTON = {
-    POSITION = Vector(0, 0, 5),
-    ROTATION = Vector(0, 0, 0),
+    POSITION = Vector(0, 0, -5),
+    ROTATION = Vector(0, 180, 0),
     HEIGHT = 1200,
     WIDTH = 2800,
     FONT_SIZE = 800,
@@ -171,34 +171,16 @@ function onload(saved_data)
         create_place_button()
     end
 
-    addDeckImportInput()
+    self.UI.setAttribute("input", "tooltip", "Enter RangersDB\ndeck id to import")
 end
 
-function addDeckImportInput()
-    self.createInput({
-        input_function = "importDeck",
-        function_owner = self,
-        label          = "Deck ID",
-        position       = {0, 0, -6},
-        rotation       = {0, 0, 0},
-        width          = 3000,
-        height         = 800,
-        font_size      = 1000,
-        color          = Color.Black,
-        font_color     = Color.White,
-        tooltip        = "Enter RangersDB deck id to import",
-        alignment      = 3,
-        validation     = 2,
-    })
-end
-
-function importDeck(_, color, input, selected)
-    if input == "" or selected then
+function importDeck(player, input)
+    if input == "" then
         return
     end
 
     local playerBoards = Global.getTable("playerBoards")
-    if not playerBoards[color] then
+    if not playerBoards[player.color] then
         return
     end
 
@@ -214,21 +196,19 @@ function importDeck(_, color, input, selected)
     WebRequest.custom(url, "POST", true, body, {}, function(response)
         local json = JSON.decode(response.text)
         if json.errors then
-            Player[color].broadcast("Recieved error from RangersDB website, please try again later", Color.Red)
+            player.broadcast("Recieved error from RangersDB website, please try again later", Color.Red)
         elseif not json.data or not json.data.deck then
-            Player[color].broadcast("No RangersDB deck found for "..input, Color.Red)
+            player.broadcast("No RangersDB deck found for "..input, Color.Red)
         else
             local deck = json.data.deck
             local importString = "Importing "..deck.name
             if deck.user.handle then
                 importString = importString.." by "..deck.user.handle
             end
-            Player[color].broadcast(importString, Color.White)
-            ImportDeck({color = color, useUncommonWisdom = deck.taboo_set_id == "set_01", awa = deck.awa, fit = deck.fit, foc = deck.foc, spi = deck.spi, role = deck.meta.role, slots = deck.slots})
+            player.broadcast(importString, Color.White)
+            ImportDeck({color = player.color, useUncommonWisdom = deck.taboo_set_id == "set_01", awa = deck.awa, fit = deck.fit, foc = deck.foc, spi = deck.spi, role = deck.meta.role, slots = deck.slots})
+            self.UI.setAttribute("input", "text", "")
         end
-
-        self.clearInputs()
-        addDeckImportInput()
     end)
 end
 function ImportDeck(params)

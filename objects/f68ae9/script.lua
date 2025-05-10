@@ -24,8 +24,8 @@ local POSTFIX = {
 
 ---@type table<string, any>
 local BUTTON = {
-    POSITION = Vector(0, 0, 5),
-    ROTATION = Vector(0, 0, 0),
+    POSITION = Vector(0, 0, -5),
+    ROTATION = Vector(0, 180, 0),
     HEIGHT = 1200,
     WIDTH = 2800,
     FONT_SIZE = 800,
@@ -184,6 +184,7 @@ function onload(saved_data)
 
     local enabled = Global.getVar("useUncommonWisdom")
     self.UI.setAttribute("toggleUncommonWisdom", "isOn", enabled)
+    self.UI.setAttribute("toggleUncommonWisdom", "tooltip", "Optional rebalanced Ranger cards\ndesigned to maintain balanced cardpool")
 end
 
 function toggleUncommonWisdom()
