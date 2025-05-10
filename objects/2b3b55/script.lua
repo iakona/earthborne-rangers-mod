@@ -24,7 +24,13 @@ function GrabMission(params)
         end
 
         if subject then
-            subject.setRotation(Vector(0, 180, 180))
+            local rotation
+            if subject.hasTag("Location") then
+                rotation = Vector(0, 90, 180)
+            else
+                rotation = Vector(0, 180, 180)
+            end
+            subject.setRotation(rotation)
         else
             broadcastToAll("Unable to find Subject "..subjectName, Color.Red)
             return
