@@ -650,6 +650,9 @@ function makeLabel(container)
     end
 end
 
+function HasTag(params)
+    return hasTag(params.data, params.tagToFind)
+end
 function hasTag(data, tagToFind)
     for _, tag in pairs(data.tags) do
         if tag == tagToFind then

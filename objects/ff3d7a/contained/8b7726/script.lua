@@ -764,6 +764,31 @@ function setupLocation(location, connection, skipLocationCard)
             end
         end
 
+        -- Check mission subjects if it's not in the box
+        if not found then
+            for _, mission in pairs(getObjectsWithTag("Mission")) do
+                for _, attachment in pairs(mission.getAttachments()) do
+                    if Global.call("HasTag", {data = attachment, tagToFind = "Location"}) then
+                        if attachment.name == location then
+                            found = true
+                            for _, attachment in pairs(mission.removeAttachments()) do
+                                if attachment.guid == attachment.guid then
+                                    attachment.setPositionSmooth(sharedBoard.positionToWorld(snaps[Global.getVar("locationIndex")].position) + Vector(0, 0.01, 0), false, true)
+                                    attachment.setRotationSmooth(Vector(0, 90, 0), false, true)
+                                    attachment.setLock(true)
+                                    break
+                                end
+                            end
+                            break
+                        end
+                    end
+                end
+                if found then
+                    break
+                end
+            end
+        end
+
         if not found then
             broadcastToAll("Unable to find location card for "..location, Color.Red)
             return
