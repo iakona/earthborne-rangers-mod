@@ -522,6 +522,9 @@ function setupTokens(_, _, obj)
         allPurposeBag.takeObject({position = obj.getPosition() + Vector(0, 0.5 * i, 0.35), rotation = Vector(0, 180, 0)})
     end
 end
+function ReturnCard(params)
+    returnCard(nil, nil, params.card)
+end
 function returnCard(_, _, obj)
     for _, attachment in pairs(obj.removeAttachments()) do
         if attachment.hasTag("Ranger") then

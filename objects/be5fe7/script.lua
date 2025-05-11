@@ -195,6 +195,15 @@ function import(config, campaign)
 
     -- campaign specific data
     if campaign == config.campaign then
+        if campaign == 1 then
+            -- check if Tala has moved card sets
+            if config.tracker.events1:upper():find("FOUND TALA A HOME") or config.tracker.events2:upper():find("FOUND TALA A HOME") then
+                local card = pathBox.call("GrabPath", {path = "Tala the Red, Exile", position = pathBox.getPosition() + Vector(0, 0, -7)})
+                card.setDescription("Tumbledown")
+                Wait.frames(function() Global.call("ReturnCard", {card = card}) end, 3)
+            end
+        end
+
         Global.setVar("currentLocation", config.currentLocation)
         Global.setVar("currentWeather", config.currentWeather)
         Global.setVar("currentDay", config.currentDay)
