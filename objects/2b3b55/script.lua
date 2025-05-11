@@ -1,5 +1,5 @@
 function onLoad()
-    self.UI.setAttribute("input", "tooltip", "Enter Mission to grab, will\nrecord on campaign\ntracker as well if necessary")
+    self.UI.setAttribute("input", "tooltip", "Enter Mission to grab, will\nrecord on campaign\ntracker as well if necessary.\nMake sure to include mission\nsubject in () if applicable")
 end
 
 function GrabMission(params)
