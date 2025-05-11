@@ -771,11 +771,11 @@ function setupLocation(location, connection, skipLocationCard)
                     if Global.call("HasTag", {data = attachment, tagToFind = "Location"}) then
                         if attachment.name == location then
                             found = true
-                            for _, attachment in pairs(mission.removeAttachments()) do
-                                if attachment.guid == attachment.guid then
-                                    attachment.setPositionSmooth(sharedBoard.positionToWorld(snaps[Global.getVar("locationIndex")].position) + Vector(0, 0.01, 0), false, true)
-                                    attachment.setRotationSmooth(Vector(0, 90, 0), false, true)
-                                    attachment.setLock(true)
+                            for _, removedAttachment in pairs(mission.removeAttachments()) do
+                                if removedAttachment.guid == attachment.guid then
+                                    removedAttachment.setPositionSmooth(sharedBoard.positionToWorld(snaps[Global.getVar("locationIndex")].position) + Vector(0, 0.01, 0), false, true)
+                                    removedAttachment.setRotationSmooth(Vector(0, 90, 0), false, true)
+                                    removedAttachment.setLock(true)
                                     break
                                 end
                             end
