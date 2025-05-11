@@ -68,12 +68,12 @@ function onLoad(_)
 end
 
 function setupExpansion(box)
-    local guide = box.takeObject({position = Vector(-49.25, 0.96, 17.2)})
+    local guide = box.takeObject({position = Vector(-49.25, 0.96, 17.2), rotation = Vector(0, 180, 0)})
     guide.setLock(true)
-    local map = box.takeObject({position = Vector(-30.5, 0.96, 5.97)})
+    local map = box.takeObject({position = Vector(-30.5, 0.96, 5.97), rotation = Vector(0, 180, 0)})
     map.setLock(true)
     Global.setVar("campaignMap", map)
-    local tracker = box.takeObject({position = Vector(-30.5, 0.96, 29.7)})
+    local tracker = box.takeObject({position = Vector(-30.5, 0.96, 29.7), rotation = Vector(0, 180, 0)})
     tracker.setLock(true)
     Global.setVar("campaignTracker", tracker)
 
