@@ -162,6 +162,16 @@ function onLoad(data)
     end
 
     clearHotkeys()
+    addHotkey("Spawn Harm Token", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        harmBag.takeObject({position = cursorLocation + Vector(0, 2, 0), rotation = Vector(0, 180, 0)})
+    end)
+    addHotkey("Spawn Progress Token", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        progressBag.takeObject({position = cursorLocation + Vector(0, 2, 0), rotation = Vector(0, 180, 0)})
+    end)
+    addHotkey("Spawn All-Purpose Token", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        allPurposeBag.takeObject({position = cursorLocation + Vector(0, 2, 0), rotation = Vector(0, 180, 0)})
+    end)
+
     addHotkey("Draw Path Card", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         drawPath(playerColor)
     end)
