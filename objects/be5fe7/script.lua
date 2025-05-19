@@ -68,14 +68,30 @@ function onLoad(_)
 end
 
 function setupExpansion(box)
-    local guide = box.takeObject({position = Vector(-49.25, 0.96, 17.2), rotation = Vector(0, 180, 0)})
-    guide.setLock(true)
-    local map = box.takeObject({position = Vector(-30.5, 0.96, 5.97), rotation = Vector(0, 180, 0)})
-    map.setLock(true)
-    Global.setVar("campaignMap", map)
-    local tracker = box.takeObject({position = Vector(-30.5, 0.96, 29.7), rotation = Vector(0, 180, 0)})
-    tracker.setLock(true)
-    Global.setVar("campaignTracker", tracker)
+    local foundGuide = false
+    local foundMap = false
+    local foundTracker = false
+    for _, data in pairs(box.getObjects()) do
+        if Global.call("HasTag", {data = data, tagToFind = "Guide"}) then
+            local guide = box.takeObject({guid = data.guid, position = Vector(-49.25, 0.96, 17.2), rotation = Vector(0, 180, 0)})
+            guide.setLock(true)
+            foundGuide = true
+        elseif Global.call("HasTag", {data = data, tagToFind = "Map"}) then
+            local map = box.takeObject({guid = data.guid, position = Vector(-30.5, 0.96, 5.97), rotation = Vector(0, 180, 0)})
+            map.setLock(true)
+            Global.setVar("campaignMap", map)
+            foundMap = true
+        elseif Global.call("HasTag", {data = data, tagToFind = "Tracker"}) then
+            local tracker = box.takeObject({guid = data.guid, position = Vector(-30.5, 0.96, 29.7), rotation = Vector(0, 180, 0)})
+            tracker.setLock(true)
+            Global.setVar("campaignTracker", tracker)
+            foundTracker = true
+        end
+
+        if foundGuide and foundMap and foundTracker then
+            break
+        end
+    end
 
     box.destruct()
 end
