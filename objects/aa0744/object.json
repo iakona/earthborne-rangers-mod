@@ -3,7 +3,7 @@
   "Transform": {
     "posX": 36.5003,
     "posY": 0.9611,
-    "posZ": -6.5,
+    "posZ": -6.25,
     "rotX": 90.0,
     "rotY": 0.0,
     "rotZ": 0.0,
@@ -39,7 +39,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "Text": {
-    "Text": "Using Q/E on energy tokens and counters\nwill subtract/add respectively\nChange description of Path card in order\nto change which Path Set it belongs to",
+    "Text": "Using Q/E on energy tokens and counters\nwill subtract/add respectively\n\nChange description of Path card in order\nto change which Path Set it belongs to",
     "colorstate": {
       "r": 1.0,
       "g": 1.0,
