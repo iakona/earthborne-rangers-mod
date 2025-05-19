@@ -1,9 +1,9 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": -2.9964,
+    "posX": 36.5001,
     "posY": 0.9611,
-    "posZ": 22.0005,
+    "posZ": -0.5,
     "rotX": 90.0,
     "rotY": 0.0,
     "rotZ": 0.0,
@@ -27,7 +27,7 @@
   "LayoutGroupSortIndex": 0,
   "Value": 0,
   "Locked": true,
-  "Grid": false,
+  "Grid": true,
   "Snap": true,
   "IgnoreFoW": false,
   "MeasureMovement": false,
@@ -39,12 +39,12 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "Text": {
-    "Text": "Missions",
+    "Text": "Right Click",
     "colorstate": {
       "r": 1.0,
       "g": 1.0,
       "b": 1.0
     },
-    "fontSize": 64
+    "fontSize": 40
   }
 }
