@@ -25,7 +25,8 @@ function tryRotate(spin, flip, _, old_spin, old_flip)
         end
     else
         local bag = Global.getVar(bagName)
-        bag.takeObject({position = self.getPosition(), rotation = self.getRotation(), smooth = false})
+        local obj = bag.takeObject({position = self.getPosition() + Vector(0, -1, 0), rotation = self.getRotation(), smooth = false})
+        Wait.frames(function() self.putObject(obj) end, 1)
     end
 
     return false

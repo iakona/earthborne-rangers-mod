@@ -26,7 +26,8 @@ function tryRotate(spin, flip, _, old_spin, old_flip)
     else
         local energyBags = Global.getTable("energyBags")
         local bag = energyBags[bagName]
-        bag.takeObject({position = self.getPosition(), rotation = self.getRotation(), smooth = false})
+        local obj = bag.takeObject({position = self.getPosition() + Vector(0, -1, 0), rotation = self.getRotation(), smooth = false})
+        Wait.frames(function() self.putObject(obj) end, 1)
     end
 
     return false
