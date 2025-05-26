@@ -1,4 +1,6 @@
 function onLoad(_)
+    self.interactable = false
+
     local campaign = Global.getVar("campaign")
     local expansions = getObjectsWithTag("expansion")
     if campaign == 0 then

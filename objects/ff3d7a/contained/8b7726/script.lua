@@ -12,6 +12,8 @@ pivotalLocations = {
 buttonPositions = {}
 
 function onLoad(_)
+    self.interactable = false
+
     self.createButton({
         click_function = "null",
         width          = 0,
