@@ -1,7 +1,7 @@
 {
-  "SaveName": "0.1.0-alpha.3",
-  "EpochTime": 1746554202,
-  "Date": "5/6/2025 12:56:42 PM",
+  "SaveName": "Earthborne Rangers [By iakona]",
+  "EpochTime": 1747711358,
+  "Date": "5/19/2025 10:22:38 PM",
   "VersionNumber": "v13.3",
   "GameMode": "Earthborne Rangers [By iakona]",
   "GameType": "Game",
@@ -83,90 +83,6 @@
       },
       "id": 4
     }
-  },
-  "MusicPlayer": {
-    "RepeatSong": false,
-    "PlaylistEntry": 20,
-    "CurrentAudioTitle": "Awakening",
-    "CurrentAudioURL": "https://steamusercontent-a.akamaihd.net/ugc/792010997184359809/DA27CF611C537C0C6A94893C0330B24358296475/",
-    "AudioLibrary": [
-      {
-        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184359809/DA27CF611C537C0C6A94893C0330B24358296475/",
-        "Item2": "Awakening"
-      },
-      {
-        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184371128/145B47EC47D331B4AE1CB59FDE75E0116E10280D/",
-        "Item2": "Calm"
-      },
-      {
-        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184371906/F8E4FC7CBD21DD2430F906F77055819AD0474996/",
-        "Item2": "Day Travel"
-      },
-      {
-        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184374182/B0FF76DCB3D979C6A3A630F45A9FD58E7390D6C6/",
-        "Item2": "Death"
-      },
-      {
-        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184376716/0407BB616E681D199DDEC384058B3CBF3DD3FEAD/",
-        "Item2": "Epilude"
-      },
-      {
-        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184379961/314F9E57AF4CF475B86BAF58AD5A006DB16CE86D/",
-        "Item2": "Goblin Combat"
-      },
-      {
-        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184385296/1A83AFF3AF0959546E8444D9A3F4174BC35E5336/",
-        "Item2": "Human Combat 1"
-      },
-      {
-        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184387091/0554504FC54BACCAA83CAB542EB33FC41C87346B/",
-        "Item2": "Human Combat 2"
-      },
-      {
-        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184389261/F753ACB43BA28C799B808388D6A6E4A71BDB78CB/",
-        "Item2": "Intrigue"
-      },
-      {
-        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184392871/C1ACD1C3E628B836F6DEFF643B618418A339EECC/",
-        "Item2": "Map"
-      },
-      {
-        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184394727/6212F5FF59B6D980AA95CCF1B06BE32F8DFF3366/",
-        "Item2": "Mistique"
-      },
-      {
-        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184397131/B462582B327D41981E3A3893AED045C9DFA37D68/",
-        "Item2": "Night Travel"
-      },
-      {
-        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184398544/F8246EDA891BDFDE3CE9183A139D514F78A582CF/",
-        "Item2": "Orc Combat 1"
-      },
-      {
-        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184400189/F25ADB6B0FA920C0D9F6A67546DAD85C70C9504E/",
-        "Item2": "Orc Combat 2"
-      },
-      {
-        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184402108/415A2E2F690E8241A23FBBAFB8D9BAB0D469F8F4/",
-        "Item2": "Prelude"
-      },
-      {
-        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184404898/8956C1A3A9A41B0F54B4DE400EC76F7723332310/",
-        "Item2": "Reflective"
-      },
-      {
-        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184406070/21B923240147A1785E49CAE3AFA27C045405694C/",
-        "Item2": "Setting Up"
-      },
-      {
-        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184407878/A2458FAB2EE78A3AA4B26271485982FA02665FDA/",
-        "Item2": "Tension"
-      },
-      {
-        "Item1": "https://steamusercontent-a.akamaihd.net/ugc/792010997184409426/32FB9FCA1D2DD24CF88150A31E16108CEB21559D/",
-        "Item2": "Undead Combat"
-      }
-    ]
   },
   "Grid": {
     "Type": 0,
