@@ -640,7 +640,7 @@ function makeLabel(container)
         container.clearButtons()
     else
         local thickness = 0.2
-        local offset = -0.1
+        local offset = -0.09
         local zOffset
         if container.getName() == "Progress Counter" then
             zOffset = 0.4
