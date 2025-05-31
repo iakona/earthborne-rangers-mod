@@ -282,13 +282,13 @@ function addContextMenuItems(obj)
                 if obj.getTable("cost") then
                     obj.addContextMenuItem("Pay Cost", payCost, false)
                 end
-                if obj.getVar("tokens") then
-                    obj.addContextMenuItem("Setup Tokens", setupTokens, false)
-                end
                 if obj.hasTag("Malady") then
                     obj.addContextMenuItem("Return to Collection", returnCard, false)
                 end
             end
+        end
+        if obj.getVar("tokens") then
+            obj.addContextMenuItem("Setup Tokens", setupTokens, false)
         end
         if #obj.getAttachments() > 0 then
             obj.addContextMenuItem("Remove Attachments", removeAttachment, false)
@@ -1096,7 +1096,8 @@ function StartTheDay(_)
 
     for _, obj in pairs(weatherBox.getObjects()) do
         if obj.name == currentWeather then
-            weatherBox.takeObject({guid = obj.guid, position = sharedBoard.positionToWorld(snaps[weatherIndex].position), rotation = Vector(0, 180, 0)})
+            local weather = weatherBox.takeObject({guid = obj.guid, position = sharedBoard.positionToWorld(snaps[weatherIndex].position), rotation = Vector(0, 180, 0)})
+            Wait.condition(function() setupTokens(nil, nil, weather) end, function() return not weather.isSmoothMoving() end)
             break
         end
     end
