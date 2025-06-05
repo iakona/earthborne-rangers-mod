@@ -1163,7 +1163,7 @@ function Refresh(_)
     end
 
     for _, rangerCard in pairs(getObjectsWithTag("Ranger")) do
-        if not rangerCard.is_face_down then
+        if not rangerCard.is_face_down and not rangerCard.isSmoothMoving() then
             rangerCard.setRotationSmooth(Vector(0, 180, 0), false, true)
         end
     end
