@@ -145,8 +145,8 @@ function onLoad(data)
     end
 
     if campaign ~= 0 then
-        campaignTracker = getObjectsWithTag("Tracker")[0]
-        campaignMap = getObjectsWithTag("Map")[0]
+        campaignTracker = getObjectsWithTag("Tracker")[1]
+        campaignMap = getObjectsWithTag("Map")[1]
         UI.setAttribute("playerButtons", "visibility", "")
         UI.setAttribute("partyButtons", "visibility", "")
     end
