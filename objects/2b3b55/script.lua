@@ -27,6 +27,8 @@ function GrabMission(params)
             local rotation
             if subject.hasTag("Location") then
                 rotation = Vector(0, 90, 180)
+            elseif missionName == "\"helping hand\"" then
+                rotation = Vector(0, 180, 0)
             else
                 rotation = Vector(0, 180, 180)
             end
@@ -54,6 +56,10 @@ function GrabMission(params)
                     end
                     if subject then
                         mission.addAttachment(subject)
+                    end
+                elseif mission.guid == "ebcf7e" or mission.guid == "f67a50" then
+                    if subject then
+                        subject.addAttachment(mission)
                     end
                 end
             end})
