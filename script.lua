@@ -519,7 +519,11 @@ function payCost(color, _, obj)
                     end
 
                     for _ = 1, requiredCount do
-                        energy.takeObject().destruct()
+                        if count == 1 then
+                            energy.destruct()
+                        else
+                            energy.takeObject().destruct()
+                        end
                     end
                     Player[color].broadcast("Paid "..requiredCount.." "..statName.." energy to play "..obj.getName(), Color.White)
                 end
