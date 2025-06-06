@@ -3,17 +3,20 @@ function onLoad()
 end
 
 function GrabMission(params)
-    local missionName = "\""..params.mission:lower().."\""
+    local missionName = params.mission
+    local lowerMissionName = missionName:lower()
     local subject = nil
     local start, _ = missionName:find(" %(")
     if start then
-        local subjectName = missionName:sub(start + 2, -3)
-        missionName = missionName:sub(0, start - 1).."\""
+        local subjectName = missionName:sub(start + 2, -2)
+        local lowerSubjectName = subjectName:lower()
+        missionName = missionName:sub(0, start - 1)
+        lowerMissionName = missionName:lower()
 
-        if missionName == "\"journey\"" then
+        if lowerMissionName == "journey" then
             local locationBox = Global.getVar("locationBox")
             for _, obj in pairs(locationBox.getObjects()) do
-                if obj.name:lower() == subjectName then
+                if obj.name:lower() == lowerSubjectName then
                     subject = locationBox.takeObject({guid = obj.guid, position = self.getPosition() + Vector(3.2, 0, -7)})
                     break
                 end
@@ -28,16 +31,16 @@ function GrabMission(params)
             local rotation
             if subject.hasTag("Location") then
                 rotation = Vector(0, 90, 180)
-            elseif missionName == "\"helping hand\"" then
+            elseif lowerMissionName == "helping hand" then
                 rotation = Vector(0, 180, 0)
             else
                 rotation = Vector(0, 180, 180)
             end
             subject.setRotation(rotation)
             found = true
-        elseif missionName == "\"helping hand\"" then
+        elseif missionName == "helping hand" then
             for _, card in pairs(getObjectsWithTag("Path")) do
-                if card.getName():lower() == subjectName then
+                if card.getName():lower() == lowerSubjectName then
                     broadcastToAll(subjectName.." is already in play, don't forget to attach helping hand to it (F6 tool)!", Color.White)
                     found = true
                     break
@@ -52,11 +55,12 @@ function GrabMission(params)
     end
 
     local found = false
+    lowerMissionName = "\""..lowerMissionName.."\""
     for _, obj in pairs(self.getObjects()) do
         local lowerLuaScript = obj.lua_script:lower()
-        if lowerLuaScript:find(missionName) then
+        if lowerLuaScript:find(lowerMissionName) then
             local rotation
-            if lowerLuaScript:find("back = "..missionName) then
+            if lowerLuaScript:find("back = "..lowerMissionName) then
                 rotation = Vector(0, 180, 180)
             else
                 rotation = Vector(0, 180, 0)
@@ -82,7 +86,7 @@ function GrabMission(params)
     end
 
     if not found then
-        broadcastToAll("Unable to find mission "..params.mission, Color.Red)
+        broadcastToAll("Unable to find mission "..missionName, Color.Red)
     end
 end
 function grabMission(_, input)
