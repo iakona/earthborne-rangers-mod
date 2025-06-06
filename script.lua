@@ -1356,7 +1356,7 @@ function ClearPlayArea(_)
                     origin = obj.getPosition(),
                     direction = Vector(0, -1, 0),
                     type = 1,
-                    max_distance = 0.1,
+                    max_distance = 0.4,
                 })
                 local found = false
                 for _, hit in pairs(hits) do
