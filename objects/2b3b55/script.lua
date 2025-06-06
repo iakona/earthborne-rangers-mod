@@ -23,6 +23,7 @@ function GrabMission(params)
             subject = pathBox.call("GrabPath", {path = subjectName, position = self.getPosition() + Vector(2.5, 0, -7)})
         end
 
+        local found = false
         if subject then
             local rotation
             if subject.hasTag("Location") then
@@ -33,7 +34,18 @@ function GrabMission(params)
                 rotation = Vector(0, 180, 180)
             end
             subject.setRotation(rotation)
-        else
+            found = true
+        elseif missionName == "\"helping hand\"" then
+            for _, card in pairs(getObjectsWithTag("Path")) do
+                if card.getName():lower() == subjectName then
+                    broadcastToAll(subjectName.." is already in play, don't forget to attach helping hand to it (F6 tool)!", Color.White)
+                    found = true
+                    break
+                end
+            end
+        end
+
+        if not found then
             broadcastToAll("Unable to find Subject "..subjectName, Color.Red)
             return
         end
