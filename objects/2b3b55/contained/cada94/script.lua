@@ -1,0 +1,2 @@
+front = "Lure"
+back = "Confront"

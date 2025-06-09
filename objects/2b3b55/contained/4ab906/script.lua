@@ -1,0 +1,2 @@
+front = "Search"
+back = "Rescue"

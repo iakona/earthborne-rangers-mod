@@ -1,0 +1,43 @@
+{
+  "Name": "HandTrigger",
+  "Transform": {
+    "posX": -11.104399681091309,
+    "posY": 3.2934000492095947,
+    "posZ": -34.560001373291016,
+    "rotX": -0.0,
+    "rotY": 0.0,
+    "rotZ": 0.0,
+    "scaleX": 15.194000244140625,
+    "scaleY": 11.897100448608398,
+    "scaleZ": 6.405700206756592
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.9049999713897705,
+    "g": 0.8980000019073486,
+    "b": 0.1719999611377716,
+    "a": 0.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "FogColor": "Yellow"
+}

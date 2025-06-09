@@ -1,0 +1,40 @@
+<Defaults>
+    <Button colors="#397f6d|#2b715f|#1d6551|#1d655180" fontSize="11" textColor="White"/>
+    <Text color="White"/>
+    <TableLayout autoCalculateHeight="true"/>
+</Defaults>
+
+<Panel id="playerButtons" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="270" height="50" rectAlignment="LowerRight" offsetXY="-60 5">
+    <HorizontalLayout spacing="5">
+        <Button onClick="DrawPath">Draw Path Card</Button>
+        <Button onClick="DrawRanger">Draw Ranger Card</Button>
+        <Button onClick="SufferFatigue">Suffer Fatigue</Button>
+        <Button onClick="SufferInjury">Suffer Injury</Button>
+        <Button onClick="DrawChallenge" >Draw Challenge Card</Button>
+    </HorizontalLayout>
+</Panel>
+
+<Panel id="partyButtons" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="203" height="50" rectAlignment="UpperRight" offsetXY="-380 0">
+    <HorizontalLayout spacing="1">
+        <Button onClick="StartTheDay" text="Start&#xA;the&#xA;Day"/>
+        <Button onClick="Refresh">Refresh</Button>
+        <Button onClick="ClearPlayArea" text="Clear&#xA;Play&#xA;Area"/>
+        <Button onClick="EndTheDay" text="End&#xA;the&#xA;Day"/>
+    </HorizontalLayout>
+</Panel>
+
+<Panel id="challenge" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="80" height="120" rectAlignment="LowerRight" offsetXY="0 120">
+    <TableLayout>
+        <Row>
+            <Cell dontUseTableCellBackground="true" color="#459f48"><Text id="awareness" fontStyle="Bold" tooltip="Awareness" tooltipPosition="Above"/></Cell>
+            <Cell dontUseTableCellBackground="true" color="#e6be29"><Text id="spirit" fontStyle="Bold" tooltip="Spirit" tooltipPosition="Above"/></Cell>
+        </Row>
+        <Row>
+            <Cell dontUseTableCellBackground="true" color="#ba2c28"><Text id="fitness" fontStyle="Bold" tooltip="Fitness" tooltipPosition="Below"/></Cell>
+            <Cell dontUseTableCellBackground="true" color="#557abe"><Text id="focus" fontStyle="Bold" tooltip="Focus" tooltipPosition="Below"/></Cell>
+        </Row>
+        <Row>
+            <Cell id="effectCell" columnSpan="2" dontUseTableCellBackground="true" color="#294574"><Text id="effect" fontStyle="Bold"/></Cell>
+        </Row>
+    </TableLayout>
+</Panel>

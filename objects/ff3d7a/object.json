@@ -1,0 +1,72 @@
+{
+  "Name": "Custom_Model_Bag",
+  "Transform": {
+    "posX": -49.25,
+    "posY": 1.4638999700546265,
+    "posZ": -12.5,
+    "rotX": -0.0,
+    "rotY": 0.0,
+    "rotZ": 0.0,
+    "scaleX": 0.5,
+    "scaleY": 0.5,
+    "scaleZ": 0.5
+  },
+  "Nickname": "Lure of the Valley",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 0.9921999573707581,
+    "b": 1.0
+  },
+  "Tags": [
+    "Expansion"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "CustomMesh": {
+    "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1994562656062235651/63973E688A3031C2D9B5132C5D2FAD84C38DB576/",
+    "DiffuseURL": "https://steamusercontent-a.akamaihd.net/ugc/1994562656062235610/CBB3D771D779639872232AD1E9678E8292251910/",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 6,
+    "CastShadows": true
+  },
+  "Bag": {
+    "Order": 0
+  },
+  "PhysicsMaterial": {
+    "StaticFriction": 0.6000000238418579,
+    "DynamicFriction": 0.6000000238418579,
+    "Bounciness": 0.0,
+    "FrictionCombine": 0,
+    "BounceCombine": 0
+  },
+  "Rigidbody": {
+    "Mass": 1.375,
+    "Drag": 5.0,
+    "AngularDrag": 5.0,
+    "UseGravity": true
+  }
+}

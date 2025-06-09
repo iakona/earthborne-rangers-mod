@@ -1,0 +1,54 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": -24.729999542236328,
+    "posY": 1.0736000537872314,
+    "posZ": -19.0,
+    "rotX": -0.0,
+    "rotY": 180.0,
+    "rotZ": 0.0,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Round Structure",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 1100,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "11": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14172757237546513/D542C20DD887C8A019FCB37032D652B5A28CB7EB/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/1825653570817822821/B97D125EB1517A2F29991B01C1A4D090EEFA58D4/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": 5.088600158691406,
+    "posY": 3.134200096130371,
+    "posZ": 21.863800048828125,
+    "rotX": 1.3937000036239624,
+    "rotY": 180.00030517578125,
+    "rotZ": 359.9143981933594,
+    "scaleX": 0.25,
+    "scaleY": 1.0,
+    "scaleZ": 0.25
+  },
+  "Nickname": "Progress Counter",
+  "Description": "You can use Q/E keys to -/+ the amount in the stack",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Tags": [
+    "Counter",
+    "Label"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/1693901532537930610/D47DE8787B17FB3334A56EB77C33662083D2EA16/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.20000000298023224,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": true
+    }
+  }
+}

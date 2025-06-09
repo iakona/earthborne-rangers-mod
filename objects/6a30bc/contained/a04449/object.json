@@ -1,0 +1,59 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 16.020299911499023,
+    "posY": 0.9735999703407288,
+    "posZ": 9.665200233459473,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 0.0,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Umbra's Shadow",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Ranger",
+    "rewa_memory_object",
+    "Reward"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 10516,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "105": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799158526/4FF1532E921ABBCC88A290CF64830AFC308E832D/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/1825653570817822821/B97D125EB1517A2F29991B01C1A4D090EEFA58D4/",
+      "NumWidth": 7,
+      "NumHeight": 5,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

@@ -1,0 +1,338 @@
+{
+  "SaveName": "Earthborne Rangers [By iakona]",
+  "EpochTime": 1749492054,
+  "Date": "6/9/2025 1:00:54 PM",
+  "VersionNumber": "v13.3",
+  "GameMode": "Earthborne Rangers [By iakona]",
+  "GameType": "Game",
+  "GameComplexity": "Medium Complexity",
+  "PlayingTime": [
+    90,
+    180
+  ],
+  "PlayerCounts": [
+    1,
+    4
+  ],
+  "Tags": [
+    "Card Games",
+    "Cooperative Games",
+    "Thematic Games",
+    "Cards",
+    "Components",
+    "English"
+  ],
+  "Gravity": 0.5,
+  "PlayArea": 0.20000000298023224,
+  "Table": "Table_Custom",
+  "TableURL": "https://steamusercontent-a.akamaihd.net/ugc/1844782528700562752/D865CA7232FA1114C8209C82C87E6901FED688E8/",
+  "Sky": "Sky_Forest",
+  "TabStates": {
+    "0": {
+      "title": "Campaign",
+      "body": "",
+      "color": "Grey",
+      "visibleColor": {
+        "r": 0.5,
+        "g": 0.5,
+        "b": 0.5
+      },
+      "id": 0
+    },
+    "1": {
+      "title": "Red",
+      "body": "",
+      "color": "Red",
+      "visibleColor": {
+        "r": 0.8560000061988831,
+        "g": 0.10000000149011612,
+        "b": 0.09399999678134918
+      },
+      "id": 1
+    },
+    "2": {
+      "title": "Yellow",
+      "body": "",
+      "color": "Yellow",
+      "visibleColor": {
+        "r": 0.9049999713897705,
+        "g": 0.8980000019073486,
+        "b": 0.1720000058412552
+      },
+      "id": 2
+    },
+    "3": {
+      "title": "Purple",
+      "body": "",
+      "color": "Purple",
+      "visibleColor": {
+        "r": 0.6269999742507935,
+        "g": 0.125,
+        "b": 0.9409999847412109
+      },
+      "id": 3
+    },
+    "4": {
+      "title": "Teal",
+      "body": "",
+      "color": "Teal",
+      "visibleColor": {
+        "r": 0.1289999932050705,
+        "g": 0.6940000057220459,
+        "b": 0.6069999933242798
+      },
+      "id": 4
+    }
+  },
+  "Grid": {
+    "Type": 0,
+    "Lines": false,
+    "Color": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0
+    },
+    "Opacity": 0.75,
+    "ThickLines": false,
+    "Snapping": false,
+    "Offset": false,
+    "BothSnapping": false,
+    "xSize": 2.0,
+    "ySize": 2.0,
+    "PosOffset": {
+      "x": 0.0,
+      "y": 1.0,
+      "z": 0.0
+    }
+  },
+  "Lighting": {
+    "LightIntensity": 0.6679999828338623,
+    "LightColor": {
+      "r": 1.0,
+      "g": 0.980400025844574,
+      "b": 0.8902000188827515
+    },
+    "AmbientIntensity": 0.6919999718666077,
+    "AmbientType": 1,
+    "AmbientSkyColor": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5
+    },
+    "AmbientEquatorColor": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5
+    },
+    "AmbientGroundColor": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5
+    },
+    "ReflectionIntensity": 1.0,
+    "LutIndex": 0,
+    "LutContribution": 1.0,
+    "LutURL": ""
+  },
+  "Hands": {
+    "Enable": true,
+    "DisableUnused": true,
+    "Hiding": 0
+  },
+  "ComponentTags": {
+    "labels": [
+      {
+        "displayed": "spec_memory_object",
+        "normalized": "spec_memory_object"
+      },
+      {
+        "displayed": "back_memory_object",
+        "normalized": "back_memory_object"
+      },
+      {
+        "displayed": "perso_memory_object",
+        "normalized": "perso_memory_object"
+      },
+      {
+        "displayed": "rewa_memory_object",
+        "normalized": "rewa_memory_object"
+      },
+      {
+        "displayed": "misc_memory_object",
+        "normalized": "misc_memory_object"
+      },
+      {
+        "displayed": "back_memory_zone",
+        "normalized": "back_memory_zone"
+      },
+      {
+        "displayed": "misc_memory_zone",
+        "normalized": "misc_memory_zone"
+      },
+      {
+        "displayed": "perso_memory_zone",
+        "normalized": "perso_memory_zone"
+      },
+      {
+        "displayed": "rewa_memory_zone",
+        "normalized": "rewa_memory_zone"
+      },
+      {
+        "displayed": "spec_memory_zone",
+        "normalized": "spec_memory_zone"
+      },
+      {
+        "displayed": "rvet_memory_object",
+        "normalized": "rvet_memory_object"
+      },
+      {
+        "displayed": "rvet_memory_zone",
+        "normalized": "rvet_memory_zone"
+      },
+      {
+        "displayed": "Path",
+        "normalized": "path"
+      },
+      {
+        "displayed": "Mission",
+        "normalized": "mission"
+      },
+      {
+        "displayed": "Weather",
+        "normalized": "weather"
+      },
+      {
+        "displayed": "Ranger",
+        "normalized": "ranger"
+      },
+      {
+        "displayed": "Aspect",
+        "normalized": "aspect"
+      },
+      {
+        "displayed": "Role",
+        "normalized": "role"
+      },
+      {
+        "displayed": "Location",
+        "normalized": "location"
+      },
+      {
+        "displayed": "Challenge",
+        "normalized": "challenge"
+      },
+      {
+        "displayed": "Energy",
+        "normalized": "energy"
+      },
+      {
+        "displayed": "Persistent",
+        "normalized": "persistent"
+      },
+      {
+        "displayed": "Gear",
+        "normalized": "gear"
+      },
+      {
+        "displayed": "Reward",
+        "normalized": "reward"
+      },
+      {
+        "displayed": "Attachment",
+        "normalized": "attachment"
+      },
+      {
+        "displayed": "Counter",
+        "normalized": "counter"
+      },
+      {
+        "displayed": "Ranger Token",
+        "normalized": "ranger_token"
+      },
+      {
+        "displayed": "Vehicle",
+        "normalized": "vehicle"
+      },
+      {
+        "displayed": "Malady",
+        "normalized": "malady"
+      },
+      {
+        "displayed": "Label",
+        "normalized": "label"
+      },
+      {
+        "displayed": "Prebuilt",
+        "normalized": "prebuilt"
+      },
+      {
+        "displayed": "Shuffle",
+        "normalized": "shuffle"
+      },
+      {
+        "displayed": "Setup",
+        "normalized": "setup"
+      },
+      {
+        "displayed": "Prey",
+        "normalized": "prey"
+      },
+      {
+        "displayed": "Expansion",
+        "normalized": "expansion"
+      },
+      {
+        "displayed": "Map",
+        "normalized": "map"
+      },
+      {
+        "displayed": "Tracker",
+        "normalized": "tracker"
+      }
+    ]
+  },
+  "Turns": {
+    "Enable": false,
+    "Type": 0,
+    "TurnOrder": [],
+    "Reverse": false,
+    "SkipEmpty": false,
+    "DisableInteractions": false,
+    "PassTurns": true,
+    "TurnColor": ""
+  },
+  "DecalPallet": [],
+  "VectorLines": [
+    {
+      "points3": [
+        {
+          "x": 6.735300064086914,
+          "y": 0.9710999727249146,
+          "z": 17.89590072631836
+        },
+        {
+          "x": 43.375999450683594,
+          "y": 0.9710999727249146,
+          "z": 17.89590072631836
+        },
+        {
+          "x": 43.375999450683594,
+          "y": 0.9710999727249146,
+          "z": 3.9516000747680664
+        },
+        {
+          "x": 6.735300064086914,
+          "y": 0.9710999727249146,
+          "z": 3.9516000747680664
+        }
+      ],
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "thickness": 0.10000000149011612,
+      "loop": true
+    }
+  ]
+}

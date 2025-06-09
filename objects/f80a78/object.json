@@ -1,0 +1,50 @@
+{
+  "Name": "3DText",
+  "Transform": {
+    "posX": 26.50455665588379,
+    "posY": 0.9614015221595764,
+    "posZ": -5.000007629394531,
+    "rotX": 90.0,
+    "rotY": 0.0,
+    "rotZ": 0.0,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "Text": {
+    "Text": "1. Commit effort:\n-Commit 1 or more energy of a matching aspect\n-Commit approach icons by discarding cards from hand\n-Commit effort from other sources\n\n2. Draw challenge card and apply modifier\n\n3. Resolve test success or failure\n\n4. Resolve challenge effects for active cards\n-Weather cards\n-Location card\n-Mission cards\n-Cards along the way\n-Cards within reach\n-Cards in your player area",
+    "colorstate": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0
+    },
+    "fontSize": 24
+  }
+}

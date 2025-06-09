@@ -1,0 +1,57 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": -3.2867000102996826,
+    "posY": 3.1373000144958496,
+    "posZ": 22.043899536132812,
+    "rotX": 1.2649999856948853,
+    "rotY": 179.97869873046875,
+    "rotZ": 0.593500018119812,
+    "scaleX": 0.38119998574256897,
+    "scaleY": 1.0,
+    "scaleZ": 0.38119998574256897
+  },
+  "Nickname": "Focus Token",
+  "Description": "You can use Q/E keys to -/+ the amount in the stack",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Tags": [
+    "Energy",
+    "Label"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/1693901532537922608/C965AE309753AB8E9D1EC2CFC428167D083599BD/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.20000000298023224,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": true
+    }
+  }
+}

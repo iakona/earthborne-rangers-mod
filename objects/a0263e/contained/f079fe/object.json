@@ -1,0 +1,95 @@
+{
+  "Name": "Die_6",
+  "Transform": {
+    "posX": 7.61269998550415,
+    "posY": 3.339200019836426,
+    "posZ": 17.578899383544922,
+    "rotX": 272.9396057128906,
+    "rotY": 322.1997985839844,
+    "rotZ": 37.12919998168945,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "All-Purpose Token",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.31949999928474426,
+    "g": 0.9807999730110168,
+    "b": 0.46459999680519104
+  },
+  "Tags": [
+    "Counter"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": 0,
+  "RotationValues": [
+    {
+      "Value": "1",
+      "Rotation": {
+        "x": -90.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Value": "2",
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "Value": "3",
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -90.0
+      }
+    },
+    {
+      "Value": "4",
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 90.0
+      }
+    },
+    {
+      "Value": "5",
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -180.0
+      }
+    },
+    {
+      "Value": "6",
+      "Rotation": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    }
+  ]
+}

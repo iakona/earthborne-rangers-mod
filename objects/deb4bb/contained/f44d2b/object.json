@@ -1,0 +1,70 @@
+{
+  "Name": "Deck",
+  "Transform": {
+    "posX": -7.624800205230713,
+    "posY": 2.0555999279022217,
+    "posZ": 23.966899871826172,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 0.0,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Lakeshore Set",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Path"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": false,
+  "SidewaysCard": false,
+  "DeckIDs": [
+    2535,
+    2534,
+    2533,
+    2532,
+    2531,
+    2530,
+    2529,
+    2528,
+    2527,
+    2526,
+    2525,
+    2524
+  ],
+  "CustomDeck": {
+    "25": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14181150885861462/228530CCDDB6FC03603D03AB8CA0BB0D9A932321/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799074052/780A3D85AC2356930B95B87A12824F954C477092/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

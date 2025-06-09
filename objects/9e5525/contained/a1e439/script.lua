@@ -1,0 +1,5 @@
+awareness = "-1"
+fitness = "0"
+focus = "0"
+spirit = "+1"
+effect = "Sun"

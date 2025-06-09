@@ -1,0 +1,56 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": 18.226299285888672,
+    "posY": 1.1600003242492676,
+    "posZ": -21.499900817871094,
+    "rotX": -3.2010930226533674e-06,
+    "rotY": 180.0,
+    "rotZ": -2.949495581106021e-07,
+    "scaleX": 0.320499986410141,
+    "scaleY": 1.0,
+    "scaleZ": 0.320499986410141
+  },
+  "Nickname": "Ranger Token",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Tags": [
+    "Ranger Token"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969805264284/14B668FA079FA77DA6023D4ED3C70029A661A1D3/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.20000000298023224,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": false
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -0.6499000191688538,
+    "posY": 1.9905999898910522,
+    "posZ": 3.413800001144409,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 180.0,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Challenge"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "Hands": true,
+  "CardID": 120,
+  "SidewaysCard": false
+}

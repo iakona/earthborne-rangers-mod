@@ -1,0 +1,57 @@
+{
+  "Name": "Custom_Token",
+  "Transform": {
+    "posX": 1.9960999488830566,
+    "posY": 3.1496999263763428,
+    "posZ": 14.850899696350098,
+    "rotX": 2.59689998626709,
+    "rotY": 179.99710083007812,
+    "rotZ": 359.7638854980469,
+    "scaleX": 0.25,
+    "scaleY": 1.0,
+    "scaleZ": 0.25
+  },
+  "Nickname": "Harm Counter",
+  "Description": "You can use Q/E keys to -/+ the amount in the stack",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "Tags": [
+    "Counter",
+    "Label"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/1693901532537931594/BF391D8F2A430F0168639BABEDF732F31EA39570/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomToken": {
+      "Thickness": 0.20000000298023224,
+      "MergeDistancePixels": 15.0,
+      "StandUp": false,
+      "Stackable": true
+    }
+  }
+}

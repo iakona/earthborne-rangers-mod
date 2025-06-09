@@ -1,0 +1,57 @@
+{
+  "Name": "Custom_Model_Bag",
+  "Transform": {
+    "posX": -18.0,
+    "posY": 1.1787999868392944,
+    "posZ": 24.200000762939453,
+    "rotX": -9.999999747378752e-05,
+    "rotY": 179.99989318847656,
+    "rotZ": -9.999999747378752e-05,
+    "scaleX": 0.875,
+    "scaleY": 0.875,
+    "scaleZ": 0.875
+  },
+  "Nickname": "Removed from Game",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.5,
+    "g": 0.5,
+    "b": 0.5
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "MaterialIndex": -1,
+  "MeshIndex": -1,
+  "Number": 0,
+  "CustomMesh": {
+    "MeshURL": "https://steamusercontent-a.akamaihd.net/ugc/1035212377734904088/2F68BC7FA71E051E2BBA46C0D1B06A5972D52E7C/",
+    "DiffuseURL": "",
+    "NormalURL": "",
+    "ColliderURL": "",
+    "Convex": true,
+    "MaterialIndex": 1,
+    "TypeIndex": 6,
+    "CastShadows": true
+  },
+  "Bag": {
+    "Order": 0
+  }
+}

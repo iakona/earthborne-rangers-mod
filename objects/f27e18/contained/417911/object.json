@@ -1,0 +1,59 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 21.24530029296875,
+    "posY": 0.9735999703407288,
+    "posZ": 9.649999618530273,
+    "rotX": 0.0,
+    "rotY": 180.02670288085938,
+    "rotZ": 0.0,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Boundary Sensor",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Gear",
+    "Ranger",
+    "spec_memory_object"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 841,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "8": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/1994562656062233331/E814DDA9C227F2162544EDD60C36FDED0E049369/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/1825653570817822821/B97D125EB1517A2F29991B01C1A4D090EEFA58D4/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

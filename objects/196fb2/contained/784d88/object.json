@@ -1,0 +1,57 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 47.89690017700195,
+    "posY": 2.3264999389648438,
+    "posZ": 2.0683999061584473,
+    "rotX": 0.0,
+    "rotY": 90.0,
+    "rotZ": 0.0,
+    "scaleX": 1.25,
+    "scaleY": 1.0,
+    "scaleZ": 1.25
+  },
+  "Nickname": "Golden Shore",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Location"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CardID": 1704,
+  "SidewaysCard": true,
+  "CustomDeck": {
+    "17": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14175792088290654/3FD6DE338094BC0CEA564DE5882AE85C08C51DF7/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/14175792088290426/33F395DCF3B8D9E483169A25DDFC47E5A6875CC8/",
+      "NumWidth": 8,
+      "NumHeight": 5,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    }
+  }
+}

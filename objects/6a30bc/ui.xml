@@ -1,0 +1,6 @@
+<Panel position="0 600 0">
+    <InputField id="input" onEndEdit="unlockReward" colors="#404040|#606060|#808080|#404040" width="1020" height="170" fontSize="140" textColor="White" placeholderText="Reward Name" tooltipFontSize="90" tooltipPosition="Above" tooltipOffset="50"/>
+</Panel>
+<Panel position="0 -1100 100">
+    <Toggle id="toggleRewards" onValueChanged="toggleRewards" width="1200" toggleWidth="100" toggleHeight="100" textColor="#FFFFFF" fontSize="100" verticalOverflow="Overflow" text=" Show Locked Rewards" tooltipFontSize="90" tooltipPosition="Below" tooltipOffset="150"/>
+</Panel>

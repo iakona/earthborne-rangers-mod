@@ -1,0 +1,3 @@
+<Panel position="0 600 0">
+    <InputField id="input" onEndEdit="importDeck" colors="#404040|#606060|#808080|#404040" width="600" height="170" fontSize="140" textColor="White" placeholderText="Deck ID" tooltipFontSize="90" tooltipPosition="Above" tooltipOffset="50"/>
+</Panel>

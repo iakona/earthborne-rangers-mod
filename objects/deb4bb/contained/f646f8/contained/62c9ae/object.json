@@ -1,0 +1,58 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -21.254600524902344,
+    "posY": 1.228600025177002,
+    "posZ": 17.690500259399414,
+    "rotX": 0.0003000000142492354,
+    "rotY": 180.03089904785156,
+    "rotZ": -0.00039999998989515007,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Circling Irix",
+  "Description": "Mountain Pass",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Path",
+    "Persistent"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": false,
+  "CardID": 2513,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "25": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14181150885861462/228530CCDDB6FC03603D03AB8CA0BB0D9A932321/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799074052/780A3D85AC2356930B95B87A12824F954C477092/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -21.182100296020508,
+    "posY": 1.2382999658584595,
+    "posZ": 0.3057999908924103,
+    "rotX": -0.00019999999494757503,
+    "rotY": 179.98550415039062,
+    "rotZ": -0.0005000000237487257,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Hydraworm",
+  "Description": "Swamp",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Path"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": false,
+  "CardID": 2615,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "26": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14181150885864947/C3B7C340C37466562D212979326943B5FB9F3AF0/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799074052/780A3D85AC2356930B95B87A12824F954C477092/",
+      "NumWidth": 9,
+      "NumHeight": 5,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

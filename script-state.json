@@ -1,0 +1,12 @@
+{
+  "campaign": 0,
+  "completedMissions": [],
+  "currentDay": 1,
+  "currentLocation": "",
+  "currentWeather": "A Perfect Day",
+  "hardWeather": false,
+  "missionProgress": [],
+  "showRewards": false,
+  "unlockedRewards": [],
+  "useUncommonWisdom": true
+}

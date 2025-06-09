@@ -1,0 +1,56 @@
+{
+  "Name": "ScriptingTrigger",
+  "Transform": {
+    "posX": 25.040000915527344,
+    "posY": 3.5111000537872314,
+    "posZ": 10.920000076293945,
+    "rotX": -0.0,
+    "rotY": 0.0,
+    "rotZ": 0.0,
+    "scaleX": 36.57270050048828,
+    "scaleY": 5.099999904632568,
+    "scaleZ": 13.853599548339844
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0,
+    "a": 0.5098039507865906
+  },
+  "Tags": [
+    "back_memory_object",
+    "back_memory_zone",
+    "misc_memory_object",
+    "misc_memory_zone",
+    "perso_memory_object",
+    "perso_memory_zone",
+    "rewa_memory_object",
+    "rewa_memory_zone",
+    "rvet_memory_object",
+    "rvet_memory_zone",
+    "spec_memory_object",
+    "spec_memory_zone"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false
+}

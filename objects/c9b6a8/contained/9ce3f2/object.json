@@ -1,0 +1,58 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 28.0,
+    "posY": 0.9735999703407288,
+    "posZ": 8.399999618530273,
+    "rotX": 0.0,
+    "rotY": 180.0,
+    "rotZ": 0.0,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Adherent of the First Ideal",
+  "Description": "This character is a shaper. These are effectively the “magic-users” of this setting. They use a special device called a conduit to manifest their will in reality in spectacular ways. This is a good character for the more advanced player at the table.\n\n3 AWA – 2 FIT – 2 FOC – 1 SPI",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
+  },
+  "Tags": [
+    "Prebuilt",
+    "spec_memory_object"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CardID": 909,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "9": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/1994562656062234942/69292BCF5B60D581CAC95B40D6535E1F92285F56/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/1825653570817822821/B97D125EB1517A2F29991B01C1A4D090EEFA58D4/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

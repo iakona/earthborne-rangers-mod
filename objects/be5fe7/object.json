@@ -1,0 +1,160 @@
+{
+  "Name": "Custom_Tile",
+  "Transform": {
+    "posX": 0.20759999752044678,
+    "posY": 0.9599999785423279,
+    "posZ": -5.550000190734863,
+    "rotX": -0.0,
+    "rotY": 179.99960327148438,
+    "rotZ": 0.0,
+    "scaleX": 6.7104997634887695,
+    "scaleY": 1.0,
+    "scaleZ": 6.7104997634887695
+  },
+  "Nickname": "",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 1.0,
+    "g": 1.0,
+    "b": 1.0
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  "CustomImage": {
+    "ImageURL": "https://steamusercontent-a.akamaihd.net/ugc/1994562656062231242/1315C9B6367DA8F135A38B489C86E58C48D92C6A/",
+    "ImageSecondaryURL": "",
+    "ImageScalar": 1.0,
+    "WidthScale": 0.0,
+    "CustomTile": {
+      "Type": 0,
+      "Thickness": 0.10000000149011612,
+      "Stackable": false,
+      "Stretch": true
+    }
+  },
+  "AttachedSnapPoints": [
+    {
+      "Position": {
+        "x": 0.679099977016449,
+        "y": 0.10000000149011612,
+        "z": -0.635699987411499
+      },
+      "Rotation": {
+        "x": -0.0,
+        "y": 0.0005000000237487257,
+        "z": 180.0
+      },
+      "Tags": [
+        "Challenge"
+      ]
+    },
+    {
+      "Position": {
+        "x": 0.3068000078201294,
+        "y": 0.10000000149011612,
+        "z": -0.635699987411499
+      },
+      "Rotation": {
+        "x": -0.0,
+        "y": 0.00039999998989515007,
+        "z": 0.0
+      },
+      "Tags": [
+        "Challenge"
+      ]
+    },
+    {
+      "Position": {
+        "x": -0.28529998660087585,
+        "y": 0.10000000149011612,
+        "z": -0.635699987411499
+      },
+      "Rotation": {
+        "x": -0.0,
+        "y": 0.00039999998989515007,
+        "z": 0.0
+      },
+      "Tags": [
+        "Path"
+      ]
+    },
+    {
+      "Position": {
+        "x": -0.6560999751091003,
+        "y": 0.10000000149011612,
+        "z": -0.635699987411499
+      },
+      "Rotation": {
+        "x": -0.0,
+        "y": 0.00039999998989515007,
+        "z": 0.0
+      },
+      "Tags": [
+        "Path"
+      ]
+    },
+    {
+      "Position": {
+        "x": -0.00039999998989515007,
+        "y": 0.10000000149011612,
+        "z": -0.001500000013038516
+      },
+      "Rotation": {
+        "x": -0.0,
+        "y": 270.0003662109375,
+        "z": 0.0
+      },
+      "Tags": [
+        "Location"
+      ]
+    },
+    {
+      "Position": {
+        "x": 0.8561999797821045,
+        "y": 0.10000000149011612,
+        "z": -0.03709999844431877
+      },
+      "Rotation": {
+        "x": -0.0,
+        "y": 0.0005000000237487257,
+        "z": 0.0
+      },
+      "Tags": [
+        "Weather"
+      ]
+    },
+    {
+      "Position": {
+        "x": 1.1485999822616577,
+        "y": 0.10000000149011612,
+        "z": -0.6363000273704529
+      },
+      "Rotation": {
+        "x": -0.0,
+        "y": 0.00039999998989515007,
+        "z": 0.0
+      },
+      "Tags": [
+        "Prey"
+      ]
+    }
+  ]
+}
