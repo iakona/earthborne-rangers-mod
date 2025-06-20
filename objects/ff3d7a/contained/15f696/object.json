@@ -1,15 +1,15 @@
 {
   "Name": "Custom_PDF",
   "Transform": {
-    "posX": -52.17380142211914,
-    "posY": 1.982100009918213,
-    "posZ": 34.77840042114258,
-    "rotX": -0.0003000000142492354,
+    "posX": -52.1738,
+    "posY": 1.9821,
+    "posZ": 34.7784,
+    "rotX": -0.0003,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 4.375699996948242,
+    "scaleX": 4.3757,
     "scaleY": 1.0,
-    "scaleZ": 4.375699996948242
+    "scaleZ": 4.3757
   },
   "Nickname": "Campaign Guide",
   "Description": "",
