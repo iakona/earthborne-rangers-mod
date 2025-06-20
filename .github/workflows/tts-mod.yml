@@ -3,9 +3,9 @@ name: Tabletop Simulator
 
 on:
     push:
-        branches: [alpha]
+        branches: [beta]
     pull_request:
-        branches: [alpha]
+        branches: [beta]
 
 jobs:
     build:
