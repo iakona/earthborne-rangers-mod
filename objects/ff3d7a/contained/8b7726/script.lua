@@ -10,6 +10,7 @@ pivotalLocations = {
     ["White Sky"] = true,
 }
 buttonPositions = {}
+manualConnection = nil
 
 function onLoad(_)
     self.interactable = false
@@ -321,13 +322,78 @@ function onLoad(_)
         height         = 30,
         tooltip        = "Watcher's Rock",
     })
-
     for _, button in pairs(self.getButtons()) do
         if button["click_function"] ~= "null" then
             local position = button["position"]
             buttonPositions[button["tooltip"]] = Vector(position.x, position.y, position.z)
         end
     end
+
+    self.createButton({
+        click_function = "OldGrowth",
+        function_owner = self,
+        position       = Vector(0.253, 0, 0.742),
+        width          = 25,
+        height         = 25,
+        tooltip        = "Old-Growth",
+    })
+    self.createButton({
+        click_function = "MountainPass",
+        function_owner = self,
+        position       = Vector(0.392, 0, 0.738),
+        width          = 25,
+        height         = 25,
+        tooltip        = "Mountain Pass",
+    })
+    self.createButton({
+        click_function = "Woods",
+        function_owner = self,
+        position       = Vector(0.184, 0, 0.797),
+        width          = 25,
+        height         = 25,
+        tooltip        = "Woods",
+    })
+    self.createButton({
+        click_function = "Lakeshore",
+        function_owner = self,
+        position       = Vector(0.322, 0, 0.795),
+        width          = 25,
+        height         = 25,
+        tooltip        = "Lakeshore",
+    })
+    self.createButton({
+        click_function = "Grassland",
+        function_owner = self,
+        position       = Vector(0.461, 0, 0.795),
+        width          = 25,
+        height         = 25,
+        tooltip        = "Grassland",
+    })
+    self.createButton({
+        click_function = "Ravine",
+        function_owner = self,
+        position       = Vector(0.184, 0, 0.86),
+        width          = 25,
+        height         = 25,
+        tooltip        = "Ravine",
+    })
+    self.createButton({
+        click_function = "Swamp",
+        function_owner = self,
+        position       = Vector(0.322, 0, 0.86),
+        width          = 25,
+        height         = 25,
+        tooltip        = "Swamp",
+    })
+    self.createButton({
+        click_function = "River",
+        function_owner = self,
+        position       = Vector(0.461, 0, 0.86),
+        width          = 25,
+        height         = 25,
+        tooltip        = "River",
+    })
+
     setLocation()
 end
 
@@ -697,6 +763,7 @@ function Travel(params)
     setupLocation(params.location, params.connection, params.skipLocationCard)
 end
 function travel(newLocation, connections, alt_click)
+    manualConnection = nil
     local campaign = Global.getVar("campaign")
     if campaign == 0 then
         broadcastToAll("Please start campaign (or prologue) first before traveling", Color.Red)
@@ -725,23 +792,31 @@ function travel(newLocation, connections, alt_click)
         if newLocation == "Marsh of Rebirth" then
             connection = "Swamp"
         elseif alt_click then
-            connection = "Unknown"
-            broadcastToAll("No connection found from "..currentLocation.." to "..newLocation.." overriding, terrain set will need to be manually setup", Color.Red)
+            connection = nil
+            broadcastToAll("Location set, now right click on terrain (bottom right corner of Valley Map) to finish travel", Color.White)
         else
             broadcastToAll("Unable to find connection from "..currentLocation.." to "..newLocation, Color.Red)
             return
         end
     end
 
-    if connection == "River" then
-        if #getObjectsWithTag("Vehicle") == 0 then
-            broadcastToAll("Unable to find vehicle required for connection from "..currentLocation.." to "..newLocation, Color.Red)
-            return
+    Wait.condition(function()
+        if not connection then
+            connection = manualConnection
         end
-    end
+        manualConnection = nil
+        if connection == "River" then
+            if #getObjectsWithTag("Vehicle") == 0 then
+                broadcastToAll("Unable to find vehicle required for connection from "..currentLocation.." to "..newLocation, Color.Red)
+                return
+            end
+        end
 
-    printToAll("Traveling from "..currentLocation.." to "..newLocation.." via "..connection, Color.White)
-    setupLocation(newLocation, connection, false)
+        printToAll("Traveling from "..currentLocation.." to "..newLocation.." via "..connection, Color.White)
+        setupLocation(newLocation, connection, false)
+    end, function()
+        return connection ~= nil or manualConnection ~= nil
+    end)
 end
 function setupLocation(location, connection, skipLocationCard)
     broadcastToAll("Don't forget to handle the Arrival Setup on Location Card", Color.White)
@@ -1001,4 +1076,29 @@ function setupLocation(location, connection, skipLocationCard)
             deck.shuffle()
         end
     end, 1.5)
+end
+
+function OldGrowth(_, _, alt_click)
+    manualConnection = "Old-Growth"
+end
+function MountainPass(_, _, alt_click)
+    manualConnection = "Mountain Pass"
+end
+function Woods(_, _, alt_click)
+    manualConnection = "Woods"
+end
+function Lakeshore(_, _, alt_click)
+    manualConnection = "Lakeshore"
+end
+function Grassland(_, _, alt_click)
+    manualConnection = "Grassland"
+end
+function Ravine(_, _, alt_click)
+    manualConnection = "Ravine"
+end
+function Swamp(_, _, alt_click)
+    manualConnection = "Swamp"
+end
+function River(_, _, alt_click)
+    manualConnection = "River"
 end
