@@ -1,9 +1,9 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": -30.4987,
-    "posY": 0.9613,
-    "posZ": -10.6012,
+    "posX": -30.498634338378906,
+    "posY": 0.9613038897514343,
+    "posZ": -10.60122299194336,
     "rotX": 90.0,
     "rotY": 0.0,
     "rotZ": 0.0,
@@ -39,7 +39,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "Text": {
-    "Text": "Left Click on Location to Travel using connection\nRight Click on Location to ignore connections",
+    "Text": "Left Click on Location to Travel using connection\nRight Click on Location and then Terrain to ignore connections",
     "colorstate": {
       "r": 1.0,
       "g": 1.0,
