@@ -916,6 +916,7 @@ function setupLocation(location, connection, skipLocationCard)
         secretInvasion = false
     end
     local invasion = getObjectFromGUID("4e5ca6")
+    local seekerGUIDs = {"7c725b", "92a55f", "0d8b80", "23641e", "d5908d"}
     local seekers = 0
     local polyp = false
     if invasion then
@@ -999,6 +1000,7 @@ function setupLocation(location, connection, skipLocationCard)
     local connectionSet = connection.." Set"
     local pathIndex = Global.getVar("pathIndex")
     local position = sharedBoard.positionToWorld(snaps[pathIndex].position) + Vector(0, 0.5, 0)
+    local generalSetGuid = nil
     for _, obj in pairs(pathBox.getObjects()) do
         if obj.name == connectionSet or (isPivotal and obj.name == locationSet) then
             if location == "Spire" and obj.name == locationSet then
@@ -1009,6 +1011,20 @@ function setupLocation(location, connection, skipLocationCard)
                 pathBox.takeObject({guid = obj.guid, position = position, rotation = Vector(0, 180, 180)})
             end
         elseif not isPivotal and obj.name == "The Valley Set" and location ~= "Headwaters Station" then
+            local function grabPathOrSeeker(deck)
+                if not secretInvasion then
+                    deck.takeObject({position = position, rotation = Vector(0, 180, 180)})
+                    return
+                end
+
+                local random = math.random(1, #deck.getObjects() + 5 - seekers)
+                if random < (5 - seekers) then
+                    seekers = seekers + 1
+                else
+                    deck.takeObject({position = position, rotation = Vector(0, 180, 180)})
+                end
+            end
+
             local deck = pathBox.takeObject({guid = obj.guid})
             deck.shuffle()
             if location == "Archaeological Outpost" then
@@ -1016,31 +1032,34 @@ function setupLocation(location, connection, skipLocationCard)
             elseif location == "Bowl of the Sun" then
                 deck.takeObject({guid = "74a0a6", position = position, rotation = Vector(0, 180, 180)})
             else
-                deck.takeObject({position = position, rotation = Vector(0, 180, 180)})
+                grabPathOrSeeker(deck)
             end
-            deck.takeObject({position = position, rotation = Vector(0, 180, 180)})
-            deck.takeObject({position = position, rotation = Vector(0, 180, 180)})
+            grabPathOrSeeker(deck)
+            grabPathOrSeeker(deck)
             pathBox.putObject(deck)
+
+            -- In the event general set was processed before valley set we should still grab seekers
+            if generalSetGuid and secretInvasion and seekers > 0 then
+                deck = pathBox.takeObject({guid = generalSetGuid})
+                local seekerGUIDs = {"7c725b", "92a55f", "0d8b80", "23641e", "d5908d"}
+                for index = 1, seekers do
+                    deck.takeObject({guid = seekerGUIDs[index], position = position, rotation = Vector(0, 180, 180)})
+                end
+                pathBox.putObject(deck)
+            end
         elseif location == "The Alluvial Ruins" and (obj.name == "Old-Growth Set" or obj.name == "Lakeshore Set" or obj.name == "Grassland Set") then
             local deck = pathBox.takeObject({guid = obj.guid, position = position + Vector(5, 0, 0), rotation = Vector(0, 180, 180)})
             table.insert(detritusDeck, deck)
         elseif obj.name == "General Set" and useGeneralSet then
+            generalSetGuid = obj.guid
             local deck = pathBox.takeObject({guid = obj.guid})
             if watcherInTheBrush then
                 deck.takeObject({guid = "879735", position = position, rotation = Vector(0, 180, 180)})
             end
-            if secretInvasion then
-                deck.takeObject({guid = "7c725b", position = position, rotation = Vector(0, 180, 180)})
-                deck.takeObject({guid = "92a55f", position = position, rotation = Vector(0, 180, 180)})
-                deck.takeObject({guid = "0d8b80", position = position, rotation = Vector(0, 180, 180)})
-                deck.takeObject({guid = "23641e", position = position, rotation = Vector(0, 180, 180)})
-                deck.takeObject({guid = "d5908d", position = position, rotation = Vector(0, 180, 180)})
-            end
-            if invasion then
+            if secretInvasion or invasion then
                 if polyp then
                     deck.takeObject({guid = "2828c9", position = position, rotation = Vector(0, 180, 180)})
                 end
-                local seekerGUIDs = {"7c725b", "92a55f", "0d8b80", "23641e", "d5908d"}
                 for index = 1, seekers do
                     deck.takeObject({guid = seekerGUIDs[index], position = position, rotation = Vector(0, 180, 180)})
                 end
