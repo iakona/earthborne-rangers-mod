@@ -27,6 +27,34 @@ function GrabMission(params)
         end
 
         local found = false
+        if not subject then
+            for _, obj in pairs(getObjectsWithTag("Path")) do
+                if obj.type == "Deck" then
+                    for _, data in pairs(obj.getObjects()) do
+                        if data.name:lower() == lowerSubjectName then
+                            subject = obj.takeObject({guid = data.guid, position = self.getPosition() + Vector(2.5, 0, -7)})
+                            found = true
+                            break
+                        end
+                    end
+                elseif obj.type == "Card" then
+                    if obj.getName():lower() == lowerSubjectName then
+                        if missionName == "helping hand" then
+                            broadcastToAll(subjectName.." is already in play, don't forget to attach helping hand to it (F6 tool)!", Color.White)
+                        else
+                            subject = obj
+                            subject.setPositionSmooth(self.getPosition() + Vector(2.5, 0, -7))
+                        end
+                        found = true
+                        break
+                    end
+                end
+                if found then
+                    break
+                end
+            end
+        end
+
         if subject then
             local rotation
             if subject.hasTag("Location") then
@@ -38,14 +66,6 @@ function GrabMission(params)
             end
             subject.setRotation(rotation)
             found = true
-        elseif missionName == "helping hand" then
-            for _, card in pairs(getObjectsWithTag("Path")) do
-                if card.getName():lower() == lowerSubjectName then
-                    broadcastToAll(subjectName.." is already in play, don't forget to attach helping hand to it (F6 tool)!", Color.White)
-                    found = true
-                    break
-                end
-            end
         end
 
         if not found then
