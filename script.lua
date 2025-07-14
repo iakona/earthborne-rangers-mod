@@ -288,7 +288,10 @@ function addContextMenuItems(obj)
             end
         end
         if obj.getVar("tokens") then
-            obj.addContextMenuItem("Setup Tokens", setupTokens, false)
+            -- Unpicked ranger cards shouldn't have button for tokens
+            if not obj.hasTag("Ranger") or obj.getDescription() ~= "" then
+                obj.addContextMenuItem("Setup Tokens", setupTokens, false)
+            end
         end
         if #obj.getAttachments() > 0 then
             obj.addContextMenuItem("Remove Attachments", removeAttachment, false)
