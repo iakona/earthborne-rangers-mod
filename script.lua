@@ -452,12 +452,16 @@ end
 function pickRanger(color, _, obj)
     local quantity
     if not obj.hasTag("Reward") and not obj.hasTag("Malady") then
-        -- You get 2 copies of non reward/malady cards
-        quantity = 2
+        -- Once campaign has started, alterations are single card changes
+        if campaign > 0 then
+            quantity = 1
+        else
+            quantity = 2
+        end
     else
         quantity = 1
         if obj.hasTag("Reward") then
-            Player[color].broadcast("Don't forget to remove a non-malady card from your deck")
+            Player[color].broadcast("Don't forget to swap a non-malady card from your deck")
         end
     end
     PickRanger({color = color, ranger = obj, quantity = quantity, offset = Vector(0, 0.5, 0)})
