@@ -29,8 +29,6 @@ function onSave()
 end
 
 function onLoad(data)
-    self.interactable = false
-
     setDay()
     setProgress()
     setRewards()
