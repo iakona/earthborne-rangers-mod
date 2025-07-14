@@ -1041,7 +1041,6 @@ function setupLocation(location, connection, skipLocationCard)
             -- In the event general set was processed before valley set we should still grab seekers
             if generalSetGuid and secretInvasion and seekers > 0 then
                 deck = pathBox.takeObject({guid = generalSetGuid})
-                local seekerGUIDs = {"7c725b", "92a55f", "0d8b80", "23641e", "d5908d"}
                 for index = 1, seekers do
                     deck.takeObject({guid = seekerGUIDs[index], position = position, rotation = Vector(0, 180, 180)})
                 end
