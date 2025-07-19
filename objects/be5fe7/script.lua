@@ -100,11 +100,11 @@ end
 
 function startCampaignHelper(campaign, location)
     Global.setVar("campaign", campaign)
-    Global.call("StartTheDay")
+    Global.setVar("currentLocation", location)
+    local campaignTracker = Global.getVar("campaignTracker")
+    campaignTracker.UI.setAttribute("terrain", "text", "Woods")
 
-    -- Traveling to location after starting the day
-    local campaignMap = Global.getVar("campaignMap")
-    campaignMap.call("Travel", {location = location, connection = "Woods"})
+    Global.call("StartTheDay")
 end
 
 function startPrologue(_, _, _)
@@ -263,6 +263,8 @@ function import(config, campaign)
         campaignTracker.UI.setAttribute("terrain", "text", config.tracker.connection)
         Global.getVar("campaignMap").call("setLocation")
     end
+
+    Global.call("StartTheDay")
 
     return campaign == config.campaign
 end
