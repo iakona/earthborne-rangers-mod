@@ -1,3 +1,3 @@
 <Panel position="0 -880 100">
-    <Toggle id="toggleWeather" onValueChanged="toggleWeather" width="1200" toggleWidth="100" toggleHeight="100" textColor="#FFFFFF" fontSize="100" verticalOverflow="Overflow" text=" Hard Weather Variant" tooltipFontSize="90" tooltipPosition="Below" tooltipOffset="150"/>
+    <Toggle id="toggleWeather" onValueChanged="toggleWeather" width="1200" toggleWidth="100" toggleHeight="100" textColor="#FFFFFF" fontSize="100" verticalOverflow="Overflow" text=" Harder Weather Variant" tooltipFontSize="90" tooltipPosition="Below" tooltipOffset="150"/>
 </Panel>

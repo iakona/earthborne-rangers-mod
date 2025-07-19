@@ -27,31 +27,56 @@ function GrabMission(params)
         end
 
         local found = false
+        if not subject then
+            for _, obj in pairs(getObjectsWithTag("Path")) do
+                if obj.type == "Deck" then
+                    for _, data in pairs(obj.getObjects()) do
+                        if data.name:lower() == lowerSubjectName then
+                            subject = obj.takeObject({guid = data.guid, position = self.getPosition() + Vector(2.5, 0, -7)})
+                            found = true
+                            break
+                        end
+                    end
+                elseif obj.type == "Card" then
+                    if obj.getName():lower() == lowerSubjectName then
+                        if missionName == "helping hand" then
+                            broadcastToAll(subjectName.." is already in play, don't forget to attach helping hand to it (F6 tool)!", Color.White)
+                        else
+                            subject = obj
+                            subject.setPositionSmooth(self.getPosition() + Vector(2.5, 0, -7))
+                        end
+                        found = true
+                        break
+                    end
+                end
+                if found then
+                    break
+                end
+            end
+        end
+
         if subject then
             local rotation
             if subject.hasTag("Location") then
                 rotation = Vector(0, 90, 180)
-            elseif lowerMissionName == "helping hand" then
+            elseif lowerMissionName == "helping hand" or lowerMissionName == "rescue" then
                 rotation = Vector(0, 180, 0)
             else
                 rotation = Vector(0, 180, 180)
             end
             subject.setRotation(rotation)
             found = true
-        elseif missionName == "helping hand" then
-            for _, card in pairs(getObjectsWithTag("Path")) do
-                if card.getName():lower() == lowerSubjectName then
-                    broadcastToAll(subjectName.." is already in play, don't forget to attach helping hand to it (F6 tool)!", Color.White)
-                    found = true
-                    break
-                end
-            end
         end
 
         if not found then
             broadcastToAll("Unable to find Subject "..subjectName, Color.Red)
             return
         end
+    end
+
+    -- Helping hand does not get recorded on campaign tracker
+    if lowerMissionName == "helping hand" then
+        params.record = false
     end
 
     local found = false
@@ -66,17 +91,17 @@ function GrabMission(params)
                 rotation = Vector(0, 180, 0)
             end
             self.takeObject({guid = obj.guid, position = self.getPosition() + Vector(0, 0, -7), rotation = rotation, callback_function = function(mission)
-                if mission.hasTag("Mission") then
-                    if params.record then
-                        Global.call("RecordMission", {mission = mission, subject = subject})
-                    end
-                    if subject then
-                        mission.addAttachment(subject)
-                    end
-                elseif mission.guid == "ebcf7e" or mission.guid == "f67a50" then
+                if lowerMissionName == "\"helping hand\"" or lowerMissionName == "\"rescue\"" then
                     if subject then
                         subject.addAttachment(mission)
                     end
+                elseif mission.hasTag("Mission") then
+                    if subject then
+                        mission.addAttachment(subject)
+                    end
+                end
+                if params.record then
+                    Global.call("RecordMission", {mission = mission, subject = subject})
                 end
             end})
             found = true

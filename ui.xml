@@ -23,15 +23,15 @@
     </HorizontalLayout>
 </Panel>
 
-<Panel id="challenge" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="80" height="120" rectAlignment="LowerRight" offsetXY="0 120">
+<Panel id="challenge" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="80" height="120" rectAlignment="LowerRight" offsetXY="0 160">
     <TableLayout>
         <Row>
             <Cell dontUseTableCellBackground="true" color="#459f48"><Text id="awareness" fontStyle="Bold" tooltip="Awareness" tooltipPosition="Above"/></Cell>
             <Cell dontUseTableCellBackground="true" color="#e6be29"><Text id="spirit" fontStyle="Bold" tooltip="Spirit" tooltipPosition="Above"/></Cell>
         </Row>
         <Row>
-            <Cell dontUseTableCellBackground="true" color="#ba2c28"><Text id="fitness" fontStyle="Bold" tooltip="Fitness" tooltipPosition="Below"/></Cell>
-            <Cell dontUseTableCellBackground="true" color="#557abe"><Text id="focus" fontStyle="Bold" tooltip="Focus" tooltipPosition="Below"/></Cell>
+            <Cell dontUseTableCellBackground="true" color="#ba2c28"><Text id="fitness" fontStyle="Bold" tooltip="Fitness" tooltipPosition="Above"/></Cell>
+            <Cell dontUseTableCellBackground="true" color="#557abe"><Text id="focus" fontStyle="Bold" tooltip="Focus" tooltipPosition="Above"/></Cell>
         </Row>
         <Row>
             <Cell id="effectCell" columnSpan="2" dontUseTableCellBackground="true" color="#294574"><Text id="effect" fontStyle="Bold"/></Cell>
