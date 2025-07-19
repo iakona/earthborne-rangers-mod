@@ -23,7 +23,7 @@
     </HorizontalLayout>
 </Panel>
 
-<Panel id="challenge" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="80" height="120" rectAlignment="LowerRight" offsetXY="0 120">
+<Panel id="challenge" visibility="Invisible" allowDragging="true" returnToOriginalPositionWhenReleased="false" width="80" height="120" rectAlignment="LowerRight" offsetXY="0 160">
     <TableLayout>
         <Row>
             <Cell dontUseTableCellBackground="true" color="#459f48"><Text id="awareness" fontStyle="Bold" tooltip="Awareness" tooltipPosition="Above"/></Cell>
