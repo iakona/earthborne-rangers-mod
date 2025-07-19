@@ -553,6 +553,7 @@ function returnCard(_, _, obj)
         elseif attachment.hasTag("Path") then
             local snaps = sharedBoard.getSnapPoints()
             attachment.setPositionSmooth(sharedBoard.positionToWorld(snaps[pathDiscardIndex].position) + Vector(0, 0.5, 0))
+            attachment.setRotationSmooth(Vector(0, 180, 0))
         end
     end
 
