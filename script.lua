@@ -577,9 +577,17 @@ function returnCard(_, _, obj)
         pathBox.putObject(obj)
     elseif obj.hasTag("Mission") then
         local missionName = getMissionName(obj)
+        local subjectName = nil
+
+        -- Special handling for Lure/Confront mission
+        if missionName == "Confront" then
+            missionName = "Lure"
+        end
+
         for i = 1, 33 do
             local name = campaignTracker.UI.getAttribute("mission"..i, "text")
             if not completedMissions[i] and name:find(missionName) then
+                subjectName = name:match("%(([%a]+)%)")
                 local data = getObjectFromGUID("c46ac6").getData()
                 data.Text.Text = "────────────"
                 data.Text.fontSize = 24
@@ -592,6 +600,35 @@ function returnCard(_, _, obj)
             end
         end
         missionBox.putObject(obj)
+
+        if subjectName then
+            local subject = nil
+            for _, obj in pairs(getObjectsWithTag("Path")) do
+                if obj.type == "Deck" then
+                    for _, data in pairs(obj.getObjects()) do
+                        if data.name == subjectName then
+                            subject = obj.takeObject({guid = data.guid, position = self.getPosition() + Vector(2.5, 0, -7)})
+                            break
+                        end
+                    end
+                elseif obj.type == "Card" then
+                    if obj.getName() == subjectName then
+                        subject = obj
+                        break
+                    end
+                end
+                if subject then
+                    break
+                end
+            end
+            if subject then
+                if missionName == "Lure" then
+                    trash.putObject(subject)
+                elseif missionName == "Rescue" then
+                    returnCard(nil, nil, subject)
+                end
+            end
+        end
     else -- helping hand missions
         missionBox.putObject(obj)
     end
