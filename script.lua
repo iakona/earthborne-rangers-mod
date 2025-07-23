@@ -607,7 +607,7 @@ function returnCard(_, _, obj)
                 if obj.type == "Deck" then
                     for _, data in pairs(obj.getObjects()) do
                         if data.name == subjectName then
-                            subject = obj.takeObject({guid = data.guid, position = self.getPosition() + Vector(2.5, 0, -7)})
+                            subject = obj.takeObject({guid = data.guid})
                             break
                         end
                     end
@@ -823,10 +823,7 @@ function getInjuryCount(color)
     return currentInjury
 end
 
-function DrawPath(player)
-    drawPath(player.color)
-end
-function drawPath(color)
+function getPathDeck()
     local snaps = sharedBoard.getSnapPoints()
     local hits = Physics.cast({
         origin = sharedBoard.positionToWorld(snaps[pathIndex].position) + Vector(0, -0.01, 0),
@@ -843,6 +840,13 @@ function drawPath(color)
         end
     end
 
+    return pathDeck
+end
+function DrawPath(player)
+    drawPath(player.color)
+end
+function drawPath(color)
+    local pathDeck = getPathDeck()
     if not pathDeck then
         hits = Physics.cast({
             origin = sharedBoard.positionToWorld(snaps[pathDiscardIndex].position) + Vector(0, -0.01, 0),
@@ -1686,4 +1690,24 @@ function exportCampaign(_, _, _)
             end
         end
     end, 1)
+end
+
+function onTravelCallback()
+    -- Moments aren't usable in prologue
+    if campaign > 0 then
+        sharedBoard.UI.setAttribute("addMoments", "visibility", "")
+    end
+end
+
+function getRangersCount()
+    local rangerCount = 0
+    for color, _ in pairs(playerBoards) do
+        local aspect = getAspect(color)
+        -- Assume if aspect exists then someone is playing the ranger to account for multihanded play
+        if aspect then
+            rangerCount = rangerCount + 1
+        end
+    end
+
+    return rangerCount
 end

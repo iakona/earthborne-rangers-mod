@@ -1074,6 +1074,7 @@ function setupLocation(location, connection, skipLocationCard)
     end
 
     Wait.time(function()
+        Global.call("onTravelCallback")
         local hits = Physics.cast({
             origin = sharedBoard.positionToWorld(snaps[pathIndex].position) + Vector(0, -0.01, 0),
             direction = Vector(0, 1, 0),

@@ -268,3 +268,41 @@ function import(config, campaign)
 
     return campaign == config.campaign
 end
+
+function addMoments()
+    local pathDeck = Global.call("getPathDeck")
+    if not pathDeck then
+        broadcastToAll("Unable to find Path Deck", Color.Red)
+        return
+    end
+
+    local rangerCount = Global.call("getRangersCount")
+    if rangerCount < 1 then
+        broadcastToAll("Unable to find any Rangers", Color.Red)
+        return
+    end
+
+    -- TODO: handle arcology moments
+    local moments = nil
+    local pathBox = Global.getVar("pathBox")
+    for _, obj in pairs(pathBox.getObjects()) do
+        if obj.name == "Valley Moments Set" then
+            moments = pathBox.takeObject({guid = obj.guid})
+            break
+        end
+    end
+
+    if not moments then
+        broadcastToAll("Unable to find Moments Deck", Color.Red)
+        return
+    end
+
+    moments.shuffle()
+    for i=1,rangerCount do
+        pathDeck.putObject(moments.takeObject())
+    end
+    pathDeck.shuffle()
+    pathBox.putObject(moments)
+
+    self.UI.setAttribute("addMoments", "visibility", "Invisible")
+end
