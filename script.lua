@@ -540,6 +540,10 @@ function payCost(color, _, obj)
 end
 function setupTokens(_, _, obj)
     local count = obj.getVar("tokens")
+    if not count then
+        return
+    end
+
     if obj.getVar("tokensPerRanger") then
         count = count * getRangersCount()
     end
@@ -1697,6 +1701,10 @@ function exportCampaign(_, _, _)
 end
 
 function onTravelCallback()
+    -- Setup any tokens on the location card
+    local location = getObjectsWithTag("Location")[1]
+    Wait.condition(function() setupTokens(nil, nil, location) end, function() return not location.isSmoothMoving() end)
+
     -- Moments aren't usable in prologue
     if campaign > 0 then
         sharedBoard.UI.setAttribute("addMoments", "visibility", "")
