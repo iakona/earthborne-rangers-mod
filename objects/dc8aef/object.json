@@ -1,7 +1,7 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": 36.5013,
+    "posX": 36.5014,
     "posY": 0.9611,
     "posZ": -1.5,
     "rotX": 90.0,
@@ -39,7 +39,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "Text": {
-    "Text": "Right clicking on various components will\nhave extra functionality including:\n\nPath Cards\n-Return to Collection\n\nRanger Cards\n-Pay Costs\n-Setup Tokens\n\nCampaign Tracker\n-Export Campaign",
+    "Text": "Right clicking on various components will\nhave extra functionality including:\n\n-Complete Mission\n-Return to Collection\n-Pay Costs\n-Setup Tokens\n-Export Campaign (Campaign Tracker)\n\nUsing Q/E on energy tokens and counters\nwill subtract/add respectively\n\nChange description of Path card in order\nto change which Path Set it belongs to",
     "colorstate": {
       "r": 1.0,
       "g": 1.0,

@@ -1,7 +1,7 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": 36.5013,
+    "posX": 36.5014,
     "posY": 0.9611,
     "posZ": -0.5,
     "rotX": 90.0,
@@ -39,7 +39,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "Text": {
-    "Text": "Right Click",
+    "Text": "Misc",
     "colorstate": {
       "r": 1.0,
       "g": 1.0,
