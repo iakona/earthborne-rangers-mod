@@ -538,6 +538,9 @@ function payCost(color, _, obj)
         end
     end
 end
+function SetupTokens(params)
+    setupTokens(nil, nil, params.card)
+end
 function setupTokens(_, _, obj)
     local count = obj.getVar("tokens")
     if not count then
