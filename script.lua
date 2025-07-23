@@ -262,9 +262,6 @@ function addContextMenuItems(obj)
             obj.addContextMenuItem("Record Mission", recordMission, false)
             obj.addContextMenuItem("Complete Mission", returnCard, false)
         end
-        if obj.hasTag("Path") or obj.guid == "ebcf7e" or obj.guid == "f67a50" then
-            obj.addContextMenuItem("Return to Collection", returnCard, false)
-        end
         -- Description means it was picked by a player
         if obj.getDescription() == "" then
             if obj.hasTag("Aspect") then
@@ -292,6 +289,9 @@ function addContextMenuItems(obj)
             if not obj.hasTag("Ranger") or obj.getDescription() ~= "" then
                 obj.addContextMenuItem("Setup Tokens", setupTokens, false)
             end
+        end
+        if obj.hasTag("Path") or obj.guid == "ebcf7e" or obj.guid == "f67a50" then
+            obj.addContextMenuItem("Return to Collection", returnCard, false)
         end
         if #obj.getAttachments() > 0 then
             obj.addContextMenuItem("Remove Attachments", removeAttachment, false)
@@ -539,7 +539,11 @@ function payCost(color, _, obj)
     end
 end
 function setupTokens(_, _, obj)
-    for i = 1, obj.getVar("tokens") do
+    local count = obj.getVar("tokens")
+    if obj.getVar("tokensPerRanger") then
+        count = count * getRangersCount()
+    end
+    for i = 1, count do
         allPurposeBag.takeObject({position = obj.getPosition() + Vector(0, 0.5 * i, 0.35), rotation = Vector(0, 180, 0)})
     end
 end
