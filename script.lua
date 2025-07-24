@@ -614,17 +614,17 @@ function returnCard(_, _, obj)
 
         if subjectName then
             local subject = nil
-            for _, obj in pairs(getObjectsWithTag("Path")) do
-                if obj.type == "Deck" then
-                    for _, data in pairs(obj.getObjects()) do
+            for _, pathObj in pairs(getObjectsWithTag("Path")) do
+                if pathObj.type == "Deck" then
+                    for _, data in pairs(pathObj.getObjects()) do
                         if data.name == subjectName then
-                            subject = obj.takeObject({guid = data.guid})
+                            subject = pathObj.takeObject({guid = data.guid})
                             break
                         end
                     end
-                elseif obj.type == "Card" then
-                    if obj.getName() == subjectName then
-                        subject = obj
+                elseif pathObj.type == "Card" then
+                    if pathObj.getName() == subjectName then
+                        subject = pathObj
                         break
                     end
                 end
@@ -858,8 +858,9 @@ function DrawPath(player)
 end
 function drawPath(color)
     local pathDeck = getPathDeck()
+    local snaps = sharedBoard.getSnapPoints()
     if not pathDeck then
-        hits = Physics.cast({
+        local hits = Physics.cast({
             origin = sharedBoard.positionToWorld(snaps[pathDiscardIndex].position) + Vector(0, -0.01, 0),
             direction = Vector(0, 1, 0),
             type = 1,
