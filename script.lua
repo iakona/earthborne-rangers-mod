@@ -1585,7 +1585,7 @@ function exportCampaign(_, _, _)
 
     EndTheDay()
     Wait.time(function()
-        local data = {players = {}, trash = {}, tracker = {missions = {}}}
+        local data = {players = {}, trash = {}, tracker = {missions = {}, days = {}}}
 
         -- Exporting script state values
         data.currentLocation = currentLocation
@@ -1677,7 +1677,7 @@ function exportCampaign(_, _, _)
         data.tracker.connection = campaignTracker.UI.getAttribute("terrain", "text")
         for i = 1, 33 do
             local name = campaignTracker.UI.getAttribute("mission"..i, "text")
-            if name ~= " " then
+            if name and name ~= "" then
                 table.insert(data.tracker.missions, {name = name, day = campaignTracker.UI.getAttribute("mission"..i.."Day", "text")})
             end
         end
