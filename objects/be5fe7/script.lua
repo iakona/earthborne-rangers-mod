@@ -269,7 +269,7 @@ function import(config, campaign)
     return campaign == config.campaign
 end
 
---[[function addMoments()
+function addMoments()
     local pathDeck = Global.call("getPathDeck")
     if not pathDeck then
         broadcastToAll("Unable to find Path Deck", Color.Red)
@@ -305,4 +305,4 @@ end
     pathBox.putObject(moments)
 
     self.UI.setAttribute("addMoments", "visibility", "Invisible")
-end]]--
+end
