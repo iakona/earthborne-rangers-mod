@@ -105,6 +105,9 @@ function startCampaignHelper(campaign, location)
     campaignTracker.UI.setAttribute("terrain", "text", "Woods")
 
     Global.call("StartTheDay")
+    if campaign == 1 then
+        broadcastToAll("Don't forget to read campaign guide entry 1!", Color.White)
+    end
 end
 
 function startPrologue(_, _, _)
