@@ -269,9 +269,16 @@ function addContextMenuItems(obj)
             elseif obj.hasTag("Role") then
                 obj.addContextMenuItem("Pick Role", pickRole, false)
             elseif obj.hasTag("Ranger") then
-                obj.addContextMenuItem("Pick Ranger Card", pickRanger, false)
                 if obj.hasTag("Reward") then
-                    obj.addContextMenuItem("Unlock Reward", unlockReward, false)
+                    if unlockedRewards[obj.getName()] then
+                        obj.addContextMenuItem("Pick Ranger Card", pickRanger, false)
+                        obj.addContextMenuItem("Lock Reward", lockReward, false)
+                    else
+                        -- Locked rewards should not have a pick option
+                        obj.addContextMenuItem("Unlock Reward", unlockReward, false)
+                    end
+                else
+                    obj.addContextMenuItem("Pick Ranger Card", pickRanger, false)
                 end
             end
         else
@@ -466,6 +473,29 @@ function pickRanger(color, _, obj)
     end
     PickRanger({color = color, ranger = obj, quantity = quantity, offset = Vector(0, 0.5, 0)})
 end
+function lockReward(color, _, obj)
+    if not unlockedRewards[obj.getName()] then
+        Player[color].broadcast(obj.getName().." is not Unlocked", Color.White)
+    else
+        unlockedRewards[obj.getName()] = nil
+        for i = 1, 3 do
+            local rewardText = campaignTracker.UI.getAttribute("rewards"..i, "text")
+            if rewardText:find(obj.getName()) then
+                rewardText, count = rewardText:gsub("\n"..obj.getName(), "")
+                if count == 0 then
+                    -- This could be the first element in a list of many
+                    rewardText, count = rewardText:gsub(obj.getName().."\n", "")
+                    if count == 0 then
+                        -- This is the only element in the list
+                        rewardText = ""
+                    end
+                end
+                campaignTracker.UI.setAttribute("rewards"..i, "text", rewardText)
+            end
+        end
+        broadcastToAll("Locked reward "..obj.getName(), Color.White)
+    end
+end
 function UnlockReward(params)
     if unlockedRewards[params.reward] then
         Player[params.color].broadcast(params.reward.." is already Unlocked", Color.White)
@@ -477,7 +507,7 @@ function UnlockReward(params)
                 campaignTracker.UI.setAttribute("rewards"..i, "text", params.reward)
                 break
             else
-                local _, count = rewardText:gsub("\n", "")
+                local _, count = rewardText:gsub("\n", "\n")
                 if count < 10 or (i == 1 and count == 10) then
                     campaignTracker.UI.setAttribute("rewards"..i, "text", rewardText.."\n"..params.reward)
                     break
