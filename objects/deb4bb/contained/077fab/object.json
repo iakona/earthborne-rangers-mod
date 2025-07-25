@@ -1,9 +1,9 @@
 {
   "Name": "Deck",
   "Transform": {
-    "posX": 36.9486,
-    "posY": 2.4263,
-    "posZ": 31.4403,
+    "posX": -14.0,
+    "posY": 1.7517286539077759,
+    "posZ": 24.200000762939453,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.7132,
-    "g": 0.7132,
-    "b": 0.7132
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
   },
   "Tags": [
     "Path"
@@ -60,6 +60,15 @@
     2627
   ],
   "CustomDeck": {
+    "15": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/13819427055919369104/8880C22DC41D0F66E400C2FE49E5757BC6B8F306/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799074052/780A3D85AC2356930B95B87A12824F954C477092/",
+      "NumWidth": 7,
+      "NumHeight": 5,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    },
     "26": {
       "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14181150885864947/C3B7C340C37466562D212979326943B5FB9F3AF0/",
       "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799074052/780A3D85AC2356930B95B87A12824F954C477092/",

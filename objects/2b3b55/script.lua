@@ -59,7 +59,7 @@ function GrabMission(params)
             local rotation
             if subject.hasTag("Location") then
                 rotation = Vector(0, 90, 180)
-            elseif lowerMissionName == "helping hand" or lowerMissionName == "rescue" then
+            elseif lowerMissionName == "helping hand" or lowerMissionName == "rescue" or lowerMissionName == "confront" then
                 rotation = Vector(0, 180, 0)
             else
                 rotation = Vector(0, 180, 180)
@@ -74,8 +74,8 @@ function GrabMission(params)
         end
     end
 
-    -- Helping hand does not get recorded on campaign tracker
-    if lowerMissionName == "helping hand" then
+    -- Helping hand and Confront don't get recorded on campaign tracker
+    if lowerMissionName == "helping hand" or lowerMissionName == "confront" then
         params.record = false
     end
 

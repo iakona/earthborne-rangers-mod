@@ -262,9 +262,6 @@ function addContextMenuItems(obj)
             obj.addContextMenuItem("Record Mission", recordMission, false)
             obj.addContextMenuItem("Complete Mission", returnCard, false)
         end
-        if obj.hasTag("Path") or obj.guid == "ebcf7e" or obj.guid == "f67a50" then
-            obj.addContextMenuItem("Return to Collection", returnCard, false)
-        end
         -- Description means it was picked by a player
         if obj.getDescription() == "" then
             if obj.hasTag("Aspect") then
@@ -292,6 +289,9 @@ function addContextMenuItems(obj)
             if not obj.hasTag("Ranger") or obj.getDescription() ~= "" then
                 obj.addContextMenuItem("Setup Tokens", setupTokens, false)
             end
+        end
+        if obj.hasTag("Path") or obj.guid == "ebcf7e" or obj.guid == "f67a50" then
+            obj.addContextMenuItem("Return to Collection", returnCard, false)
         end
         if #obj.getAttachments() > 0 then
             obj.addContextMenuItem("Remove Attachments", removeAttachment, false)
@@ -538,8 +538,19 @@ function payCost(color, _, obj)
         end
     end
 end
+function SetupTokens(params)
+    setupTokens(nil, nil, params.card)
+end
 function setupTokens(_, _, obj)
-    for i = 1, obj.getVar("tokens") do
+    local count = obj.getVar("tokens")
+    if not count then
+        return
+    end
+
+    if obj.getVar("tokensPerRanger") then
+        count = count * getRangersCount()
+    end
+    for i = 1, count do
         allPurposeBag.takeObject({position = obj.getPosition() + Vector(0, 0.5 * i, 0.35), rotation = Vector(0, 180, 0)})
     end
 end
@@ -577,9 +588,17 @@ function returnCard(_, _, obj)
         pathBox.putObject(obj)
     elseif obj.hasTag("Mission") then
         local missionName = getMissionName(obj)
+        local subjectName = nil
+
+        -- Special handling for Lure/Confront mission
+        if missionName == "Confront" then
+            missionName = "Lure"
+        end
+
         for i = 1, 33 do
             local name = campaignTracker.UI.getAttribute("mission"..i, "text")
             if not completedMissions[i] and name:find(missionName) then
+                subjectName = name:match("%(([%a]+)%)")
                 local data = getObjectFromGUID("c46ac6").getData()
                 data.Text.Text = "────────────"
                 data.Text.fontSize = 24
@@ -592,6 +611,35 @@ function returnCard(_, _, obj)
             end
         end
         missionBox.putObject(obj)
+
+        if subjectName then
+            local subject = nil
+            for _, pathObj in pairs(getObjectsWithTag("Path")) do
+                if pathObj.type == "Deck" then
+                    for _, data in pairs(pathObj.getObjects()) do
+                        if data.name == subjectName then
+                            subject = pathObj.takeObject({guid = data.guid})
+                            break
+                        end
+                    end
+                elseif pathObj.type == "Card" then
+                    if pathObj.getName() == subjectName then
+                        subject = pathObj
+                        break
+                    end
+                end
+                if subject then
+                    break
+                end
+            end
+            if subject then
+                if missionName == "Lure" then
+                    trash.putObject(subject)
+                elseif missionName == "Rescue" then
+                    returnCard(nil, nil, subject)
+                end
+            end
+        end
     else -- helping hand missions
         missionBox.putObject(obj)
     end
@@ -786,10 +834,7 @@ function getInjuryCount(color)
     return currentInjury
 end
 
-function DrawPath(player)
-    drawPath(player.color)
-end
-function drawPath(color)
+function getPathDeck()
     local snaps = sharedBoard.getSnapPoints()
     local hits = Physics.cast({
         origin = sharedBoard.positionToWorld(snaps[pathIndex].position) + Vector(0, -0.01, 0),
@@ -806,8 +851,16 @@ function drawPath(color)
         end
     end
 
+    return pathDeck
+end
+function DrawPath(player)
+    drawPath(player.color)
+end
+function drawPath(color)
+    local pathDeck = getPathDeck()
+    local snaps = sharedBoard.getSnapPoints()
     if not pathDeck then
-        hits = Physics.cast({
+        local hits = Physics.cast({
             origin = sharedBoard.positionToWorld(snaps[pathDiscardIndex].position) + Vector(0, -0.01, 0),
             direction = Vector(0, 1, 0),
             type = 1,
@@ -1533,7 +1586,7 @@ function exportCampaign(_, _, _)
 
     EndTheDay()
     Wait.time(function()
-        local data = {players = {}, trash = {}, tracker = {missions = {}}}
+        local data = {players = {}, trash = {}, tracker = {missions = {}, days = {}}}
 
         -- Exporting script state values
         data.currentLocation = currentLocation
@@ -1625,7 +1678,7 @@ function exportCampaign(_, _, _)
         data.tracker.connection = campaignTracker.UI.getAttribute("terrain", "text")
         for i = 1, 33 do
             local name = campaignTracker.UI.getAttribute("mission"..i, "text")
-            if name ~= " " then
+            if name and name ~= "" then
                 table.insert(data.tracker.missions, {name = name, day = campaignTracker.UI.getAttribute("mission"..i.."Day", "text")})
             end
         end
@@ -1649,4 +1702,28 @@ function exportCampaign(_, _, _)
             end
         end
     end, 1)
+end
+
+function onTravelCallback()
+    -- Setup any tokens on the location card
+    local location = getObjectsWithTag("Location")[1]
+    Wait.condition(function() setupTokens(nil, nil, location) end, function() return not location.isSmoothMoving() end)
+
+    -- Moments aren't usable in prologue
+    --[[if campaign > 0 then
+        sharedBoard.UI.setAttribute("addMoments", "visibility", "")
+    end]]--
+end
+
+function getRangersCount()
+    local rangerCount = 0
+    for color, _ in pairs(playerBoards) do
+        local aspect = getAspect(color)
+        -- Assume if aspect exists then someone is playing the ranger to account for multihanded play
+        if aspect then
+            rangerCount = rangerCount + 1
+        end
+    end
+
+    return rangerCount
 end
