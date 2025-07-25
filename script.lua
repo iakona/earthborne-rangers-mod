@@ -259,8 +259,15 @@ function addContextMenuItems(obj)
     obj.clearContextMenu()
     if obj.type == "Card" then
         if obj.hasTag("Mission") then
-            obj.addContextMenuItem("Record Mission", recordMission, false)
-            obj.addContextMenuItem("Complete Mission", returnCard, false)
+            local missionIndex = getMissionIndex(obj)
+            if missionIndex == -1 or completedMissions[missionIndex] then
+                obj.addContextMenuItem("Record Mission", recordMission, false)
+            elseif missionIndex ~= -1 then
+                obj.addContextMenuItem("Complete Mission", returnCard, false)
+            end
+            if missionIndex ~= -1 then
+                obj.addContextMenuItem("Unrecord Mission", unrecordMission, false)
+            end
         end
         -- Description means it was picked by a player
         if obj.getDescription() == "" then
@@ -312,6 +319,36 @@ function addContextMenuItems(obj)
     end
 end
 
+function isActiveMission(mission)
+    local missionIndex = getMissionIndex(mission)
+    if missionIndex == -1 then
+        return false
+    end
+
+    return not completedMissions[missionIndex]
+end
+function getMissionIndex(mission)
+    local missionName = getMissionName(mission)
+    local subjectName = getSubjectName(mission)
+
+    -- Special handling for Lure/Confront mission
+    if missionName == "Confront" then
+        missionName = "Lure"
+    end
+
+    if subjectName then
+        missionName = missionName.." ("..subjectName..")"
+    end
+
+    for i = 33, 1, -1 do
+        local name = campaignTracker.UI.getAttribute("mission"..i, "text")
+        if name == missionName or name:find(missionName) then
+            return i
+        end
+    end
+
+    return -1
+end
 function getMissionName(mission)
     if mission.is_face_down then
         local back = mission.getVar("back")
@@ -324,6 +361,41 @@ function getMissionName(mission)
         return mission.getVar("front")
     end
 end
+function getSubjectName(mission)
+    local attachments = mission.getAttachments()
+    if #attachments == 0 then
+        return nil
+    end
+
+    for _, attachment in pairs(attachments) do
+        if hasTag(attachment, "Path") or hasTag(attachment, "Location") then
+            return attachment.name
+        end
+    end
+
+    return nil
+end
+function unrecordMission(_, _, obj)
+    local missionIndex = getMissionIndex(obj)
+
+    if missionIndex == -1 then
+        return
+    end
+
+    if campaignTracker then
+        campaignTracker.UI.setAttribute("mission"..missionIndex, "text", "")
+        campaignTracker.UI.setAttribute("mission"..missionIndex.."Day", "text", "")
+        for i=1,3 do
+            campaignTracker.UI.setAttribute("mission"..missionIndex.."-"..i, "text", "")
+        end
+        missionProgress[missionIndex] = 0
+        completedMissions[missionIndex] = nil
+        local strikethrough = getObjectFromGUID("mission"..missionIndex)
+        if strikethrough then
+            strikethrough.destruct()
+        end
+    end
+end
 function RecordMission(params)
     if campaignTracker then
         for i = 1, 33 do
@@ -331,7 +403,7 @@ function RecordMission(params)
             if name == "" then
                 local missionName = getMissionName(params.mission)
                 if params.subject then
-                    missionName = missionName.." ("..params.subject.getName()..")"
+                    missionName = missionName.." ("..params.subject..")"
                 end
                 campaignTracker.UI.setAttribute("mission"..i, "text", missionName)
                 campaignTracker.UI.setAttribute("mission"..i.."Day", "text", tostring(currentDay))
@@ -341,7 +413,8 @@ function RecordMission(params)
     end
 end
 function recordMission(_, _, obj)
-    RecordMission({mission = obj})
+    local subjectName = getSubjectName(obj)
+    RecordMission({mission = obj, subject = subjectName})
 end
 function removeFromGame(_, _, obj)
     for _, attachment in pairs(obj.removeAttachments()) do
@@ -595,6 +668,8 @@ function returnCard(_, _, obj)
             local snaps = sharedBoard.getSnapPoints()
             attachment.setPositionSmooth(sharedBoard.positionToWorld(snaps[pathDiscardIndex].position) + Vector(0, 0.5, 0))
             attachment.setRotationSmooth(Vector(0, 180, 0))
+        elseif attachment.hasTag("Location") then
+            locationBox.putObject(attachment)
         end
     end
 
@@ -617,27 +692,21 @@ function returnCard(_, _, obj)
         end
         pathBox.putObject(obj)
     elseif obj.hasTag("Mission") then
-        local missionName = getMissionName(obj)
         local subjectName = nil
-
-        -- Special handling for Lure/Confront mission
-        if missionName == "Confront" then
-            missionName = "Lure"
-        end
-
-        for i = 1, 33 do
-            local name = campaignTracker.UI.getAttribute("mission"..i, "text")
-            if not completedMissions[i] and name:find(missionName) then
+        local missionIndex = getMissionIndex(obj)
+        if missionIndex ~= -1 then
+            if not completedMissions[missionIndex] then
+                local name = campaignTracker.UI.getAttribute("mission"..missionIndex, "text")
                 subjectName = name:match("%(([%a]+)%)")
                 local data = getObjectFromGUID("c46ac6").getData()
+                data.GUID = "mission"..missionIndex
                 data.Text.Text = "────────────"
                 data.Text.fontSize = 24
-                local xOffset, yOffset = campaignTracker.UI.getAttribute("mission"..i, "offsetXY"):match("([^ ]+) ([^ ]+)")
+                local xOffset, yOffset = campaignTracker.UI.getAttribute("mission"..missionIndex, "offsetXY"):match("([^ ]+) ([^ ]+)")
                 xOffset = tonumber(xOffset) / 7 * 0.14 / 2.04
                 yOffset = tonumber(yOffset) / 7 * 0.14 / 2.04
                 spawnObjectData({data = data, position = campaignTracker.getPosition() + Vector(xOffset, 0.1, yOffset + 0.15)})
-                completedMissions[i] = true
-                break
+                completedMissions[missionIndex] = true
             end
         end
         missionBox.putObject(obj)

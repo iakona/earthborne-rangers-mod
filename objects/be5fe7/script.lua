@@ -250,6 +250,7 @@ function import(config, campaign)
         textData.Text.fontSize = 24
         for i, complete in pairs(config.completedMissions) do
             if complete then
+                textData.GUID = "mission"..i
                 local xOffset, yOffset = campaignTracker.UI.getAttribute("mission"..i, "offsetXY"):match("([^ ]+) ([^ ]+)")
                 xOffset = tonumber(xOffset) / 7 * 0.14 / 2.04
                 yOffset = tonumber(yOffset) / 7 * 0.14 / 2.04
