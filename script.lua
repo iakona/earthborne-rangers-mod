@@ -1267,7 +1267,10 @@ function StartTheDay(_)
     end
 
     if #getObjectsWithTag("Location") > 0 then
-        campaignMap.call("Travel", {location = currentLocation, connection = campaignTracker.UI.getAttribute("terrain", "text"), skipLocationCard = true})
+        -- If path deck exists we don't need to call travel
+        if not getPathDeck() then
+            campaignMap.call("Travel", {location = currentLocation, connection = campaignTracker.UI.getAttribute("terrain", "text"), skipLocationCard = true})
+        end
     else
         -- Wait 1 frame in case we are importing campaign
         Wait.frames(function()
