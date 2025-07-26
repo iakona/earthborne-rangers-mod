@@ -554,7 +554,8 @@ function lockReward(color, _, obj)
         for i = 1, 3 do
             local rewardText = campaignTracker.UI.getAttribute("rewards"..i, "text")
             if rewardText:find(obj.getName()) then
-                local rewardText, count = rewardText:gsub("\n"..obj.getName(), "")
+                local count
+                rewardText, count = rewardText:gsub("\n"..obj.getName(), "")
                 if count == 0 then
                     -- This could be the first element in a list of many
                     rewardText, count = rewardText:gsub(obj.getName().."\n", "")
