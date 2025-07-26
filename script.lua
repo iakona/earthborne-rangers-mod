@@ -554,8 +554,7 @@ function lockReward(color, _, obj)
         for i = 1, 3 do
             local rewardText = campaignTracker.UI.getAttribute("rewards"..i, "text")
             if rewardText:find(obj.getName()) then
-                local count = nil
-                rewardText, count = rewardText:gsub("\n"..obj.getName(), "")
+                local rewardText, count = rewardText:gsub("\n"..obj.getName(), "")
                 if count == 0 then
                     -- This could be the first element in a list of many
                     rewardText, count = rewardText:gsub(obj.getName().."\n", "")
@@ -693,7 +692,6 @@ function returnCard(_, _, obj)
         end
         pathBox.putObject(obj)
     elseif obj.hasTag("Mission") then
-        local missionName = nil
         local subjectName = nil
         local missionIndex, missionName = getMissionIndex(obj)
         if missionIndex ~= -1 then
