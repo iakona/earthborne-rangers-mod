@@ -259,7 +259,7 @@ function addContextMenuItems(obj)
     obj.clearContextMenu()
     if obj.type == "Card" then
         if obj.hasTag("Mission") then
-            local missionIndex = getMissionIndex(obj)
+            local missionIndex, _ = getMissionIndex(obj)
             if missionIndex == -1 or completedMissions[missionIndex] then
                 obj.addContextMenuItem("Record Mission", recordMission, false)
             elseif missionIndex ~= -1 then
@@ -320,7 +320,7 @@ function addContextMenuItems(obj)
 end
 
 function isActiveMission(mission)
-    local missionIndex = getMissionIndex(mission)
+    local missionIndex, _ = getMissionIndex(mission)
     if missionIndex == -1 then
         return false
     end
@@ -343,11 +343,11 @@ function getMissionIndex(mission)
     for i = 33, 1, -1 do
         local name = campaignTracker.UI.getAttribute("mission"..i, "text")
         if name == missionName or name:find(missionName) then
-            return i
+            return i, missionName
         end
     end
 
-    return -1
+    return -1, missionName
 end
 function getMissionName(mission)
     if mission.is_face_down then
@@ -376,7 +376,7 @@ function getSubjectName(mission)
     return nil
 end
 function unrecordMission(_, _, obj)
-    local missionIndex = getMissionIndex(obj)
+    local missionIndex, _ = getMissionIndex(obj)
 
     if missionIndex == -1 then
         return
@@ -554,6 +554,7 @@ function lockReward(color, _, obj)
         for i = 1, 3 do
             local rewardText = campaignTracker.UI.getAttribute("rewards"..i, "text")
             if rewardText:find(obj.getName()) then
+                local count = nil
                 rewardText, count = rewardText:gsub("\n"..obj.getName(), "")
                 if count == 0 then
                     -- This could be the first element in a list of many
@@ -692,8 +693,9 @@ function returnCard(_, _, obj)
         end
         pathBox.putObject(obj)
     elseif obj.hasTag("Mission") then
+        local missionName = nil
         local subjectName = nil
-        local missionIndex = getMissionIndex(obj)
+        local missionIndex, missionName = getMissionIndex(obj)
         if missionIndex ~= -1 then
             if not completedMissions[missionIndex] then
                 local name = campaignTracker.UI.getAttribute("mission"..missionIndex, "text")
