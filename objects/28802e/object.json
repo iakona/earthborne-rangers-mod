@@ -2,14 +2,14 @@
   "Name": "Custom_Token",
   "Transform": {
     "posX": -25.25,
-    "posY": 1.16,
+    "posY": 1.1600004434585571,
     "posZ": -21.5,
-    "rotX": 0.0,
-    "rotY": 180.0,
-    "rotZ": 0.0,
-    "scaleX": 0.3209,
+    "rotX": 2.434241878290777e-06,
+    "rotY": 179.99996948242188,
+    "rotZ": -9.207037692249287e-06,
+    "scaleX": 0.32089999318122864,
     "scaleY": 1.0,
-    "scaleZ": 0.3209
+    "scaleZ": 0.32089999318122864
   },
   "Nickname": "Ranger Token",
   "Description": "",
@@ -47,7 +47,7 @@
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomToken": {
-      "Thickness": 0.2,
+      "Thickness": 0.20000000298023224,
       "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": false

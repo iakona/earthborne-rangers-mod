@@ -2,9 +2,9 @@
   "Name": "Infinite_Bag",
   "Transform": {
     "posX": 14.0,
-    "posY": 0.943,
-    "posZ": -5.55,
-    "rotX": 0.0,
+    "posY": 0.9430000185966492,
+    "posZ": -5.550000190734863,
+    "rotX": -0.0,
     "rotY": 0.0,
     "rotZ": 0.0,
     "scaleX": 1.0,
@@ -20,8 +20,8 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.615,
-    "g": 0.9387,
+    "r": 0.6150000095367432,
+    "g": 0.9387000203132629,
     "b": 1.0
   },
   "LayoutGroupSortIndex": 0,
