@@ -429,6 +429,13 @@ function removeFromGame(_, _, obj)
 
     trash.putObject(obj)
 end
+function RemoveBoxTags(obj)
+    obj.removeTag("misc_memory_object")
+    obj.removeTag("perso_memory_object")
+    obj.removeTag("back_memory_object")
+    obj.removeTag("spec_memory_object")
+    obj.removeTag("rewa_memory_object")
+end
 function PickAspect(params)
     pickAspect(params.color, nil, params.aspect)
 end
@@ -450,6 +457,7 @@ function pickAspect(color, _, obj)
     newAspect.setPosition(playerBoard.positionToWorld(snaps[aspectIndex].position) + Vector(0, 0.01, 0))
     newAspect.setDescription(color)
     newAspect.setLock(true)
+    RemoveBoxTags(newAspect)
 end
 function PickRole(params)
     if not playerBoards[params.color] then
@@ -476,6 +484,7 @@ function PickRole(params)
     newRole.setPosition(playerBoard.positionToWorld(snaps[roleIndex].position) + Vector(0, 0.01, 0))
     newRole.setLock(false)
     newRole.setDescription(params.color)
+    RemoveBoxTags(newRole)
 end
 function pickRole(color, _, obj)
     PickRole({color = color, role = obj})
@@ -525,13 +534,7 @@ function PickRanger(params)
         newRanger.setRotation(Vector(0, 180, 180))
         newRanger.setLock(false)
         newRanger.setDescription(params.color)
-
-        -- Remove the box tags since those aren't needed for ranger cards
-        newRanger.removeTag("misc_memory_object")
-        newRanger.removeTag("perso_memory_object")
-        newRanger.removeTag("back_memory_object")
-        newRanger.removeTag("spec_memory_object")
-        newRanger.removeTag("rewa_memory_object")
+        RemoveBoxTags(newRanger)
 
         if params.sideboard then
             sideboards[params.color].putObject(newRanger)
