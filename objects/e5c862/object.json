@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Model_Bag",
   "Transform": {
-    "posX": -11.6,
-    "posY": 1.4091,
+    "posX": -11.600000381469727,
+    "posY": 1.40910005569458,
     "posZ": -23.0,
-    "rotX": 0.0,
-    "rotY": 270.0001,
+    "rotX": -0.0,
+    "rotY": 270.00006103515625,
     "rotZ": 0.0,
-    "scaleX": 0.35,
-    "scaleY": 0.35,
-    "scaleZ": 0.35
+    "scaleX": 0.3499999940395355,
+    "scaleY": 0.3499999940395355,
+    "scaleZ": 0.3499999940395355
   },
   "Nickname": "Sideboard Cards",
   "Description": "",
@@ -21,7 +21,7 @@
   },
   "ColorDiffuse": {
     "r": 1.0,
-    "g": 0.9922,
+    "g": 0.9921999573707581,
     "b": 1.0
   },
   "LayoutGroupSortIndex": 0,
@@ -55,8 +55,8 @@
     "Order": 0
   },
   "PhysicsMaterial": {
-    "StaticFriction": 0.6,
-    "DynamicFriction": 0.6,
+    "StaticFriction": 0.6000000238418579,
+    "DynamicFriction": 0.6000000238418579,
     "Bounciness": 0.0,
     "FrictionCombine": 0,
     "BounceCombine": 0

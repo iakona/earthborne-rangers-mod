@@ -101,7 +101,11 @@ function GrabMission(params)
                     end
                 end
                 if params.record then
-                    Global.call("RecordMission", {mission = mission, subject = subject.getName()})
+                    local subjectName = nil
+                    if subject then
+                        subjectName = subject.getName()
+                    end
+                    Global.call("RecordMission", {mission = mission, subject = subjectName})
                 end
             end})
             found = true
