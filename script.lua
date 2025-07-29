@@ -552,20 +552,22 @@ function lockReward(color, _, obj)
         Player[color].broadcast(obj.getName().." is not Unlocked", Color.White)
     else
         unlockedRewards[obj.getName()] = nil
-        for i = 1, 3 do
-            local rewardText = campaignTracker.UI.getAttribute("rewards"..i, "text")
-            if rewardText:find(obj.getName()) then
-                local count
-                rewardText, count = rewardText:gsub("\n"..obj.getName(), "")
-                if count == 0 then
-                    -- This could be the first element in a list of many
-                    rewardText, count = rewardText:gsub(obj.getName().."\n", "")
+        if campaignTracker then
+            for i = 1, 3 do
+                local rewardText = campaignTracker.UI.getAttribute("rewards"..i, "text")
+                if rewardText:find(obj.getName()) then
+                    local count
+                    rewardText, count = rewardText:gsub("\n"..obj.getName(), "")
                     if count == 0 then
-                        -- This is the only element in the list
-                        rewardText = ""
+                        -- This could be the first element in a list of many
+                        rewardText, count = rewardText:gsub(obj.getName().."\n", "")
+                        if count == 0 then
+                            -- This is the only element in the list
+                            rewardText = ""
+                        end
                     end
+                    campaignTracker.UI.setAttribute("rewards"..i, "text", rewardText)
                 end
-                campaignTracker.UI.setAttribute("rewards"..i, "text", rewardText)
             end
         end
         broadcastToAll("Locked reward "..obj.getName(), Color.White)
@@ -576,16 +578,18 @@ function UnlockReward(params)
         Player[params.color].broadcast(params.reward.." is already Unlocked", Color.White)
     else
         unlockedRewards[params.reward] = true
-        for i = 1, 3 do
-            local rewardText = campaignTracker.UI.getAttribute("rewards"..i, "text")
-            if rewardText == "" then
-                campaignTracker.UI.setAttribute("rewards"..i, "text", params.reward)
-                break
-            else
-                local _, count = rewardText:gsub("\n", "\n")
-                if count < 10 or (i == 1 and count == 10) then
-                    campaignTracker.UI.setAttribute("rewards"..i, "text", rewardText.."\n"..params.reward)
+        if campaignTracker then
+            for i = 1, 3 do
+                local rewardText = campaignTracker.UI.getAttribute("rewards"..i, "text")
+                if rewardText == "" then
+                    campaignTracker.UI.setAttribute("rewards"..i, "text", params.reward)
                     break
+                else
+                    local _, count = rewardText:gsub("\n", "\n")
+                    if count < 10 or (i == 1 and count == 10) then
+                        campaignTracker.UI.setAttribute("rewards"..i, "text", rewardText.."\n"..params.reward)
+                        break
+                    end
                 end
             end
         end
