@@ -126,10 +126,6 @@ function onLoad(data)
         sideboards[key] = getObjectFromGUID(guid)
     end
 
-    addAllContextMenuItems()
-    -- We need a timer checking this because we can't dynamically detect when new attachments are made
-    Wait.time(addAllContextMenuItems, 2, -1)
-
     if data ~= "" then
         local jsonData = JSON.decode(data)
         currentLocation = jsonData.currentLocation
@@ -192,6 +188,11 @@ function onLoad(data)
             setupTokens(nil, nil, hoveredObject)
         end
     end)
+
+    -- This should come last
+    addAllContextMenuItems()
+    -- We need a timer checking this because we can't dynamically detect when new attachments are made
+    Wait.time(addAllContextMenuItems, 2, -1)
 end
 function onObjectSpawn(obj)
     addContextMenuItems(obj)
