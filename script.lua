@@ -525,6 +525,14 @@ function PickRanger(params)
         newRanger.setRotation(Vector(0, 180, 180))
         newRanger.setLock(false)
         newRanger.setDescription(params.color)
+
+        -- Remove the box tags since those aren't needed for ranger cards
+        newRanger.removeTag("misc_memory_object")
+        newRanger.removeTag("perso_memory_object")
+        newRanger.removeTag("back_memory_object")
+        newRanger.removeTag("spec_memory_object")
+        newRanger.removeTag("rewa_memory_object")
+
         if params.sideboard then
             sideboards[params.color].putObject(newRanger)
         end
@@ -1637,6 +1645,22 @@ function EndTheDay(_)
                 break
             end
         end
+
+        -- Remove extraneous tags when resetting the deck since the Reward one can cause visibility issues
+        Wait.frames(function()
+            hits = Physics.cast({
+                origin = playerBoard.positionToWorld(snaps[deckIndex].position) + Vector(0, -0.01, 0),
+                direction = Vector(0, 1, 0),
+                type = 1,
+                max_distance = 1,
+            })
+            for _, hit in pairs(hits) do
+                if hit.hit_object.hasTag("Ranger") then
+                    hit.hit_object.setTags({"Ranger"})
+                    break
+                end
+            end
+        end, 10)
     end
 
     -- Clean up remaining path cards
