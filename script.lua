@@ -1555,7 +1555,7 @@ function ClearPlayArea(_)
                 end
             end
         end, 2)
-    end, 4)
+    end, 6)
 
     for color, rangerToken in pairs(rangerTokens) do
         local playerBoard = playerBoards[color]
@@ -1710,7 +1710,7 @@ function EndTheDay(_)
 
     Wait.frames(function()
         returnPathCards(pathSets)
-    end, 4)
+    end, 6)
 end
 
 function exportCampaign(_, _, _)
