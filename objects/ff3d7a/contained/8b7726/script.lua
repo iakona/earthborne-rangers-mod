@@ -696,7 +696,7 @@ function TheCypressCitadel(_, _, alt_click)
     travel(location, connections, alt_click)
 end
 function TheFrowningGate(_, _, alt_click)
-    local location = "The Concordant Ziggurats"
+    local location = "The Frowning Gate"
     local connections = {
         ["Bowl of the Sun"] = "Mountain Pass",
         ["Michael's Bog"] = "Swamp",
