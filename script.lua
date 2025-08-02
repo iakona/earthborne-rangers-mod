@@ -429,6 +429,13 @@ function removeFromGame(_, _, obj)
 
     trash.putObject(obj)
 end
+function RemoveBoxTags(obj)
+    obj.removeTag("misc_memory_object")
+    obj.removeTag("perso_memory_object")
+    obj.removeTag("back_memory_object")
+    obj.removeTag("spec_memory_object")
+    obj.removeTag("rewa_memory_object")
+end
 function PickAspect(params)
     pickAspect(params.color, nil, params.aspect)
 end
@@ -450,6 +457,7 @@ function pickAspect(color, _, obj)
     newAspect.setPosition(playerBoard.positionToWorld(snaps[aspectIndex].position) + Vector(0, 0.01, 0))
     newAspect.setDescription(color)
     newAspect.setLock(true)
+    RemoveBoxTags(newAspect)
 end
 function PickRole(params)
     if not playerBoards[params.color] then
@@ -476,6 +484,7 @@ function PickRole(params)
     newRole.setPosition(playerBoard.positionToWorld(snaps[roleIndex].position) + Vector(0, 0.01, 0))
     newRole.setLock(false)
     newRole.setDescription(params.color)
+    RemoveBoxTags(newRole)
 end
 function pickRole(color, _, obj)
     PickRole({color = color, role = obj})
@@ -525,6 +534,8 @@ function PickRanger(params)
         newRanger.setRotation(Vector(0, 180, 180))
         newRanger.setLock(false)
         newRanger.setDescription(params.color)
+        RemoveBoxTags(newRanger)
+
         if params.sideboard then
             sideboards[params.color].putObject(newRanger)
         end
@@ -552,20 +563,22 @@ function lockReward(color, _, obj)
         Player[color].broadcast(obj.getName().." is not Unlocked", Color.White)
     else
         unlockedRewards[obj.getName()] = nil
-        for i = 1, 3 do
-            local rewardText = campaignTracker.UI.getAttribute("rewards"..i, "text")
-            if rewardText:find(obj.getName()) then
-                local count
-                rewardText, count = rewardText:gsub("\n"..obj.getName(), "")
-                if count == 0 then
-                    -- This could be the first element in a list of many
-                    rewardText, count = rewardText:gsub(obj.getName().."\n", "")
+        if campaignTracker then
+            for i = 1, 3 do
+                local rewardText = campaignTracker.UI.getAttribute("rewards"..i, "text")
+                if rewardText:find(obj.getName()) then
+                    local count
+                    rewardText, count = rewardText:gsub("\n"..obj.getName(), "")
                     if count == 0 then
-                        -- This is the only element in the list
-                        rewardText = ""
+                        -- This could be the first element in a list of many
+                        rewardText, count = rewardText:gsub(obj.getName().."\n", "")
+                        if count == 0 then
+                            -- This is the only element in the list
+                            rewardText = ""
+                        end
                     end
+                    campaignTracker.UI.setAttribute("rewards"..i, "text", rewardText)
                 end
-                campaignTracker.UI.setAttribute("rewards"..i, "text", rewardText)
             end
         end
         broadcastToAll("Locked reward "..obj.getName(), Color.White)
@@ -576,16 +589,18 @@ function UnlockReward(params)
         Player[params.color].broadcast(params.reward.." is already Unlocked", Color.White)
     else
         unlockedRewards[params.reward] = true
-        for i = 1, 3 do
-            local rewardText = campaignTracker.UI.getAttribute("rewards"..i, "text")
-            if rewardText == "" then
-                campaignTracker.UI.setAttribute("rewards"..i, "text", params.reward)
-                break
-            else
-                local _, count = rewardText:gsub("\n", "\n")
-                if count < 10 or (i == 1 and count == 10) then
-                    campaignTracker.UI.setAttribute("rewards"..i, "text", rewardText.."\n"..params.reward)
+        if campaignTracker then
+            for i = 1, 3 do
+                local rewardText = campaignTracker.UI.getAttribute("rewards"..i, "text")
+                if rewardText == "" then
+                    campaignTracker.UI.setAttribute("rewards"..i, "text", params.reward)
                     break
+                else
+                    local _, count = rewardText:gsub("\n", "\n")
+                    if count < 10 or (i == 1 and count == 10) then
+                        campaignTracker.UI.setAttribute("rewards"..i, "text", rewardText.."\n"..params.reward)
+                        break
+                    end
                 end
             end
         end
@@ -1540,7 +1555,7 @@ function ClearPlayArea(_)
                 end
             end
         end, 2)
-    end, 4)
+    end, 6)
 
     for color, rangerToken in pairs(rangerTokens) do
         local playerBoard = playerBoards[color]
@@ -1633,6 +1648,22 @@ function EndTheDay(_)
                 break
             end
         end
+
+        -- Remove extraneous tags when resetting the deck since the Reward one can cause visibility issues
+        Wait.frames(function()
+            hits = Physics.cast({
+                origin = playerBoard.positionToWorld(snaps[deckIndex].position) + Vector(0, -0.01, 0),
+                direction = Vector(0, 1, 0),
+                type = 1,
+                max_distance = 1,
+            })
+            for _, hit in pairs(hits) do
+                if hit.hit_object.hasTag("Ranger") then
+                    hit.hit_object.setTags({"Ranger"})
+                    break
+                end
+            end
+        end, 10)
     end
 
     -- Clean up remaining path cards
@@ -1679,7 +1710,7 @@ function EndTheDay(_)
 
     Wait.frames(function()
         returnPathCards(pathSets)
-    end, 4)
+    end, 6)
 end
 
 function exportCampaign(_, _, _)
