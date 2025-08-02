@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -3.2867000102996826,
-    "posY": 3.1373000144958496,
-    "posZ": 22.043899536132812,
-    "rotX": 1.2649999856948853,
-    "rotY": 179.97869873046875,
-    "rotZ": 0.593500018119812,
-    "scaleX": 0.38119998574256897,
+    "posX": -3.2867,
+    "posY": 3.1373,
+    "posZ": 22.0439,
+    "rotX": 1.265,
+    "rotY": 179.9787,
+    "rotZ": 0.5935,
+    "scaleX": 0.3812,
     "scaleY": 1.0,
-    "scaleZ": 0.38119998574256897
+    "scaleZ": 0.3812
   },
   "Nickname": "Focus Token",
   "Description": "You can use Q/E keys to -/+ the amount in the stack",
@@ -48,7 +48,7 @@
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomToken": {
-      "Thickness": 0.20000000298023224,
+      "Thickness": 0.2,
       "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": true

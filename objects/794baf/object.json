@@ -1,15 +1,15 @@
 {
   "Name": "ScriptingTrigger",
   "Transform": {
-    "posX": 25.040000915527344,
-    "posY": 3.5111000537872314,
-    "posZ": 10.920000076293945,
-    "rotX": -0.0,
+    "posX": 25.04,
+    "posY": 3.5111,
+    "posZ": 10.92,
+    "rotX": 0.0,
     "rotY": 0.0,
     "rotZ": 0.0,
-    "scaleX": 36.57270050048828,
-    "scaleY": 5.099999904632568,
-    "scaleZ": 13.853599548339844
+    "scaleX": 36.5727,
+    "scaleY": 5.1,
+    "scaleZ": 13.8536
   },
   "Nickname": "",
   "Description": "",
@@ -23,7 +23,7 @@
     "r": 1.0,
     "g": 1.0,
     "b": 1.0,
-    "a": 0.5098039507865906
+    "a": 0.5098
   },
   "Tags": [
     "back_memory_object",
