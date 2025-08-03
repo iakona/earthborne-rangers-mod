@@ -2,14 +2,14 @@
   "Name": "Custom_PDF",
   "Transform": {
     "posX": -49.25,
-    "posY": 0.9612,
-    "posZ": -1.4,
-    "rotX": 0.0,
+    "posY": 0.9611999988555908,
+    "posZ": -1.399999976158142,
+    "rotX": -0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
-    "scaleX": 4.3757,
+    "scaleX": 4.375699996948242,
     "scaleY": 1.0,
-    "scaleZ": 4.3757
+    "scaleZ": 4.375699996948242
   },
   "Nickname": "Rulebook",
   "Description": "",

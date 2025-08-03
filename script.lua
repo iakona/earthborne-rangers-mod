@@ -455,8 +455,9 @@ function pickAspect(color, _, obj)
 
     local newAspect = obj.clone()
     newAspect.setPosition(playerBoard.positionToWorld(snaps[aspectIndex].position) + Vector(0, 0.01, 0))
-    newAspect.setDescription(color)
+    newAspect.setRotation(Vector(0, 180, 0))
     newAspect.setLock(true)
+    newAspect.setDescription(color)
     RemoveBoxTags(newAspect)
 end
 function PickRole(params)
@@ -482,6 +483,7 @@ function PickRole(params)
         end
     end
     newRole.setPosition(playerBoard.positionToWorld(snaps[roleIndex].position) + Vector(0, 0.01, 0))
+    newRole.setRotation(Vector(0, 180, 0))
     newRole.setLock(false)
     newRole.setDescription(params.color)
     RemoveBoxTags(newRole)

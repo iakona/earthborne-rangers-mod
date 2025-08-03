@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": -8.4063,
-    "posY": 3.136,
-    "posZ": 21.9855,
-    "rotX": 1.3127,
-    "rotY": 179.9878,
-    "rotZ": 0.3035,
-    "scaleX": 0.3812,
+    "posX": -8.406299591064453,
+    "posY": 3.135999917984009,
+    "posZ": 21.98550033569336,
+    "rotX": 1.3127000331878662,
+    "rotY": 179.98779296875,
+    "rotZ": 0.3034999966621399,
+    "scaleX": 0.38119998574256897,
     "scaleY": 1.0,
-    "scaleZ": 0.3812
+    "scaleZ": 0.38119998574256897
   },
   "Nickname": "Spirit Token",
   "Description": "You can use Q/E keys to -/+ the amount in the stack",
@@ -48,7 +48,7 @@
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomToken": {
-      "Thickness": 0.2,
+      "Thickness": 0.20000000298023224,
       "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": true

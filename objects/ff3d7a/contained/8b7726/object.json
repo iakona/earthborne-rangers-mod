@@ -1,15 +1,15 @@
 {
   "Name": "Custom_Tile",
   "Transform": {
-    "posX": 42.5346,
-    "posY": 2.3131,
-    "posZ": 42.1462,
-    "rotX": 0.0,
-    "rotY": 179.9848,
-    "rotZ": 0.0,
-    "scaleX": 16.1692,
+    "posX": 42.5345573425293,
+    "posY": 2.3130555152893066,
+    "posZ": 42.14619827270508,
+    "rotX": 1.5475157510991266e-07,
+    "rotY": 179.98483276367188,
+    "rotZ": -7.128578261017537e-08,
+    "scaleX": 16.169200897216797,
     "scaleY": 1.0,
-    "scaleZ": 16.1692
+    "scaleZ": 16.169200897216797
   },
   "Nickname": "Valley Map",
   "Description": "",
@@ -48,7 +48,7 @@
     "WidthScale": 0.0,
     "CustomTile": {
       "Type": 0,
-      "Thickness": 0.1,
+      "Thickness": 0.10000000149011612,
       "Stackable": false,
       "Stretch": true
     }

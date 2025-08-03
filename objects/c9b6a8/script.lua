@@ -237,7 +237,7 @@ function ImportDeck(params)
             local aspectScript = "awareness = "..params.awa.."\nfitness = "..params.fit.."\nfocus = "..params.foc.."\nspirit = "..params.spi
             for _, data in pairs(aspects) do
                 if data.lua_script == aspectScript then
-                    local aspect = aspectBox.takeObject({guid = data.guid})
+                    local aspect = aspectBox.takeObject({guid = data.guid, rotation = Vector(0, 180, 0)})
                     Global.call("PickAspect", {color = params.color, aspect = aspect})
                     Wait.frames(function() aspectBox.putObject(aspect) end, 3)
                     found = true
@@ -268,7 +268,7 @@ function ImportDeck(params)
             local roleScript = "id = \""..params.role.."\""
             for _, data in pairs(roles) do
                 if data.lua_script == roleScript then
-                    local role = roleBox.takeObject({guid = data.guid})
+                    local role = roleBox.takeObject({guid = data.guid, rotation = Vector(0, 180, 0)})
                     Global.call("PickRole", {color = params.color, role = role, useUncommonWisdom = params.useUncommonWisdom})
                     Wait.frames(function() roleBox.putObject(role) end, 3)
                     found = true
@@ -328,7 +328,7 @@ function ImportDeck(params)
                         local rangerScript = "id = \""..id.."\""
                         for _, data in pairs(rangers) do
                             if data.lua_script:find(rangerScript) then
-                                local ranger = box.takeObject({guid = data.guid})
+                                local ranger = box.takeObject({guid = data.guid, rotation = Vector(0, 180, 0)})
                                 -- Need to store off count so the delayed PickRanger call will still have the proper value
                                 local cachedCount = count
                                 -- Adding delay here so we can query for info about the card
@@ -370,7 +370,7 @@ function ImportDeck(params)
                                 local rangerScript = "id = \""..id.."\""
                                 for _, data in pairs(rangers) do
                                     if data.lua_script:find(rangerScript) then
-                                        local ranger = box.takeObject({guid = data.guid})
+                                        local ranger = box.takeObject({guid = data.guid, rotation = Vector(0, 180, 0)})
                                         -- Adding delay here so we can query for info about the card
                                         Wait.frames(function() Global.call("PickRanger", {color = params.color, ranger = ranger, useUncommonWisdom = params.useUncommonWisdom, quantity = quantity, sideboard = true}) end, 1)
                                         Wait.frames(function() box.putObject(ranger) end, 3)

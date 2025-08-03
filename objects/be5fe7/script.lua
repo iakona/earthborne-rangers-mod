@@ -197,8 +197,9 @@ function import(config, campaign)
     end
     Global.setTable("unlockedRewards", config.unlockedRewards)
 
-    for _, player in pairs(config.players) do
-        recallBoxes[6].call("ImportDeck", player)
+    for i, player in pairs(config.players) do
+        -- We need to add a wait after each deck import to make sure all of the cards have been returned
+        Wait.frames(function() recallBoxes[6].call("ImportDeck", player) end, (i - 1) * 3)
     end
 
     local pathBox = Global.getVar("pathBox")
@@ -236,10 +237,16 @@ function import(config, campaign)
         for i, mission in pairs(config.tracker.missions) do
             campaignTracker.UI.setAttribute("mission"..i, "text", mission.name)
             campaignTracker.UI.setAttribute("mission"..i.."Day", "text", mission.day)
-            if not config.completedMissions[i] then
-                missionBox.call("GrabMission", {mission = mission.name})
-            end
         end
+
+        -- Wait before pulling out mission cards to make sure UI has fully updated
+        Wait.frames(function()
+            for i, mission in pairs(config.tracker.missions) do
+                if not config.completedMissions[i] then
+                    missionBox.call("GrabMission", {mission = mission.name})
+                end
+            end
+        end, 1)
 
         for _, day in pairs(config.tracker.days) do
             campaignTracker.UI.setAttribute("day"..day.day, "text", day.name)
@@ -248,18 +255,22 @@ function import(config, campaign)
         campaignTracker.call("setDay")
         campaignTracker.call("setProgress")
 
-        local textData = getObjectFromGUID("c46ac6").getData()
-        textData.Text.Text = "────────────"
-        textData.Text.fontSize = 24
-        for i, complete in pairs(config.completedMissions) do
-            if complete then
-                textData.GUID = "mission"..i
-                local xOffset, yOffset = campaignTracker.UI.getAttribute("mission"..i, "offsetXY"):match("([^ ]+) ([^ ]+)")
-                xOffset = tonumber(xOffset) / 7 * 0.14 / 2.04
-                yOffset = tonumber(yOffset) / 7 * 0.14 / 2.04
-                spawnObjectData({data = textData, position = campaignTracker.getPosition() + Vector(xOffset, 0.1, yOffset + 0.15)})
+        -- Wait for campaign tracker to stop moving before adding mark throughs
+        Wait.condition(function()
+            local textData = getObjectFromGUID("c46ac6").getData()
+            textData.Text.Text = "────────────"
+            textData.Text.fontSize = 24
+            for i, complete in pairs(config.completedMissions) do
+                if complete then
+                    textData.GUID = "mission"..i
+                    local xOffset, yOffset = campaignTracker.UI.getAttribute("mission"..i, "offsetXY"):match("([^ ]+) ([^ ]+)")
+                    xOffset = tonumber(xOffset) / 7 * 0.14 / 2.04
+                    yOffset = tonumber(yOffset) / 7 * 0.14 / 2.04
+                    spawnObjectData({data = textData, position = campaignTracker.getPosition() + Vector(xOffset, 0.1, yOffset + 0.15)})
+                end
             end
-        end
+        end, function() return not campaignTracker.isSmoothMoving() end)
+
         for _, mission in pairs(config.completedMissions) do
             Global.call("CompleteMission", {missionName = mission, import = true})
         end
