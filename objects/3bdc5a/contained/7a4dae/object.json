@@ -1,12 +1,12 @@
 {
   "Name": "Custom_Token",
   "Transform": {
-    "posX": 5.088600158691406,
-    "posY": 3.134200096130371,
-    "posZ": 21.863800048828125,
-    "rotX": 1.3937000036239624,
-    "rotY": 180.00030517578125,
-    "rotZ": 359.9143981933594,
+    "posX": 5.0886,
+    "posY": 3.1342,
+    "posZ": 21.8638,
+    "rotX": 1.3937,
+    "rotY": 180.0003,
+    "rotZ": 359.9144,
     "scaleX": 0.25,
     "scaleY": 1.0,
     "scaleZ": 0.25
@@ -48,7 +48,7 @@
     "ImageScalar": 1.0,
     "WidthScale": 0.0,
     "CustomToken": {
-      "Thickness": 0.20000000298023224,
+      "Thickness": 0.2,
       "MergeDistancePixels": 15.0,
       "StandUp": false,
       "Stackable": true
