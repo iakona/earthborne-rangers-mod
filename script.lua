@@ -518,7 +518,7 @@ function PickRanger(params)
 
     for _ = 1, params.quantity do
         local newRanger = params.ranger.clone()
-        if newRanger.getStates() ~= nil then
+        if newRanger.getStates() ~= nil and params.useUncommonWisdom ~= nil then
             -- Any not passed in taboo sets are assumed to be disabled
             if params.useUncommonWisdom and newRanger.getStateId() == 1 then
                 newRanger = newRanger.setState(2)

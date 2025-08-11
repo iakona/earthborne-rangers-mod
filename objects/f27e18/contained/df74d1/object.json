@@ -1,18 +1,18 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": 28.656,
-    "posY": 0.9736,
-    "posZ": 16.05,
+    "posX": 28.6560001373291,
+    "posY": 0.9735999703407288,
+    "posZ": 16.049999237060547,
     "rotX": 0.0,
-    "rotY": 179.9963,
+    "rotY": 179.99630737304688,
     "rotZ": 0.0,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
   "Nickname": "Infusion Canteen",
-  "Description": "If you lock the energy token you place on this card, it won't disappear during \"Refresh\"",
+  "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
     "x": 0.0,
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.7132,
-    "g": 0.7132,
-    "b": 0.7132
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
   },
   "Tags": [
     "Gear",

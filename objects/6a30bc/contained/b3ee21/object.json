@@ -2,8 +2,8 @@
   "Name": "Card",
   "Transform": {
     "posX": 28.5,
-    "posY": 0.9736,
-    "posZ": 16.05,
+    "posY": 0.9735999703407288,
+    "posZ": 16.049999237060547,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
@@ -11,7 +11,7 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "Kinectic Glass Sculpture",
+  "Nickname": "Kinetic Glass Sculpture",
   "Description": "",
   "GMNotes": "",
   "AltLookAngle": {
@@ -20,9 +20,9 @@
     "z": 0.0
   },
   "ColorDiffuse": {
-    "r": 0.7132,
-    "g": 0.7132,
-    "b": 0.7132
+    "r": 0.7131999731063843,
+    "g": 0.7131999731063843,
+    "b": 0.7131999731063843
   },
   "Tags": [
     "Gear",
