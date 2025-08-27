@@ -314,6 +314,9 @@ function addContextMenuItems(obj)
         if obj.hasTag("Prebuilt") then
             obj.addContextMenuItem("Pick Deck", pickDeck, false)
         end
+        if obj.hasTag("Weather") and obj.getName() ~= currentWeather then
+            obj.addContextMenuItem("Set as Weather", setWeather, false)
+        end
     end
     if campaignTracker and obj.guid == campaignTracker.guid then
         campaignTracker.addContextMenuItem("Export Campaign", exportCampaign, false)
@@ -788,6 +791,36 @@ function ClearPlayerDeck(params)
     if deck then
         deck.destruct()
     end
+end
+function setWeather(_, _, obj)
+    SetWeather({weather = obj})
+end
+function SetWeather(params)
+    for _, weatherCard in pairs(getObjectsWithTag("Weather")) do
+        if weatherCard ~= params.weather then
+            local hits = Physics.cast({
+                origin = weatherCard.getPosition() + Vector(0, 0.1, 0),
+                direction = Vector(0, 1, 0),
+                type = 3,
+                size = weatherCard.getBounds().size,
+            })
+            for _, hit in pairs(hits) do
+                if hit.hit_object.hasTag("Counter") then
+                    hit.hit_object.destruct()
+                end
+            end
+            weatherCard.setRotation(Vector(0, 180, 0))
+            weatherBox.putObject(weatherCard)
+        end
+    end
+
+    currentWeather = params.weather.getName()
+
+    local snaps = sharedBoard.getSnapPoints()
+    params.weather.setPositionSmooth(sharedBoard.positionToWorld(snaps[weatherIndex].position), false, true)
+    params.weather.setRotation(Vector(0, 180, 0))
+
+    Wait.condition(function() setupTokens(nil, nil, params.weather) end, function() return not params.weather.isSmoothMoving() end)
 end
 
 function onScriptingButtonDown(index, color)
@@ -1279,8 +1312,7 @@ function StartTheDay(_)
 
     for _, obj in pairs(weatherBox.getObjects()) do
         if obj.name == currentWeather then
-            local weather = weatherBox.takeObject({guid = obj.guid, position = sharedBoard.positionToWorld(snaps[weatherIndex].position), rotation = Vector(0, 180, 0)})
-            Wait.condition(function() setupTokens(nil, nil, weather) end, function() return not weather.isSmoothMoving() end)
+            SetWeather({weather = weatherBox.takeObject({guid = obj.guid})})
             break
         end
     end
