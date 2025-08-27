@@ -6,6 +6,7 @@
   "currentWeather": "A Perfect Day",
   "hardWeather": false,
   "missionProgress": [],
+  "qe": true,
   "showRewards": false,
   "unlockedRewards": [],
   "useUncommonWisdom": true

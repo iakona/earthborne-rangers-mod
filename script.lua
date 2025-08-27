@@ -78,6 +78,7 @@ currentDay = 1
 hardWeather = false
 showRewards = false
 useUncommonWisdom = false
+qe = true
 campaign = 0
 unlockedRewards = {}
 missionProgress = {}
@@ -91,6 +92,7 @@ function onSave()
         hardWeather = hardWeather,
         showRewards = showRewards,
         useUncommonWisdom = useUncommonWisdom,
+        qe = qe,
         campaign = campaign,
         unlockedRewards = unlockedRewards,
         missionProgress = missionProgress,
@@ -134,6 +136,7 @@ function onLoad(data)
         hardWeather = jsonData.hardWeather
         showRewards = jsonData.showRewards
         useUncommonWisdom = jsonData.useUncommonWisdom
+        qe = jsonData.qe
         campaign = jsonData.campaign
         unlockedRewards = jsonData.unlockedRewards
         missionProgress = jsonData.missionProgress
@@ -207,6 +210,47 @@ function onObjectDestroy(obj)
         getObjectFromGUID("c46ac6").setValue(" ")
         Wait.stop(preyTimer)
     end
+end
+function tryObjectRotate(obj, spin, flip, _, old_spin, old_flip)
+    if obj.hasTag("Label") and qe then
+        if flip - old_flip ~= 0 then
+            return true
+        end
+
+        local spinDiff = spin - old_spin
+        if spinDiff > 180 then
+            spinDiff = spinDiff - 360
+        elseif spinDiff < -180 then
+            spinDiff = spinDiff + 360
+        end
+
+        local quantity = obj.getQuantity()
+        if quantity == -1 then
+            quantity = 1
+        end
+
+        if spinDiff < 0 then
+            if quantity == 1 then
+                obj.destruct()
+            else
+                obj.takeObject().destruct()
+            end
+        else
+            local bagName = obj.getVar("bagName")
+            local bag
+            if obj.hasTag("Energy") then
+                bag = energyBags[bagName]
+            else
+                bag = self.getVar(bagName)
+            end
+            local newObj = bag.takeObject({position = obj.getPosition() + Vector(0, -1, 0), rotation = obj.getRotation(), smooth = false})
+            Wait.frames(function() obj.putObject(newObj) end, 1)
+        end
+
+        return false
+    end
+
+    return true
 end
 
 function countPreyPresence()
@@ -1764,6 +1808,7 @@ function exportCampaign(_, _, _)
         data.hardWeather = hardWeather
         data.showRewards = showRewards
         data.useUncommonWisdom = useUncommonWisdom
+        data.qe = qe
         data.campaign = campaign
         data.unlockedRewards = unlockedRewards
         data.missionProgress = missionProgress
