@@ -1,0 +1,3 @@
+<Panel position="420 -220 -5">
+    <Toggle id="toggleQE" onValueChanged="toggleQE" width="1200" toggleWidth="50" toggleHeight="50" textColor="#FFFFFF" fontSize="50" verticalOverflow="Overflow" text=" Q/E Increment for Tokens" tooltipFontSize="45" tooltipPosition="Below" tooltipOffset="50"/>
+</Panel>

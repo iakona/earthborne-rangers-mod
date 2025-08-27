@@ -182,7 +182,9 @@ function import(config, campaign)
     local hardWeather = Global.getVar("hardWeather")
     local showRewards = Global.getVar("showRewards")
     local useUncommonWisdom = Global.getVar("useUncommonWisdom")
+    local qe = Global.getVar("qe")
     local recallBoxes = Global.getTable("recallBoxes")
+    local allPurposeBag = Global.getVar("allPurposeBag")
     local campaignTracker = Global.getVar("campaignTracker")
 
     Global.setVar("campaign", config.campaign)
@@ -194,6 +196,9 @@ function import(config, campaign)
     end
     if useUncommonWisdom ~= config.useUncommonWisdom then
         recallBoxes[3].call("toggleUncommonWisdom")
+    end
+    if qe ~= config.qe then
+        allPurposeBag.call("toggleQE")
     end
     Global.setTable("unlockedRewards", config.unlockedRewards)
 
