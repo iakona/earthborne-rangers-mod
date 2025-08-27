@@ -241,7 +241,7 @@ function tryObjectRotate(obj, spin, flip, _, old_spin, old_flip)
             if obj.hasTag("Energy") then
                 bag = energyBags[bagName]
             else
-                bag = self.getVar(bagName)
+                bag = Global.getVar(bagName)
             end
             local newObj = bag.takeObject({position = obj.getPosition() + Vector(0, -1, 0), rotation = obj.getRotation(), smooth = false})
             Wait.frames(function() obj.putObject(newObj) end, 1)
