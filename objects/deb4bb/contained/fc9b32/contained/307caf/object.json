@@ -1,18 +1,18 @@
 {
   "Name": "Card",
   "Transform": {
-    "posX": -21.191,
-    "posY": 1.1901,
-    "posZ": -6.941,
-    "rotX": -0.0002,
-    "rotY": 180.0091,
-    "rotZ": -0.0006,
+    "posX": -1.7327,
+    "posY": 2.4136,
+    "posZ": 5.9949,
+    "rotX": 0.0676,
+    "rotY": 180.5567,
+    "rotZ": 359.7304,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "Reclaimer Polyp",
-  "Description": "General",
+  "Nickname": "Lightning Strike!",
+  "Description": "Valley Moments",
   "GMNotes": "",
   "AltLookAngle": {
     "x": 0.0,
@@ -41,13 +41,13 @@
   "GridProjection": false,
   "HideWhenFaceDown": true,
   "Hands": false,
-  "CardID": 3135,
+  "CardID": 1503,
   "SidewaysCard": false,
   "CustomDeck": {
-    "26": {
-      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14181150885864947/C3B7C340C37466562D212979326943B5FB9F3AF0/",
+    "15": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/13819427055919369104/8880C22DC41D0F66E400C2FE49E5757BC6B8F306/",
       "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799074052/780A3D85AC2356930B95B87A12824F954C477092/",
-      "NumWidth": 9,
+      "NumWidth": 7,
       "NumHeight": 5,
       "BackIsHidden": false,
       "UniqueBack": false,

@@ -1924,9 +1924,9 @@ function onTravelCallback()
     Wait.condition(function() setupTokens(nil, nil, location) end, function() return not location.isSmoothMoving() end)
 
     -- Moments aren't usable in prologue
-    --[[if campaign > 0 then
+    if campaign > 0 then
         sharedBoard.UI.setAttribute("addMoments", "visibility", "")
-    end]]--
+    end
 end
 
 function getRangersCount()

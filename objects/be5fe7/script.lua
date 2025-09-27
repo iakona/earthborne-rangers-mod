@@ -318,7 +318,7 @@ function addMoments()
     end
 
     moments.shuffle()
-    for _=1,rangerCount do
+    for _ = 1,rangerCount do
         pathDeck.putObject(moments.takeObject())
     end
     pathDeck.shuffle()
