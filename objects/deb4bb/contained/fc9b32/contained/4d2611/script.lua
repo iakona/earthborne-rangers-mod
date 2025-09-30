@@ -33,7 +33,7 @@ function fordRiver()
         if obj.name == "River Set" then
             local riverSet = pathBox.takeObject({guid = obj.guid})
             riverSet.shuffle()
-            for i=1,rangerCount do
+            for _=1,rangerCount do
                 pathDeck.putObject(riverSet.takeObject())
             end
             pathBox.putObject(riverSet)

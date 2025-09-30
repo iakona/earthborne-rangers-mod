@@ -19,7 +19,6 @@ function electricFog()
     local weatherBox = Global.getVar("weatherBox")
     for _,obj in pairs(weatherBox.getObjects()) do
         if obj.name == "Electric Fog" then
-            electricFogGuid = obj.guid
             Global.call("SetWeather", {weather = weatherBox.takeObject({guid = obj.guid})})
             self.clearButtons()
             return
