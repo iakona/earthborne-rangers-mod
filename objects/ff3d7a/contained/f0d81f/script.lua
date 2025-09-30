@@ -74,6 +74,12 @@ function Day(_, alt_click, id)
         elseif index == 3 then
             broadcastToAll("Don't forget to read campaign guide entry 1.04!", Color.White)
         end
+        for i = 1, 3 do
+            local text = self.UI.getAttribute("day"..(index + 1).."-"..i, "text")
+            if text and text ~= " " then
+                broadcastToAll("Don't forget to read campaign guide entry "..text.."!", Color.White)
+            end
+        end
     elseif index == 30 then
         broadcastToAll("Day 30 is finished, the Campaign is now completed", Color.White)
     end

@@ -340,6 +340,9 @@ function addContextMenuItems(obj)
                 end
                 if obj.hasTag("Malady") then
                     obj.addContextMenuItem("Return to Collection", returnCard, false)
+                elseif campaign > 0 then
+                    -- Once campaign has started, alterations can be made on ranger deck
+                    obj.addContextMenuItem("Return to Collection", returnCard, false)
                 end
             end
         end
@@ -739,7 +742,7 @@ function returnCard(_, _, obj)
         end
     end
 
-    if obj.hasTag("Malady") then
+    if obj.hasTag("Ranger") then
         obj.destruct()
     elseif obj.hasTag("Path") then
         local set = obj.getDescription().." Set"
@@ -1924,9 +1927,9 @@ function onTravelCallback()
     Wait.condition(function() setupTokens(nil, nil, location) end, function() return not location.isSmoothMoving() end)
 
     -- Moments aren't usable in prologue
-    --[[if campaign > 0 then
+    if campaign > 0 then
         sharedBoard.UI.setAttribute("addMoments", "visibility", "")
-    end]]--
+    end
 end
 
 function getRangersCount()

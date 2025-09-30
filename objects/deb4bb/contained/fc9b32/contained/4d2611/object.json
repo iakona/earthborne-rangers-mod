@@ -1,0 +1,57 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": -1.704927921295166,
+    "posY": 2.1494626998901367,
+    "posZ": 5.967852592468262,
+    "rotX": 359.88006591796875,
+    "rotY": 180.0471649169922,
+    "rotZ": 0.04549078643321991,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Washed Out!",
+  "Description": "Valley Moments",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132352590560913,
+    "g": 0.7132352590560913,
+    "b": 0.7132352590560913
+  },
+  "Tags": [
+    "Path"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": false,
+  "CardID": 1515,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "15": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/13819427055919369104/8880C22DC41D0F66E400C2FE49E5757BC6B8F306/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799074052/780A3D85AC2356930B95B87A12824F954C477092/",
+      "NumWidth": 7,
+      "NumHeight": 5,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 18.034080505371094,
+    "posY": 3.3250536918640137,
+    "posZ": 24.69732666015625,
+    "rotX": -7.930336778372293e-07,
+    "rotY": 180.02540588378906,
+    "rotZ": -4.128270666114986e-05,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Ranger Report",
+  "Description": "Valley Moments",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132352590560913,
+    "g": 0.7132352590560913,
+    "b": 0.7132352590560913
+  },
+  "Tags": [
+    "Path"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": false,
+  "CardID": 1514,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "15": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/13819427055919369104/8880C22DC41D0F66E400C2FE49E5757BC6B8F306/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/14171969799074052/780A3D85AC2356930B95B87A12824F954C477092/",
+      "NumWidth": 7,
+      "NumHeight": 5,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}
