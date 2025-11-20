@@ -1476,7 +1476,11 @@ function returnPathCards(pathSets)
             deck.setName(set.." Set")
         else
             deck = group(cards)[1]
-            deck.setName(set.." Set")
+            if not deck then
+                deck = cards[1]
+            else
+                deck.setName(set.." Set")
+            end
         end
         pathBox.putObject(deck)
     end
