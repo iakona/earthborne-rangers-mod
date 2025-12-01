@@ -870,18 +870,6 @@ function SetWeather(params)
     Wait.condition(function() setupTokens(nil, nil, params.weather) end, function() return not params.weather.isSmoothMoving() end)
 end
 
-function onScriptingButtonDown(index, color)
-    local position = Player[color].getPointerPosition() + Vector(0, 2, 0)
-    local rotation = Vector(0, 180, 0)
-    if index == 1 then
-        harmBag.takeObject({position = position, rotation = rotation})
-    elseif index == 2 then
-        progressBag.takeObject({position = position, rotation = rotation})
-    elseif index == 3 then
-        allPurposeBag.takeObject({position = position, rotation = rotation})
-    end
-end
-
 function onObjectEnterContainer(container, object)
     if container.hasTag("Label") and object.hasTag("Label") then
         makeLabel(container)
