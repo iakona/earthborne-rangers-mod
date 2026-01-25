@@ -1,7 +1,7 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": 26.5062,
+    "posX": 26.5063,
     "posY": 0.9612,
     "posZ": -0.5,
     "rotX": 90.0,
@@ -40,6 +40,7 @@
   "Hands": false,
   "Text": {
     "Text": "Attachment",
+    "OwnerSteamID": 0,
     "colorstate": {
       "r": 1.0,
       "g": 1.0,

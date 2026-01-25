@@ -1,7 +1,7 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": -7.4983,
+    "posX": -7.4982,
     "posY": 1.06,
     "posZ": -2.9801,
     "rotX": 90.0,
@@ -40,6 +40,7 @@
   "Hands": false,
   "Text": {
     "Text": " ",
+    "OwnerSteamID": 0,
     "colorstate": {
       "r": 1.0,
       "g": 1.0,

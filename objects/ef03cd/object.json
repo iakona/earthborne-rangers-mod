@@ -40,6 +40,7 @@
   "Hands": false,
   "Text": {
     "Text": "Left Click on Location to Travel using connection\nRight Click on Location and then Terrain to ignore connections",
+    "OwnerSteamID": 0,
     "colorstate": {
       "r": 1.0,
       "g": 1.0,
