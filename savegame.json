@@ -1,7 +1,7 @@
 {
   "SaveName": "Earthborne Rangers [By iakona]",
-  "EpochTime": 1769361851,
-  "Date": "1/25/2026 11:24:11 AM",
+  "EpochTime": 1769371144,
+  "Date": "1/25/2026 1:59:04 PM",
   "VersionNumber": "v14.1.8",
   "GameMode": "Earthborne Rangers [By iakona]",
   "GameType": "Game",
@@ -327,12 +327,12 @@
         {
           "x": 43.376,
           "y": 0.9711,
-          "z": 3.9516
+          "z": 1.45
         },
         {
           "x": -3.2647,
           "y": 0.9711,
-          "z": 3.9516
+          "z": 1.45
         }
       ],
       "color": {

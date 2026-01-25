@@ -289,13 +289,13 @@ function ImportDeck(params)
             local maladyBox = Global.getVar("maladiesBox")
             local function getBox(id)
                 local num = tonumber(id)
-                if num >= 1093 and num <= 1108 then
+                if (num >= 1093 and num <= 1108) or (num >= 3069 and num <= 3076) then
                     return personalityBox
-                elseif num >= 1001 and num <= 1036 then
+                elseif (num >= 1001 and num <= 1036) or (num >= 3001 and num <= 3016) or (num >= 3056 and num <= 3068) then
                     return backgroundBox
-                elseif num >= 1037 and num <= 1092 then
+                elseif (num >= 1037 and num <= 1092) or (num >= 3017 and num <= 3055) then
                     return specialtyBox
-                elseif num >= 1201 and num <= 1231 then
+                elseif (num >= 1201 and num <= 1231) or (num >= 3201 and num <= 3205) then
                     return rewardBox
                 elseif num == 1240 then
                     return maladyBox

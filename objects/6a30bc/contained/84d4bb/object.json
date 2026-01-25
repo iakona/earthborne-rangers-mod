@@ -3,7 +3,7 @@
   "Transform": {
     "posX": 16.0203,
     "posY": 0.9736,
-    "posZ": 12.8618,
+    "posZ": 12.86,
     "rotX": 0.0,
     "rotY": 180.0,
     "rotZ": 0.0,
@@ -44,10 +44,10 @@
   "GridProjection": false,
   "HideWhenFaceDown": true,
   "Hands": true,
-  "CardID": 1500,
+  "CardID": 11100,
   "SidewaysCard": false,
   "CustomDeck": {
-    "15": {
+    "111": {
       "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/13656138852857089559/C91D89ADA77BD74E2C24BD80A37F7469C35B8511/",
       "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/1825653570817822821/B97D125EB1517A2F29991B01C1A4D090EEFA58D4/",
       "NumWidth": 1,
