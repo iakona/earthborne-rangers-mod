@@ -1,0 +1,120 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 29.774906158447266,
+    "posY": 2.326202392578125,
+    "posZ": 11.64460277557373,
+    "rotX": 9.451967741824774e-08,
+    "rotY": 179.98361206054688,
+    "rotZ": 180.0,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Go Forth, Fearless Ranger",
+  "Description": "Introduction",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132352590560913,
+    "g": 0.7132352590560913,
+    "b": 0.7132352590560913
+  },
+  "Tags": [
+    "Aspiration"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": true,
+  "CardID": 1608,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "16": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/9366529684930790156/F42577E9F2E9F4E45DC4B80CAEFAA43948A48BD3/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/16693703089412157701/19EEFABEACA5DDD5615EFC13BBDBAAC99996DBF5/",
+      "NumWidth": 4,
+      "NumHeight": 3,
+      "BackIsHidden": false,
+      "UniqueBack": true,
+      "Type": 0
+    }
+  },
+  "States": {
+    "2": {
+      "GUID": "a5920b",
+      "Name": "Card",
+      "Transform": {
+        "posX": -26.54131317138672,
+        "posY": 0.9736049771308899,
+        "posZ": 0.18297038972377777,
+        "rotX": -7.60175453251577e-07,
+        "rotY": 180.00071716308594,
+        "rotZ": 180.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "Go Forth, Fearless Ranger",
+      "Description": "Aspiration Complete",
+      "GMNotes": "",
+      "AltLookAngle": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "ColorDiffuse": {
+        "r": 0.7132352590560913,
+        "g": 0.7132352590560913,
+        "b": 0.7132352590560913
+      },
+      "Tags": [
+        "Aspiration"
+      ],
+      "LayoutGroupSortIndex": 0,
+      "Value": 0,
+      "Locked": false,
+      "Grid": false,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": true,
+      "CardID": 1609,
+      "SidewaysCard": false,
+      "CustomDeck": {
+        "16": {
+          "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/9366529684930790156/F42577E9F2E9F4E45DC4B80CAEFAA43948A48BD3/",
+          "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/16693703089412157701/19EEFABEACA5DDD5615EFC13BBDBAAC99996DBF5/",
+          "NumWidth": 4,
+          "NumHeight": 3,
+          "BackIsHidden": false,
+          "UniqueBack": true,
+          "Type": 0
+        }
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": ""
+    }
+  }
+}

@@ -1,9 +1,9 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": 41.009063720703125,
-    "posY": 0.9611819386482239,
-    "posZ": 20.300363540649414,
+    "posX": 41.00953674316406,
+    "posY": 0.9611718654632568,
+    "posZ": 20.300424575805664,
     "rotX": 90.0,
     "rotY": 0.0,
     "rotZ": 0.0,
@@ -40,6 +40,7 @@
   "Hands": false,
   "Text": {
     "Text": "Pre-made\nRangers",
+    "OwnerSteamID": 0,
     "colorstate": {
       "r": 1.0,
       "g": 1.0,

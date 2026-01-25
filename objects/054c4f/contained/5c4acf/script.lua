@@ -1,0 +1,4 @@
+awareness = 2
+fitness = 1
+focus = 1
+spirit = 4

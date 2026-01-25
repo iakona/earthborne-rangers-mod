@@ -1,0 +1,59 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 27.399999618530273,
+    "posY": 0.973604679107666,
+    "posZ": 16.049999237060547,
+    "rotX": 3.623556565912622e-08,
+    "rotY": 179.97891235351562,
+    "rotZ": -5.768389321758605e-09,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Power Cell Recycler",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132352590560913,
+    "g": 0.7132352590560913,
+    "b": 0.7132352590560913
+  },
+  "Tags": [
+    "Gear",
+    "Ranger",
+    "spec_memory_object"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 1624,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "16": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/12386523665112786816/D4E1D431178D752CDD437B736E41F0E900377F26/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/1825653570817822821/B97D125EB1517A2F29991B01C1A4D090EEFA58D4/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

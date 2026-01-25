@@ -1,0 +1,58 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 25.45276641845703,
+    "posY": 0.9736053943634033,
+    "posZ": 4.12861967086792,
+    "rotX": -4.742442882843534e-08,
+    "rotY": 179.9754638671875,
+    "rotZ": -2.094614188763444e-07,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Cartographer of Many Worlds",
+  "Description": "This character is a spirit speaker. These are gifted counselors and sages, adept at communing with the world of the unseen. You will be playing and interacting with spirit beings to aid and affect the game state. This is a good character for the more advanced player at the table.\r\n\r\n1 AWA – 2 SPI – 2FIT – 3 FOC",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132352590560913,
+    "g": 0.7132352590560913,
+    "b": 0.7132352590560913
+  },
+  "Tags": [
+    "Prebuilt",
+    "spec_memory_object"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 1637,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "16": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/12386523665112786816/D4E1D431178D752CDD437B736E41F0E900377F26/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/1825653570817822821/B97D125EB1517A2F29991B01C1A4D090EEFA58D4/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

@@ -1,8 +1,8 @@
 {
   "SaveName": "Earthborne Rangers [By iakona]",
-  "EpochTime": 1763662050,
-  "Date": "11/20/2025 12:07:30 PM",
-  "VersionNumber": "v13.3",
+  "EpochTime": 1769376565,
+  "Date": "1/25/2026 3:29:25 PM",
+  "VersionNumber": "v14.1.8",
   "GameMode": "Earthborne Rangers [By iakona]",
   "GameType": "Game",
   "GameComplexity": "Medium Complexity",
@@ -296,6 +296,14 @@
       {
         "displayed": "Entry",
         "normalized": "entry"
+      },
+      {
+        "displayed": "Aspiration",
+        "normalized": "aspiration"
+      },
+      {
+        "displayed": "Spirit Speaker",
+        "normalized": "spirit_speaker"
       }
     ]
   },
@@ -312,9 +320,10 @@
   "DecalPallet": [],
   "VectorLines": [
     {
+      "OwnerSteamID": 0,
       "points3": [
         {
-          "x": 6.735300064086914,
+          "x": -3.264699935913086,
           "y": 0.9710999727249146,
           "z": 17.89590072631836
         },
@@ -326,12 +335,12 @@
         {
           "x": 43.375999450683594,
           "y": 0.9710999727249146,
-          "z": 3.9516000747680664
+          "z": 1.4500000476837158
         },
         {
-          "x": 6.735300064086914,
+          "x": -3.264699935913086,
           "y": 0.9710999727249146,
-          "z": 3.9516000747680664
+          "z": 1.4500000476837158
         }
       ],
       "color": {

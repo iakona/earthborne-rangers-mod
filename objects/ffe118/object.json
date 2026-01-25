@@ -1,9 +1,9 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": 26.506349563598633,
+    "posX": 26.506912231445312,
     "posY": 0.9611999988555908,
-    "posZ": -1.499994158744812,
+    "posZ": -1.4999920129776,
     "rotX": 90.0,
     "rotY": 0.0,
     "rotZ": 0.0,
@@ -40,6 +40,7 @@
   "Hands": false,
   "Text": {
     "Text": "Use Attach Tool (F6)\nDrag from Attachment card to card it's attached to\n\nTo Remove, right click on card -> Remove Attachment",
+    "OwnerSteamID": 0,
     "colorstate": {
       "r": 1.0,
       "g": 1.0,

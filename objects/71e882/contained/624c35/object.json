@@ -1,0 +1,54 @@
+{
+  "Name": "CardCustom",
+  "Transform": {
+    "posX": 34.55238342285156,
+    "posY": 2.326202392578125,
+    "posZ": 14.555938720703125,
+    "rotX": -2.9634231069053385e-08,
+    "rotY": 180.0,
+    "rotZ": 1.5774170947224775e-07,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Spirit Speaker Tests",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132352590560913,
+    "g": 0.7132352590560913,
+    "b": 0.7132352590560913
+  },
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": false,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 1700,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "17": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/9881291731950997331/EE00AF115489008C036E51B678D0C0EDF090D6C3/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/1825653570817822821/B97D125EB1517A2F29991B01C1A4D090EEFA58D4/",
+      "NumWidth": 1,
+      "NumHeight": 1,
+      "BackIsHidden": true,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

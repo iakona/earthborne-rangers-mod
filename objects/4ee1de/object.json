@@ -1,9 +1,9 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": 26.50530242919922,
-    "posY": 0.9614084959030151,
-    "posZ": -4.000026702880859,
+    "posX": 26.50577735900879,
+    "posY": 0.9614110589027405,
+    "posZ": -4.000033855438232,
     "rotX": 90.0,
     "rotY": 0.0,
     "rotZ": 0.0,
@@ -40,6 +40,7 @@
   "Hands": false,
   "Text": {
     "Text": "Perform a Test",
+    "OwnerSteamID": 0,
     "colorstate": {
       "r": 1.0,
       "g": 1.0,

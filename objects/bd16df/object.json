@@ -1,11 +1,11 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": 9.11281681060791,
-    "posY": 0.9612996578216553,
-    "posZ": 4.662625312805176,
+    "posX": -0.8497428894042969,
+    "posY": 0.9612982869148254,
+    "posZ": 2.1500065326690674,
     "rotX": 90.0,
-    "rotY": 0.16660332679748535,
+    "rotY": 0.1666046679019928,
     "rotZ": 0.0,
     "scaleX": 1.0,
     "scaleY": 1.0,
@@ -40,6 +40,7 @@
   "Hands": false,
   "Text": {
     "Text": "Player Card Recall Zone",
+    "OwnerSteamID": 0,
     "colorstate": {
       "r": 1.0,
       "g": 1.0,

@@ -1,9 +1,9 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": 24.506425857543945,
-    "posY": 0.9611828327178955,
-    "posZ": 20.30034065246582,
+    "posX": 24.506906509399414,
+    "posY": 0.9611722826957703,
+    "posZ": 20.30040740966797,
     "rotX": 90.0,
     "rotY": 0.0,
     "rotZ": 0.0,
@@ -40,6 +40,7 @@
   "Hands": false,
   "Text": {
     "Text": "Backgrounds",
+    "OwnerSteamID": 0,
     "colorstate": {
       "r": 1.0,
       "g": 1.0,

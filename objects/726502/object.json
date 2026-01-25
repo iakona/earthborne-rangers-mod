@@ -1,9 +1,9 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": 36.502655029296875,
-    "posY": 0.9611203670501709,
-    "posZ": -9.500118255615234,
+    "posX": 36.503292083740234,
+    "posY": 0.9611272215843201,
+    "posZ": -9.500157356262207,
     "rotX": 90.0,
     "rotY": 0.0,
     "rotZ": 0.0,
@@ -40,6 +40,7 @@
   "Hands": false,
   "Text": {
     "Text": "Discord Link:\ndiscord.gg/mXN2cUNPXE",
+    "OwnerSteamID": 0,
     "colorstate": {
       "r": 1.0,
       "g": 1.0,

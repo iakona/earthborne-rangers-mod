@@ -1,9 +1,9 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": -8.496758460998535,
-    "posY": 1.4998220205307007,
-    "posZ": 28.501344680786133,
+    "posX": -8.496475219726562,
+    "posY": 1.4997951984405518,
+    "posZ": 28.50149154663086,
     "rotX": 90.0,
     "rotY": 0.0,
     "rotZ": 0.0,
@@ -40,6 +40,7 @@
   "Hands": false,
   "Text": {
     "Text": "Alt + Shift\nto view back",
+    "OwnerSteamID": 0,
     "colorstate": {
       "r": 1.0,
       "g": 1.0,

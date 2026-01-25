@@ -1,9 +1,9 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": 35.508907318115234,
-    "posY": 0.9611819386482239,
-    "posZ": 20.300355911254883,
+    "posX": 35.509437561035156,
+    "posY": 0.9611718654632568,
+    "posZ": 20.3004207611084,
     "rotX": 90.0,
     "rotY": 0.0,
     "rotZ": 0.0,
@@ -40,6 +40,7 @@
   "Hands": false,
   "Text": {
     "Text": "Rewards",
+    "OwnerSteamID": 0,
     "colorstate": {
       "r": 1.0,
       "g": 1.0,

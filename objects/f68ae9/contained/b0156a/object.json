@@ -1,0 +1,59 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 14.710000038146973,
+    "posY": 0.9736050367355347,
+    "posZ": 9.649999618530273,
+    "rotX": -9.349074403530722e-09,
+    "rotY": 179.98252868652344,
+    "rotZ": -3.857303099152887e-08,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Grell's Secret Map",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132352590560913,
+    "g": 0.7132352590560913,
+    "b": 0.7132352590560913
+  },
+  "Tags": [
+    "back_memory_object",
+    "Gear",
+    "Ranger"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 1613,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "16": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/12386523665112786816/D4E1D431178D752CDD437B736E41F0E900377F26/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/1825653570817822821/B97D125EB1517A2F29991B01C1A4D090EEFA58D4/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

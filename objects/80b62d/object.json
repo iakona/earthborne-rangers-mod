@@ -1,9 +1,9 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": 26.506242752075195,
+    "posX": 26.506813049316406,
     "posY": 0.9611993432044983,
-    "posZ": -0.499978631734848,
+    "posZ": -0.4999714195728302,
     "rotX": 90.0,
     "rotY": 0.0,
     "rotZ": 0.0,
@@ -40,6 +40,7 @@
   "Hands": false,
   "Text": {
     "Text": "Attachment",
+    "OwnerSteamID": 0,
     "colorstate": {
       "r": 1.0,
       "g": 1.0,

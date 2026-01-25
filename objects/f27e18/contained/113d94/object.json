@@ -1,0 +1,58 @@
+{
+  "Name": "Card",
+  "Transform": {
+    "posX": 3.0,
+    "posY": 0.9736049175262451,
+    "posZ": 6.449999809265137,
+    "rotX": -5.850253614880785e-11,
+    "rotY": 179.9810333251953,
+    "rotZ": -2.047688907325096e-09,
+    "scaleX": 1.0,
+    "scaleY": 1.0,
+    "scaleZ": 1.0
+  },
+  "Nickname": "Anchorite of Stone",
+  "Description": "",
+  "GMNotes": "",
+  "AltLookAngle": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "ColorDiffuse": {
+    "r": 0.7132352590560913,
+    "g": 0.7132352590560913,
+    "b": 0.7132352590560913
+  },
+  "Tags": [
+    "Role",
+    "spec_memory_object"
+  ],
+  "LayoutGroupSortIndex": 0,
+  "Value": 0,
+  "Locked": true,
+  "Grid": false,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": true,
+  "Hands": true,
+  "CardID": 1631,
+  "SidewaysCard": false,
+  "CustomDeck": {
+    "16": {
+      "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/12386523665112786816/D4E1D431178D752CDD437B736E41F0E900377F26/",
+      "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/1825653570817822821/B97D125EB1517A2F29991B01C1A4D090EEFA58D4/",
+      "NumWidth": 10,
+      "NumHeight": 7,
+      "BackIsHidden": false,
+      "UniqueBack": false,
+      "Type": 0
+    }
+  }
+}

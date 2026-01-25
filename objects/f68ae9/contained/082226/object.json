@@ -1,12 +1,12 @@
 {
   "Name": "CardCustom",
   "Transform": {
-    "posX": 17.127300262451172,
-    "posY": 0.9735999703407288,
+    "posX": 9.75,
+    "posY": 0.9736047387123108,
     "posZ": 6.449999809265137,
-    "rotX": 0.0,
+    "rotX": 4.669351127972732e-09,
     "rotY": 179.9447021484375,
-    "rotZ": 0.0,
+    "rotZ": 3.275033577665454e-10,
     "scaleX": 1.0,
     "scaleY": 1.0,
     "scaleZ": 1.0
@@ -43,10 +43,10 @@
   "GridProjection": false,
   "HideWhenFaceDown": true,
   "Hands": true,
-  "CardID": 1500,
+  "CardID": 1700,
   "SidewaysCard": false,
   "CustomDeck": {
-    "15": {
+    "17": {
       "FaceURL": "https://steamusercontent-a.akamaihd.net/ugc/14177015325735631/EF14BCDB5553B675BDF86E0EED13A50063D9306E/",
       "BackURL": "https://steamusercontent-a.akamaihd.net/ugc/1825653570817822821/B97D125EB1517A2F29991B01C1A4D090EEFA58D4/",
       "NumWidth": 1,

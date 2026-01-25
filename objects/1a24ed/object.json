@@ -1,9 +1,9 @@
 {
   "Name": "3DText",
   "Transform": {
-    "posX": 8.008037567138672,
-    "posY": 0.9610607028007507,
-    "posZ": 22.00102996826172,
+    "posX": 8.008560180664062,
+    "posY": 0.9610474705696106,
+    "posZ": 22.001142501831055,
     "rotX": 90.0,
     "rotY": 0.0,
     "rotZ": 0.0,
@@ -40,6 +40,7 @@
   "Hands": false,
   "Text": {
     "Text": "Maladies",
+    "OwnerSteamID": 0,
     "colorstate": {
       "r": 1.0,
       "g": 1.0,
