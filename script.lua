@@ -12,6 +12,7 @@ missionBox = "2b3b55"
 weatherBox = "4b9483"
 maladiesBox = "eceffc"
 trash = "5dca9a"
+misc = "71e882"
 
 campaignTracker = nil
 campaignMap = nil
@@ -111,6 +112,7 @@ function onLoad(data)
     weatherBox = getObjectFromGUID(weatherBox)
     maladiesBox = getObjectFromGUID(maladiesBox)
     trash = getObjectFromGUID(trash)
+    misc = getObjectFromGUID(misc)
     for key, guid in pairs(energyBags) do
         energyBags[key] = getObjectFromGUID(guid)
     end
@@ -338,6 +340,9 @@ function addContextMenuItems(obj)
                 if obj.getTable("cost") then
                     obj.addContextMenuItem("Pay Cost", payCost, false)
                 end
+                if obj.getVar("aspiration") then
+                    obj.addContextMenuItem("Aspiration Finished", aspiration, false)
+                end
                 if obj.hasTag("Malady") then
                     obj.addContextMenuItem("Return to Collection", returnCard, false)
                 elseif campaign > 0 then
@@ -537,6 +542,18 @@ function PickRole(params)
     newRole.setLock(false)
     newRole.setDescription(params.color)
     RemoveBoxTags(newRole)
+
+    if params.role.hasTag("Spirit Speaker") then
+        for _, data in pairs(misc.getObjects()) do
+            if data.name == "Spirit Speaker Tests" then
+                local card = misc.takeObject({guid = data.guid, rotation = Vector(0, 180, 0)})
+                local newCard = card.clone()
+                newCard.deal(1, params.color)
+                Wait.frames(function() misc.putObject(card) end, 3)
+                break
+            end
+        end
+    end
 end
 function pickRole(color, _, obj)
     PickRole({color = color, role = obj})
@@ -590,6 +607,18 @@ function PickRanger(params)
 
         if params.sideboard then
             sideboards[params.color].putObject(newRanger)
+        end
+    end
+
+    if params.ranger.getVar("aspiration") then
+        for _, data in pairs(misc.getObjects()) do
+            if data.name == params.ranger.getName() then
+                local aspiration = misc.takeObject({guid = data.guid, rotation = Vector(0, 180, 0)})
+                local newAspiration = aspiration.clone()
+                newAspiration.deal(1, params.color)
+                Wait.frames(function() misc.putObject(aspiration) end, 3)
+                break
+            end
         end
     end
 end
@@ -707,6 +736,16 @@ function payCost(color, _, obj)
                     Player[color].broadcast("Paid "..requiredCount.." "..statName.." energy to play "..obj.getName(), Color.White)
                 end
             end
+        end
+    end
+end
+function aspiration(color, _, obj)
+    for _, object in pairs(getObjectsWithTag("aspiration")) do
+        if object.getName() == obj.getName() then
+            local reward = obj.getVar("aspiration")
+            UnlockReward({color = color, reward = reward})
+            object.setState(2)
+            break
         end
     end
 end
@@ -1429,7 +1468,7 @@ function Refresh(_)
     end
 
     for _, rangerCard in pairs(getObjectsWithTag("Ranger")) do
-        if not rangerCard.is_face_down and not rangerCard.isSmoothMoving() then
+        if not rangerCard.is_face_down and not rangerCard.isSmoothMoving() and not rangerCard.getVar("skipRefresh") then
             rangerCard.setRotationSmooth(Vector(0, 180, 0), false, true)
         end
     end
