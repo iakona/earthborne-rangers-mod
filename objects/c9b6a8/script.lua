@@ -225,7 +225,7 @@ function ImportDeck(params)
             aspects = getObjectsWithTag("Aspect")
             for _, aspect in pairs(aspects) do
                 -- Description means it was picked by a player
-                if aspect.getDescription() == "" then
+                if aspect.type == "Card" and aspect.getDescription() == "" then
                     if aspect.getVar("awareness") == params.awa and aspect.getVar("fitness") == params.fit and aspect.getVar("focus") == params.foc and aspect.getVar("spirit") == params.spi then
                         Global.call("PickAspect", {color = params.color, aspect = aspect})
                         found = true
@@ -256,7 +256,7 @@ function ImportDeck(params)
             roles = getObjectsWithTag("Role")
             for _, role in pairs(roles) do
                 -- Description means it was picked by a player
-                if role.getDescription() == "" then
+                if role.type == "Card" and role.getDescription() == "" then
                     if role.getVar("id") == params.role then
                         Global.call("PickRole", {color = params.color, role = role, useUncommonWisdom = params.useUncommonWisdom})
                         found = true
@@ -315,7 +315,7 @@ function ImportDeck(params)
                         rangers = getObjectsWithTag("Ranger")
                         for _, ranger in pairs(rangers) do
                             -- Description means it was picked by a player
-                            if ranger.getDescription() == "" then
+                            if ranger.type == "Card" and ranger.getDescription() == "" then
                                 if ranger.getVar("id") == id then
                                     Global.call("PickRanger", {color = params.color, ranger = ranger, useUncommonWisdom = params.useUncommonWisdom, quantity = quantity, offset = Vector(0, 0.1 * count, 0)})
                                     count = count + 1
@@ -358,7 +358,7 @@ function ImportDeck(params)
                                 rangers = getObjectsWithTag("Ranger")
                                 for _, ranger in pairs(rangers) do
                                     -- Description means it was picked by a player
-                                    if ranger.getDescription() == "" then
+                                    if ranger.type == "Card" and ranger.getDescription() == "" then
                                         if ranger.getVar("id") == id then
                                             Global.call("PickRanger", {color = params.color, ranger = ranger, useUncommonWisdom = params.useUncommonWisdom, quantity = quantity, sideboard = true})
                                             found = true
