@@ -203,7 +203,7 @@ function onload(saved_data)
         local players = Player.getColors()
         for _, reward in pairs(getObjectsWithTag("Reward")) do
             -- Description means it was picked by a player
-            if reward.getDescription() == "" then
+            if reward.type == "Card" and reward.getDescription() == "" then
                 if not unlockedRewards[reward.getName()] then
                     reward.setInvisibleTo(players)
                 end
@@ -269,7 +269,7 @@ function toggleRewards()
         local players = Player.getColors()
         for _, reward in pairs(getObjectsWithTag("Reward")) do
             -- Description means it was picked by a player
-            if reward.getDescription() == "" then
+            if reward.type == "Card" and reward.getDescription() == "" then
                 if not unlockedRewards[reward.getName()] then
                     reward.setInvisibleTo(players)
                 end

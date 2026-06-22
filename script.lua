@@ -396,10 +396,12 @@ function getMissionIndex(mission)
         missionName = missionName.." ("..subjectName..")"
     end
 
-    for i = 33, 1, -1 do
-        local name = campaignTracker.UI.getAttribute("mission"..i, "text")
-        if name == missionName or name:find(missionName) then
-            return i, missionName
+    if campaignTracker then
+        for i = 33, 1, -1 do
+            local name = campaignTracker.UI.getAttribute("mission"..i, "text")
+            if name == missionName or name:find(missionName) then
+                return i, missionName
+            end
         end
     end
 
