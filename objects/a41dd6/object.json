@@ -39,7 +39,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "Text": {
-    "Text": "version 0.4.1",
+    "Text": "version 0.4.2",
     "OwnerSteamID": 0,
     "colorstate": {
       "r": 1.0,
