@@ -26,6 +26,9 @@ energyBags = {
 harmBag = "3065c9"
 progressBag = "3bdc5a"
 allPurposeBag = "44520f"
+harmDiceBag = "5ec964"
+progressDiceBag = "90f0ff"
+allPurposeDiceBag = "a0263e"
 
 playerBoards = {
     ["Red"] = "ce80f5",
@@ -119,6 +122,9 @@ function onLoad(data)
     harmBag = getObjectFromGUID(harmBag)
     progressBag = getObjectFromGUID(progressBag)
     allPurposeBag = getObjectFromGUID(allPurposeBag)
+    harmDiceBag = getObjectFromGUID(harmDiceBag)
+    progressDiceBag = getObjectFromGUID(progressDiceBag)
+    allPurposeDiceBag = getObjectFromGUID(allPurposeDiceBag)
     for key, guid in pairs(playerBoards) do
         playerBoards[key] = getObjectFromGUID(guid)
     end
@@ -171,6 +177,15 @@ function onLoad(data)
     end)
     addHotkey("Spawn All-Purpose Token", function (playerColor, hoveredObject, cursorLocation, key_down_up)
         allPurposeBag.takeObject({position = cursorLocation + Vector(0, 2, 0), rotation = Vector(0, 180, 0)})
+    end)
+    addHotkey("Spawn Harm Die", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        harmDiceBag.takeObject({position = cursorLocation + Vector(0, 2, 0), rotation = Vector(0, 180, 0)})
+    end)
+    addHotkey("Spawn Progress Die", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        progressDiceBag.takeObject({position = cursorLocation + Vector(0, 2, 0), rotation = Vector(0, 180, 0)})
+    end)
+    addHotkey("Spawn All-Purpose Die", function (playerColor, hoveredObject, cursorLocation, key_down_up)
+        allPurposeDiceBag.takeObject({position = cursorLocation + Vector(0, 2, 0), rotation = Vector(0, 180, 0)})
     end)
 
     addHotkey("Draw Path Card", function (playerColor, hoveredObject, cursorLocation, key_down_up)
@@ -909,18 +924,6 @@ function SetWeather(params)
     params.weather.setRotation(Vector(0, 180, 0))
 
     Wait.condition(function() setupTokens(nil, nil, params.weather) end, function() return not params.weather.isSmoothMoving() end)
-end
-
-function onScriptingButtonDown(index, color)
-    local position = Player[color].getPointerPosition() + Vector(0, 2, 0)
-    local rotation = Vector(0, 180, 0)
-    if index == 1 then
-        harmBag.takeObject({position = position, rotation = rotation})
-    elseif index == 2 then
-        progressBag.takeObject({position = position, rotation = rotation})
-    elseif index == 3 then
-        allPurposeBag.takeObject({position = position, rotation = rotation})
-    end
 end
 
 function onObjectEnterContainer(container, object)
